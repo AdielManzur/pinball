@@ -12,7 +12,7 @@ namespace pinballServer.GamesClasses
 {
     public class serverGameManager
     {
-        private ServerMainWin main;
+        public ServerMainWin main;
         public List<GameModel> games { get; set; }
         public List<ConnectedPlayer> players { get; set; }
         public List<RoomModel> rooms { get; set; }

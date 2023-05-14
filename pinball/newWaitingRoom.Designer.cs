@@ -1,6 +1,6 @@
 ﻿namespace pinball
 {
-    partial class RoomsListWin
+    partial class newWaitingRoom
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbxRooms = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // lbxRooms
+            // textBox1
             // 
-            this.lbxRooms.FormattingEnabled = true;
-            this.lbxRooms.Location = new System.Drawing.Point(150, 43);
-            this.lbxRooms.Name = "lbxRooms";
-            this.lbxRooms.Size = new System.Drawing.Size(465, 368);
-            this.lbxRooms.TabIndex = 0;
-            this.lbxRooms.SelectedIndexChanged += new System.EventHandler(this.LbxRooms_SelectedIndexChanged);
+            this.textBox1.Location = new System.Drawing.Point(268, 153);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(211, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "waiting for another player...";
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
-            // RoomsListWin
+            // newWaitingRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lbxRooms);
+            this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "RoomsListWin";
-            this.Text = "RoomsList";
-            this.Load += new System.EventHandler(this.RoomsList_Load);
+            this.Name = "newWaitingRoom";
+            this.Text = "newWaitingRoom";
+            this.Load += new System.EventHandler(this.NewWaitingRoom_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox lbxRooms;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

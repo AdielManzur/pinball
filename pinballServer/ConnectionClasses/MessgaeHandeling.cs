@@ -30,8 +30,34 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.LIST_OPEN_ROOMS:
                     handleOpenListRooms(message, connected);
                     break;
-
+                case ProtocolInterface.MsgType.JOIN_ROOM:
+                    handleJoinRoom(message, connected);
+                    break;
             }
+        }
+
+        private void handleJoinRoom(MessageModel message, ConnectedPlayer connected)
+        {
+            RoomModel curr = new RoomModel();
+           foreach(RoomModel room in manager.main.gameManager.rooms)
+            {
+                if(message.msgStr == room.name)
+                {
+                    room.player2 = message.player;
+                    curr = room;
+                }
+            }
+            GameModel newGame = new GameModel();
+            newGame.player1 = curr.player1;
+            newGame.player2 = curr.player2;
+            manager.main.gameManager.games.Add(newGame);
+            MessageModel msgToSend = new MessageModel();
+            msgToSend.msgType = ProtocolInterface.MsgType.OPEN_GAME;
+            msgToSend.game = newGame;
+            foreach (ConnectedPlayer player in manager.main.gameManager.players)
+            {
+                manager.sendMessageToClient(player, msgToSend);
+            }        
         }
 
         private void handleOpenListRooms(MessageModel message, ConnectedPlayer connected)
@@ -39,6 +65,7 @@ namespace pinballServer.ConnectionClasses
             MessageModel msg = new MessageModel();
             msg.msgType = ProtocolInterface.MsgType.LIST_OPEN_ROOMS_OK;
             msg.player = message.player;
+            msg.rooms = manager.main.gameManager.rooms;
             manager.sendMessageToClient(connected, msg);
         }
 
@@ -50,8 +77,8 @@ namespace pinballServer.ConnectionClasses
             manager.main.gameManager.rooms.Add(room);
             MessageModel msg = new MessageModel();
             msg.msgType = ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM_OK;
-            manager.sendMessageToClient(connected,message);
-          
+            manager.sendMessageToClient(connected, msg);
+           
         }
 
        

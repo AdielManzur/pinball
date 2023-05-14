@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using pinballServer;
 using System.Windows.Forms;
 using pinballServer.ConnectionClasses;
+using pinball;
 
 namespace pinball
 {
@@ -35,36 +36,42 @@ namespace pinball
                 case ProtocolInterface.MsgType.LOGIN_ERROR:
                     handleLoginError(message);
                     break;
-                case ProtocolInterface.MsgType.JOIN_GAME_OK:
+                /*    case ProtocolInterface.MsgType.JOIN_GAME_OK:
                     handleJoinOk(message);
                     break;
+                    */
                 case ProtocolInterface.MsgType.LIST_OPEN_ROOMS_OK:
                     handleOpenListRoomsOk(message);
                     break;
-
+                case ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM_OK:
+                    handleOpenRoomOk(message);
+                    break;
+                case ProtocolInterface.MsgType.OPEN_GAME:
+                    handleOpenGame(message);
+                    break;
 
             }
         }
 
+        private void handleOpenGame(MessageModel message)
+        {
+            manager.main.openGameWin();
+        }
+
+       
         private void handleOpenListRoomsOk(MessageModel message)
         {
-            manager.main.openRoomsListWin();
-            
+            manager.main.UpdateOpenRooms(message.rooms);
         }
 
         private void handleOpenRoomOk(MessageModel message)
         {
-            MessageBox.Show("waiting for another player");
-        }
+            manager.main.opennewWaitingRoom();
 
-        private void handleJoinOk(MessageModel message)
-        {
-
-            MessageBox.Show("waiting for another player");
-
-           
 
         }
+
+        
 
         private void handleLoginError(MessageModel message)
         {
@@ -76,8 +83,8 @@ namespace pinball
             MessageBox.Show("connected");
             manager.currPlayer = message.player;
             manager.main.isLogined = true;
-            manager.main.openGameWin();
-            manager.main.sendJoinToServer(message.userName, message.pass);
+            manager.main.openChoiceWin();
+           // manager.main.sendJoinToServer(message.userName, message.pass);
             
         }
 
@@ -91,8 +98,8 @@ namespace pinball
             MessageBox.Show("registration completed");
             manager.main.isLogined = true;
             manager.main.updateMenuBTNs();
-            manager.main.openGameWin();
-            manager.main.sendJoinToServer(message.userName, message.pass);
+            manager.main.openChoiceWin();
+            //manager.main.sendJoinToServer(message.userName, message.pass);
         }
 
         public bool isLogined()

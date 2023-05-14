@@ -34,7 +34,7 @@
             // 
             // btnOpenWatingRoom
             // 
-            this.btnOpenWatingRoom.Location = new System.Drawing.Point(57, 189);
+            this.btnOpenWatingRoom.Location = new System.Drawing.Point(82, 189);
             this.btnOpenWatingRoom.Name = "btnOpenWatingRoom";
             this.btnOpenWatingRoom.Size = new System.Drawing.Size(157, 68);
             this.btnOpenWatingRoom.TabIndex = 0;

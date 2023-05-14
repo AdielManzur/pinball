@@ -33,6 +33,7 @@ namespace pinball
             {
                 clientSocket.Connect("127.0.0.1", PORT);
                 isConnected = clientSocket.Connected;
+              
             }
             catch (Exception ex)
             {

@@ -10,16 +10,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pinballServer;
 using pinballServer.ConnectionClasses;
+using pinballServer.GamesClasses;
 
 namespace pinball
 {
 
     public partial class ClientMainWin : Form
     {
-        Form current;
+        public Form current;
         public clientConnectionManager connectionManager;
         public clientMessageHandling clientHandle;
         public choiceWin WaitingRoom;
+        
         public bool isConnected;
         public bool isLogined;
         public ClientMainWin()
@@ -56,7 +58,9 @@ namespace pinball
 
         }
 
-        public void openRoomsListWin()
+
+
+        public void UpdateOpenRooms(List<RoomModel> rooms)
         {
             this.Invoke((MethodInvoker)delegate {
                 if (current != null)
@@ -67,32 +71,31 @@ namespace pinball
                     }
                     current.Close();
                 }
-                current = new RoomsListWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new RoomsListWin(this,rooms) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
             });
         }
 
-        public void openLoginWin2()
+        public void opennewWaitingRoom()
         {
             this.Invoke((MethodInvoker)delegate {
                 if (current != null)
                 {
-                    if (current is ClientLoginWin)
+                    if (current is newWaitingRoom)
                     {
                         return;
                     }
                     current.Close();
                 }
-                current = new ClientLoginWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new newWaitingRoom(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
             });
-            
-
         }
+
 
 
         public void openRegWin(object sender, EventArgs e)
@@ -112,7 +115,7 @@ namespace pinball
         }
 
     
-        public void openGameWin()
+        public void openChoiceWin()
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -125,6 +128,25 @@ namespace pinball
                     current.Close();
                 }
                 current = new choiceWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                mainPanel.Controls.Add(current);
+                current.Show();
+                updateMenuBTNs();
+            });
+        }
+
+        public void openGameWin()
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (current != null)
+                {
+                    if (current is game)
+                    {
+                        return;
+                    }
+                    current.Close();
+                }
+                current = new game(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
@@ -145,7 +167,7 @@ namespace pinball
             }
             isLogined = clientHandle.isLogined();
         }
-        public void sendJoinToServer(string userName, string pass)
+       /* public void sendJoinToServer(string userName, string pass)
         {
             if (connectionManager.isClientConnected())
             {
@@ -157,7 +179,7 @@ namespace pinball
                 
                 connectionManager.sendMessageToServer(message);
             }
-        }
+        } */
         private void connectToServer(object sender, EventArgs e)
         {
             isConnected = connectionManager.connectToServer();

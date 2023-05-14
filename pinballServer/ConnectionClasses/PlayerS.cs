@@ -17,6 +17,7 @@ namespace pinballServer.ConnectionClasses
         public string firstName { get; set; }
         public string lastName { get; set; }
         public DateTime regDate { get; set; }
+     
         public void convertFromUserTBL(playerTBL p)
         {
             //Id = p.Id;

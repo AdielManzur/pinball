@@ -25,15 +25,15 @@ namespace pinballServer.ConnectionClasses
             LOGIN_ERROR,
             MSG_REGISTER,
             REGISTER_OK,
-            REGISTER_ERROR,
-            MSG_JOIN_GAME,
+            REGISTER_ERROR,         
             OPEN_NEW_WAITING_ROOM,
             OPEN_NEW_WAITING_ROOM_OK,
             OPEN_NEW_WAITING_ROOM_ERROR,
             LIST_OPEN_ROOMS_OK,
             JOIN_ROOM,
+            JOIN_ROOM_OK,
+            OPEN_GAME, 
             LIST_OPEN_ROOMS,
-            JOIN_GAME_OK,
             JOIN_GAME_ERROR
         }
         public static string SerializeMessage(MessageModel message)

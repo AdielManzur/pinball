@@ -120,15 +120,7 @@ namespace pinballServer.ConnectionClasses
             byte[] data = Encoding.UTF8.GetBytes(str);
             connected.client.Send(data, 0, data.Length, SocketFlags.None);
         }
-        public bool isTwoOnline()
-        {
-            int count = 0;
-            foreach(ConnectedPlayer p in this.players)
-            {
-                count++;
-            }
-            return count == 2;
-        }
+        
 
         public void stopServer()
         {
