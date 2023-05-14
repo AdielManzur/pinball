@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinballClient", "pinball\PinballClient.csproj", "{40C0C0FE-BCDC-48D5-98AC-8EEC95D4CCE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinballServer", "pinballServer\PinballServer.csproj", "{17F4072E-88DF-4678-B685-4290D4559A41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40C0C0FE-BCDC-48D5-98AC-8EEC95D4CCE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C0C0FE-BCDC-48D5-98AC-8EEC95D4CCE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C0C0FE-BCDC-48D5-98AC-8EEC95D4CCE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C0C0FE-BCDC-48D5-98AC-8EEC95D4CCE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F4072E-88DF-4678-B685-4290D4559A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F4072E-88DF-4678-B685-4290D4559A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F4072E-88DF-4678-B685-4290D4559A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F4072E-88DF-4678-B685-4290D4559A41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B274A84-7514-4162-A9D5-96E4565E74A6}
+	EndGlobalSection
+EndGlobal
