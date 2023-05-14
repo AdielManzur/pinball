@@ -63,7 +63,7 @@
             this.ball.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this.ball.BorderSize = 2;
             this.ball.GradientAngle = 50F;
-            this.ball.Location = new System.Drawing.Point(942, 522);
+            this.ball.Location = new System.Drawing.Point(940, 522);
             this.ball.Name = "ball";
             this.ball.Size = new System.Drawing.Size(36, 36);
             this.ball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
