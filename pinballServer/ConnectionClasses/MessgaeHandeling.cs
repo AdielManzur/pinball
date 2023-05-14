@@ -111,7 +111,7 @@ namespace pinballServer.ConnectionClasses
             else
             {
                 playerTBL newPlayer = PlayerS.convertUserTBLFromMessage(message);
-                newPlayer.registerDate = DateTime.Now;
+                newPlayer.regDate = DateTime.Now;
                 PlayerS playerS = new PlayerS();
                 playerS.convertFromUserTBL(newPlayer);
 

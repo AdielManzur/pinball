@@ -45,8 +45,8 @@
     <Reference Include="RJCodeAdvance.RJControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RJCodeAdvance.RJControls.1.0.0\lib\net45\RJCodeAdvance.RJControls.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSimpleTcp, Version=3.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SuperSimpleTcp.3.0.7\lib\net461\SuperSimpleTcp.dll</HintPath>
+    <Reference Include="SuperSimpleTcp, Version=3.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSimpleTcp.3.0.10\lib\net461\SuperSimpleTcp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

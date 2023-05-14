@@ -22,9 +22,9 @@ namespace pinballServer.ConnectionClasses
             //Id = p.Id;
             username = p.username;
             password = p.password;
-            firstName = p.first_name;
-            lastName = p.last_name;
-            regDate = p.registerDate;
+            firstName = p.firstName;
+            lastName = p.lastName;
+            regDate = p.regDate;
         }
 
        
@@ -34,9 +34,9 @@ namespace pinballServer.ConnectionClasses
             
             user.username = msg.player.username;
             user.password = msg.player.password;
-            user.first_name = msg.player.firstName;
-            user.last_name = msg.player.lastName;
-            user.registerDate = DateTime.Now ;
+            user.firstName = msg.player.firstName;
+            user.lastName = msg.player.lastName;
+            user.regDate = DateTime.Now ;
             return user;
         }
     }
