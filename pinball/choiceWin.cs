@@ -30,7 +30,7 @@ namespace pinball
         private void BtnOpenWatingRoom_Click(object sender, EventArgs e)
         {
             MessageModel message = new MessageModel();
-            message.msgType = ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM;
+            message.MsgType = ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM;
             message.player = main.connectionManager.currPlayer;
             main.connectionManager.sendMessageToServer(message);
         }
@@ -38,7 +38,7 @@ namespace pinball
         private void BtnJoinGame_Click(object sender, EventArgs e)
         {
             MessageModel message = new MessageModel();
-            message.msgType = ProtocolInterface.MsgType.LIST_OPEN_ROOMS;
+            message.MsgType = ProtocolInterface.MsgType.LIST_OPEN_ROOMS;
             message.player = main.connectionManager.currPlayer;
             main.connectionManager.sendMessageToServer(message);
         }

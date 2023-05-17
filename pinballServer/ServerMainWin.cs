@@ -17,7 +17,7 @@ namespace pinballServer
     {
         public ConnectionManager manager;
         public serverGameManager gameManager;
-       
+
         public ServerMainWin()
         {
             InitializeComponent();

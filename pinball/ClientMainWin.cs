@@ -20,7 +20,7 @@ namespace pinball
         public Form current;
         public clientConnectionManager connectionManager;
         public clientMessageHandling clientHandle;
-        public choiceWin WaitingRoom;
+        public game gameWin;
         
         public bool isConnected;
         public bool isLogined;
@@ -39,6 +39,7 @@ namespace pinball
             isLogined = false;
             connectionManager = new clientConnectionManager(this);
             clientHandle = new clientMessageHandling(connectionManager);
+            gameWin = new game(this);
             updateMenuBTNs();
         }
         public void openLoginWin(object sender, EventArgs e)
@@ -158,7 +159,7 @@ namespace pinball
             if (connectionManager.isClientConnected())
             {
                 MessageModel message = new MessageModel();
-                message.msgType = ProtocolInterface.MsgType.MSG_LOGIN;
+                //message.MsgType = ProtocolInterface.MsgType.MSG_LOGIN;
                 message.userName = userName;
                 message.pass = pass;
                 message.msgStr = "";
@@ -172,7 +173,7 @@ namespace pinball
             if (connectionManager.isClientConnected())
             {
                 MessageModel message = new MessageModel();
-                message.msgType = ProtocolInterface.MsgType.MSG_JOIN_GAME;
+                message.MsgType = ProtocolInterface.MsgType.MSG_JOIN_GAME;
                 message.userName = userName;
                 message.pass = pass;
                 message.msgStr = "";

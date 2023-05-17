@@ -49,7 +49,7 @@ namespace pinball
             MessageModel msgToSend = new MessageModel();
             string roomName = lbxRooms.SelectedItem as string;
             msgToSend.player = main.connectionManager.currPlayer;
-            msgToSend.msgType = ProtocolInterface.MsgType.JOIN_ROOM;
+            msgToSend.MsgType = ProtocolInterface.MsgType.JOIN_ROOM;
             msgToSend.msgStr = roomName;
             main.sendMessageToServer(msgToSend);
         }

@@ -34,8 +34,22 @@ namespace pinballServer.ConnectionClasses
             JOIN_ROOM_OK,
             OPEN_GAME, 
             LIST_OPEN_ROOMS,
-            JOIN_GAME_ERROR
+            JOIN_GAME_ERROR,
+            KEY_W,
+            UP,
+            DOWN,
+            KEY_S
         }
+        /*
+        public enum MsgType
+        {
+            KEY_W,
+            UP,
+            DOWN,
+            KEY_S
+        }
+        */
+
         public static string SerializeMessage(MessageModel message)
         {
             string str = JsonConvert.SerializeObject(message);

@@ -11,6 +11,7 @@ namespace pinballServer.ConnectionClasses
 
     public class PlayerS
     {
+ 
         public int Id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -40,5 +41,6 @@ namespace pinballServer.ConnectionClasses
             user.regDate = DateTime.Now ;
             return user;
         }
+        
     }
 }

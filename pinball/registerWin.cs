@@ -37,7 +37,7 @@ namespace pinball
             newPlayer.password = txbPass.Text.Trim();
             newPlayer.username = txbUsername.Text.Trim();
             MessageModel mToSend = new MessageModel();
-            mToSend.msgType = ProtocolInterface.MsgType.MSG_REGISTER;
+            mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;
             main.sendMessageToServer(mToSend);
 

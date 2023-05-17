@@ -21,6 +21,7 @@ namespace pinballServer.GamesClasses
             this.main = main;
             games = new List<GameModel>();
             rooms = new List<RoomModel>();
+
         }
         public void updatePlayersList()
         {

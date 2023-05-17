@@ -53,6 +53,7 @@
             this.leftPlayer.Size = new System.Drawing.Size(14, 150);
             this.leftPlayer.TabIndex = 0;
             this.leftPlayer.TabStop = false;
+            this.leftPlayer.Click += new System.EventHandler(this.leftPlayer_Click);
             // 
             // ball
             // 
@@ -81,7 +82,7 @@
             this.Controls.Add(this.rightPlayer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1918, 1038);
+            this.MinimumSize = new System.Drawing.Size(1918, 1030);
             this.Name = "game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "game";

@@ -22,7 +22,7 @@ namespace pinball
         }
         public void handleMessage(MessageModel message)
         {
-            switch (message.msgType)
+            switch (message.MsgType)
             {
                 case ProtocolInterface.MsgType.REGISTER_OK:
                     handleRegisterOk(message);
@@ -49,8 +49,28 @@ namespace pinball
                 case ProtocolInterface.MsgType.OPEN_GAME:
                     handleOpenGame(message);
                     break;
-
+                case ProtocolInterface.MsgType.DOWN:
+                    handleKeyPressed(message);
+                    break;
+                case ProtocolInterface.MsgType.UP:
+                    handleKeyPressed(message);
+                    break;
+                case ProtocolInterface.MsgType.KEY_S:
+                    handleKeyPressed(message);
+                    break;
+                case ProtocolInterface.MsgType.KEY_W:
+                    handleKeyPressed(message);
+                    break;
             }
+
+        }
+
+
+
+        private void handleKeyPressed(MessageModel message)
+        {
+
+            manager.main.gameWin.keyPressed(message.MsgType);
         }
 
         private void handleOpenGame(MessageModel message)
