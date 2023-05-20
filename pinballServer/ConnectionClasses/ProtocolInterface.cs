@@ -38,7 +38,8 @@ namespace pinballServer.ConnectionClasses
             KEY_W,
             UP,
             DOWN,
-            KEY_S
+            KEY_S,
+            UPDATE_OPEN_ROOMS
         }
         /*
         public enum MsgType

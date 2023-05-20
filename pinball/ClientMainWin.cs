@@ -21,6 +21,7 @@ namespace pinball
         public clientConnectionManager connectionManager;
         public clientMessageHandling clientHandle;
         public game gameWin;
+        public RoomsListWin RoomsListWin;
         
         public bool isConnected;
         public bool isLogined;
@@ -40,6 +41,7 @@ namespace pinball
             connectionManager = new clientConnectionManager(this);
             clientHandle = new clientMessageHandling(connectionManager);
             gameWin = new game(this);
+            RoomsListWin = new RoomsListWin(this);
             updateMenuBTNs();
         }
         public void openLoginWin(object sender, EventArgs e)
@@ -204,7 +206,5 @@ namespace pinball
             });
         
         }
-
-
     }   
 }

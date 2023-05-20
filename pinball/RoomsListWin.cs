@@ -16,13 +16,20 @@ namespace pinball
     {
         public ClientMainWin main;
         public List<RoomModel> rooms;
+
         public RoomsListWin(ClientMainWin main, List<RoomModel> rooms)
         {
             InitializeComponent();
             this.main = main;
             this.rooms = rooms;
         }
-  
+
+        public RoomsListWin(ClientMainWin main)
+        {
+            InitializeComponent();
+            this.main = main;
+        }
+
         private void RoomsList_Load(object sender, EventArgs e)
         {
             updatelbxRooms(rooms);
@@ -30,21 +37,32 @@ namespace pinball
         
         public void updatelbxRooms(List<RoomModel> rooms)
         {
-            if(rooms == null)
+            if(rooms.Count == 0)
             {
                 MessageBox.Show("There are no open games");
                 return;
-            }
-                foreach (RoomModel p in rooms)
+            }          
+            bool isExsist = false;
+            foreach (RoomModel p in rooms)
             {
-                this.Invoke((MethodInvoker)delegate {
+                for (int i = 0; i < lbxRooms.Items.Count; i++)
+                {
+                    if(lbxRooms.Items[i].ToString() ==  p.name)
+                    {
+                        isExsist = true;
+                    }
+                }
+                if (!isExsist)
+                {
                     lbxRooms.Items.Add(p.name);
-                });
+                }
             }
-           
+            lbxRooms.Update();
+            lbxRooms.Refresh();
+          
         }
 
-        private void LbxRooms_SelectedIndexChanged(object sender, EventArgs e)
+        public void LbxRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
             MessageModel msgToSend = new MessageModel();
             string roomName = lbxRooms.SelectedItem as string;
@@ -53,5 +71,14 @@ namespace pinball
             msgToSend.msgStr = roomName;
             main.sendMessageToServer(msgToSend);
         }
+       
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+            MessageModel message = new MessageModel();
+            message.MsgType = ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS;
+            message.player = main.connectionManager.currPlayer;
+            main.connectionManager.sendMessageToServer(message);
+        }
+        
     }
 }

@@ -34,6 +34,9 @@ namespace pinballServer.ConnectionClasses
                     handleJoinRoom(message, connected);
                     break;
 
+                case ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS:
+                    handleUpdateRooms(message, connected);
+                    break;
 
             }
            
@@ -53,6 +56,15 @@ namespace pinballServer.ConnectionClasses
                     break;
             }
            
+        }
+
+        private void handleUpdateRooms(MessageModel message, ConnectedPlayer connected)
+        {
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS;
+            msg.player = message.player;
+            msg.rooms = manager.main.gameManager.rooms;
+            manager.sendMessageToClient(connected, msg);
         }
 
         private void handleKeyUp(MessageModel message, ConnectedPlayer connected)

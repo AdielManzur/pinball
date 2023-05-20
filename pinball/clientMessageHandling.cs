@@ -61,11 +61,18 @@ namespace pinball
                 case ProtocolInterface.MsgType.KEY_W:
                     handleKeyPressed(message);
                     break;
+                case ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS:
+                    handleUpdateRooms(message);
+                    break;
+
             }
 
         }
 
-
+        private void handleUpdateRooms(MessageModel message)
+        {
+            manager.main.RoomsListWin.updatelbxRooms(message.rooms);
+        }
 
         private void handleKeyPressed(MessageModel message)
         {
@@ -117,6 +124,7 @@ namespace pinball
         {
             MessageBox.Show("registration completed");
             manager.main.isLogined = true;
+            manager.currPlayer = message.player;
             manager.main.updateMenuBTNs();
             manager.main.openChoiceWin();
             //manager.main.sendJoinToServer(message.userName, message.pass);

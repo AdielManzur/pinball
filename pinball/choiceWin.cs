@@ -42,5 +42,7 @@ namespace pinball
             message.player = main.connectionManager.currPlayer;
             main.connectionManager.sendMessageToServer(message);
         }
+
+        
     }
 }

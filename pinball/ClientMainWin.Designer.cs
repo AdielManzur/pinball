@@ -60,21 +60,21 @@
             // btnConnectToServer
             // 
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(170, 22);
+            this.btnConnectToServer.Size = new System.Drawing.Size(169, 22);
             this.btnConnectToServer.Text = "Connect To Server";
             this.btnConnectToServer.Click += new System.EventHandler(this.connectToServer);
             // 
             // btnLogin
             // 
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(170, 22);
+            this.btnLogin.Size = new System.Drawing.Size(169, 22);
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.openLoginWin);
             // 
             // btnRegister
             // 
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(170, 22);
+            this.btnRegister.Size = new System.Drawing.Size(169, 22);
             this.btnRegister.Text = "Register";
             this.btnRegister.Click += new System.EventHandler(this.openRegWin);
             // 
@@ -93,7 +93,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1918, 1038);
+            this.MinimumSize = new System.Drawing.Size(1918, 1030);
             this.Name = "ClientMainWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
