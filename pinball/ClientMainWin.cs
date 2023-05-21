@@ -99,7 +99,38 @@ namespace pinball
             });
         }
 
+        public void updateRoomsLbx(List<RoomModel> rooms)
+        {
+            if (current is RoomsListWin)
+            {
+                RoomsListWin tmp = (RoomsListWin)current;
+                tmp.updatelbxRooms(rooms);
+            }
+        }
 
+        public void KeysLbl(MessageModel message)
+        {
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    playerLabel.Text = message.msgStr;
+                    playerLabel.Location = new Point((int)((this.Width - playerLabel.Width) / 2), playerLabel.Location.Y);
+                    playerNameLbl.Text = "Your name: " + message.player.username;
+                });
+            }
+        }
+
+        public void handleKeyPress(ProtocolInterface.MsgType msgType)
+        {
+            if (current is game)
+            {
+                 game tmp = (game)current;
+                tmp.MykeyPressed(msgType);
+            }
+           
+        }
 
         public void openRegWin(object sender, EventArgs e)
         {
@@ -149,11 +180,16 @@ namespace pinball
                     }
                     current.Close();
                 }
+
                 current = new game(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
+                mainPanel.Height -= 36;
+                mainPanel.Location = new Point(0, mainPanel.Location.Y + 35);
+
             });
+
         }
 
         public void sendLoginToServer(string userName, string pass)
@@ -161,28 +197,16 @@ namespace pinball
             if (connectionManager.isClientConnected())
             {
                 MessageModel message = new MessageModel();
-                //message.MsgType = ProtocolInterface.MsgType.MSG_LOGIN;
+                message.MsgType = ProtocolInterface.MsgType.MSG_LOGIN;
                 message.userName = userName;
                 message.pass = pass;
-                message.msgStr = "";
-                message.player = null;
+                //message.msgStr = "";
+                //message.player = null;
                 connectionManager.sendMessageToServer(message);
             }
             isLogined = clientHandle.isLogined();
         }
-       /* public void sendJoinToServer(string userName, string pass)
-        {
-            if (connectionManager.isClientConnected())
-            {
-                MessageModel message = new MessageModel();
-                message.MsgType = ProtocolInterface.MsgType.MSG_JOIN_GAME;
-                message.userName = userName;
-                message.pass = pass;
-                message.msgStr = "";
-                
-                connectionManager.sendMessageToServer(message);
-            }
-        } */
+       
         private void connectToServer(object sender, EventArgs e)
         {
             isConnected = connectionManager.connectToServer();
@@ -205,6 +229,11 @@ namespace pinball
                 btnRegister.Enabled = isConnected && !isLogined;
             });
         
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
         }
     }   
 }

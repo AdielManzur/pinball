@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static pinballServer.ConnectionClasses.ProtocolInterface;
 
 namespace pinball
 {
@@ -17,7 +18,7 @@ namespace pinball
         ClientMainWin main;
 
 
-        int screenHeight = 980;
+        int screenHeight ;
 
         public game(ClientMainWin main)
         {
@@ -27,9 +28,11 @@ namespace pinball
         }
         private void Game_Load(object sender, EventArgs e)
         {
-
+            screenHeight = this.Height;
+            
         }
 
+        
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
         {
@@ -40,9 +43,9 @@ namespace pinball
                 msgToServer.MsgType = ProtocolInterface.MsgType.KEY_W;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
-            if (e.KeyCode == Keys.Up && rightPlayer.Top >= 0)
+            if (e.KeyCode == Keys.T && rightPlayer.Top >= 0)
             {
-                msgToServer.MsgType = ProtocolInterface.MsgType.UP;
+                msgToServer.MsgType = ProtocolInterface.MsgType.KEY_T;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
             if (e.KeyCode == Keys.S && leftPlayer.Top + leftPlayer.Height <= screenHeight)
@@ -50,9 +53,9 @@ namespace pinball
                 msgToServer.MsgType = ProtocolInterface.MsgType.KEY_S;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
-            if (e.KeyCode == Keys.Down && rightPlayer.Top + rightPlayer.Height <= screenHeight)
+            if (e.KeyCode == Keys.G && rightPlayer.Top + rightPlayer.Height <= screenHeight)
             {
-                msgToServer.MsgType = ProtocolInterface.MsgType.DOWN;
+                msgToServer.MsgType = ProtocolInterface.MsgType.KEY_G;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
         }
@@ -62,32 +65,36 @@ namespace pinball
 
         }
 
-        public void keyPressed(ProtocolInterface.MsgType MsgType)
+        public void MykeyPressed(MsgType MsgType)
         {
-            
-                if (MsgType == ProtocolInterface.MsgType.KEY_W && leftPlayer.Top >= 0)
+            this.Invoke((MethodInvoker)delegate{
+                if (MsgType == MsgType.KEY_W && leftPlayer.Top >= 0)
+                {
+                    leftPlayer.Top -= 20;
+
+                }
+                else if (MsgType == MsgType.KEY_T && rightPlayer.Top >= 0)
                 {
                     rightPlayer.Top -= 20;
 
                 }
-                if (MsgType == ProtocolInterface.MsgType.UP && rightPlayer.Top >= 0)
-                {
-                    rightPlayer.Top -= 20;
-
-                }
-                if (MsgType == ProtocolInterface.MsgType.KEY_S && leftPlayer.Top + leftPlayer.Height <= screenHeight)
+                else if (MsgType == MsgType.KEY_S && leftPlayer.Top + leftPlayer.Height <= screenHeight)
                 {
                     leftPlayer.Top += 20;
 
                 }
-                if (MsgType == ProtocolInterface.MsgType.DOWN && rightPlayer.Top + rightPlayer.Height <= screenHeight)
+                else if (MsgType == MsgType.KEY_G && rightPlayer.Top + rightPlayer.Height <= screenHeight)
                 {
                     rightPlayer.Top += 20;
 
-            }
+                }
 
-            leftPlayer.Update();
-            rightPlayer.Update();
+                leftPlayer.Invalidate();
+                rightPlayer.Invalidate();
+
+            });
+
+           
         }
     }
 }

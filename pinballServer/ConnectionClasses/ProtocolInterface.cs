@@ -23,6 +23,7 @@ namespace pinballServer.ConnectionClasses
             MSG_LOGIN,
             LOGIN_OK,
             LOGIN_ERROR,
+            ALREADY_ONLINE,
             MSG_REGISTER,
             REGISTER_OK,
             REGISTER_ERROR,         
@@ -36,20 +37,13 @@ namespace pinballServer.ConnectionClasses
             LIST_OPEN_ROOMS,
             JOIN_GAME_ERROR,
             KEY_W,
-            UP,
-            DOWN,
             KEY_S,
-            UPDATE_OPEN_ROOMS
+            UPDATE_OPEN_ROOMS,
+            KEY_T,
+            KEY_G,
+            Txt
         }
-        /*
-        public enum MsgType
-        {
-            KEY_W,
-            UP,
-            DOWN,
-            KEY_S
-        }
-        */
+        
 
         public static string SerializeMessage(MessageModel message)
         {

@@ -37,33 +37,39 @@ namespace pinball
         
         public void updatelbxRooms(List<RoomModel> rooms)
         {
-            if(rooms.Count == 0)
+            this.Invoke((MethodInvoker)delegate
             {
-                MessageBox.Show("There are no open games");
-                return;
-            }          
-            bool isExsist = false;
-            foreach (RoomModel p in rooms)
-            {
-                for (int i = 0; i < lbxRooms.Items.Count; i++)
+                if (rooms.Count == 0)
                 {
-                    if(lbxRooms.Items[i].ToString() ==  p.name)
+                    MessageBox.Show("There are no open games");
+                    return;
+                }
+                bool isExsist = false;
+                foreach (RoomModel p in rooms)
+                {
+                    for (int i = 0; i < lbxRooms.Items.Count; i++)
                     {
-                        isExsist = true;
+                        if (lbxRooms.Items[i].ToString() == p.name)
+                        {
+                            isExsist = true;
+                        }
+                    }
+                    if (!isExsist)
+                    {
+                        lbxRooms.Items.Add(p.name);
                     }
                 }
-                if (!isExsist)
-                {
-                    lbxRooms.Items.Add(p.name);
-                }
-            }
-            lbxRooms.Update();
-            lbxRooms.Refresh();
+            });                
           
         }
 
         public void LbxRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(lbxRooms.SelectedItem == null)
+            {
+                MessageBox.Show("you chose null");
+                return;
+            }
             MessageModel msgToSend = new MessageModel();
             string roomName = lbxRooms.SelectedItem as string;
             msgToSend.player = main.connectionManager.currPlayer;

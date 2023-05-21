@@ -34,6 +34,8 @@
             this.btnLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRegister = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.playerLabel = new System.Windows.Forms.Label();
+            this.playerNameLbl = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +45,7 @@
             this.conectionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1902, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1068, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -60,43 +62,61 @@
             // btnConnectToServer
             // 
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(169, 22);
+            this.btnConnectToServer.Size = new System.Drawing.Size(170, 22);
             this.btnConnectToServer.Text = "Connect To Server";
             this.btnConnectToServer.Click += new System.EventHandler(this.connectToServer);
             // 
             // btnLogin
             // 
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(169, 22);
+            this.btnLogin.Size = new System.Drawing.Size(170, 22);
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.openLoginWin);
             // 
             // btnRegister
             // 
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(169, 22);
+            this.btnRegister.Size = new System.Drawing.Size(170, 22);
             this.btnRegister.Text = "Register";
             this.btnRegister.Click += new System.EventHandler(this.openRegWin);
             // 
             // mainPanel
             // 
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(0, 24);
+            this.mainPanel.Location = new System.Drawing.Point(0, 27);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1902, 975);
+            this.mainPanel.Size = new System.Drawing.Size(1068, 455);
             this.mainPanel.TabIndex = 1;
+            // 
+            // playerLabel
+            // 
+            this.playerLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.playerLabel.AutoSize = true;
+            this.playerLabel.Location = new System.Drawing.Point(514, 41);
+            this.playerLabel.Name = "playerLabel";
+            this.playerLabel.Size = new System.Drawing.Size(0, 13);
+            this.playerLabel.TabIndex = 2;
+            this.playerLabel.Click += new System.EventHandler(this.Label1_Click);
+            // 
+            // playerNameLbl
+            // 
+            this.playerNameLbl.AutoSize = true;
+            this.playerNameLbl.Location = new System.Drawing.Point(12, 41);
+            this.playerNameLbl.Name = "playerNameLbl";
+            this.playerNameLbl.Size = new System.Drawing.Size(0, 13);
+            this.playerNameLbl.TabIndex = 3;
             // 
             // ClientMainWin
             // 
-            this.ClientSize = new System.Drawing.Size(1902, 999);
+            this.ClientSize = new System.Drawing.Size(1068, 481);
+            this.Controls.Add(this.playerNameLbl);
+            this.Controls.Add(this.playerLabel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1918, 1030);
+            this.MinimumSize = new System.Drawing.Size(200, 100);
             this.Name = "ClientMainWin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ClientMainWin_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -114,6 +134,8 @@
         private System.Windows.Forms.ToolStripMenuItem btnLogin;
         private System.Windows.Forms.ToolStripMenuItem btnRegister;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.Label playerLabel;
+        private System.Windows.Forms.Label playerNameLbl;
     }
 }
 

@@ -36,10 +36,9 @@ namespace pinball
                 case ProtocolInterface.MsgType.LOGIN_ERROR:
                     handleLoginError(message);
                     break;
-                /*    case ProtocolInterface.MsgType.JOIN_GAME_OK:
-                    handleJoinOk(message);
+                case ProtocolInterface.MsgType.ALREADY_ONLINE:
+                    handleAlreadyOnline(message);
                     break;
-                    */
                 case ProtocolInterface.MsgType.LIST_OPEN_ROOMS_OK:
                     handleOpenListRoomsOk(message);
                     break;
@@ -49,10 +48,10 @@ namespace pinball
                 case ProtocolInterface.MsgType.OPEN_GAME:
                     handleOpenGame(message);
                     break;
-                case ProtocolInterface.MsgType.DOWN:
+                case ProtocolInterface.MsgType.KEY_G:
                     handleKeyPressed(message);
                     break;
-                case ProtocolInterface.MsgType.UP:
+                case ProtocolInterface.MsgType.KEY_T:
                     handleKeyPressed(message);
                     break;
                 case ProtocolInterface.MsgType.KEY_S:
@@ -64,20 +63,34 @@ namespace pinball
                 case ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS:
                     handleUpdateRooms(message);
                     break;
+                case ProtocolInterface.MsgType.Txt:
+                    handleTxtKeys(message);
+                    break;
+
 
             }
 
         }
 
+        private void handleAlreadyOnline(MessageModel message)
+        {
+            MessageBox.Show("User already online");
+        }
+
+        private void handleTxtKeys(MessageModel message)
+        {
+            manager.showTxtToLbl(message);
+        }
+
         private void handleUpdateRooms(MessageModel message)
         {
-            manager.main.RoomsListWin.updatelbxRooms(message.rooms);
+            manager.updatelbxRooms(message.rooms);
         }
 
         private void handleKeyPressed(MessageModel message)
         {
 
-            manager.main.gameWin.keyPressed(message.MsgType);
+            manager.HandeKeyPress(message.MsgType);
         }
 
         private void handleOpenGame(MessageModel message)
@@ -98,10 +111,9 @@ namespace pinball
 
         }
 
-        
-
         private void handleLoginError(MessageModel message)
         {
+            
             MessageBox.Show("password or username are not correct");
         }
 
@@ -111,7 +123,7 @@ namespace pinball
             manager.currPlayer = message.player;
             manager.main.isLogined = true;
             manager.main.openChoiceWin();
-           // manager.main.sendJoinToServer(message.userName, message.pass);
+           
             
         }
 
@@ -127,7 +139,7 @@ namespace pinball
             manager.currPlayer = message.player;
             manager.main.updateMenuBTNs();
             manager.main.openChoiceWin();
-            //manager.main.sendJoinToServer(message.userName, message.pass);
+
         }
 
         public bool isLogined()

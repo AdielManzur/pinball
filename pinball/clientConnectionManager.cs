@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
 using pinballServer.ConnectionClasses;
+using pinballServer.GamesClasses;
 
 namespace pinball
 {
@@ -82,6 +83,21 @@ namespace pinball
             string str = ProtocolInterface.SerializeMessage(message);
             byte[] data = Encoding.UTF8.GetBytes(str);
             clientSocket.Send(data, 0, data.Length, SocketFlags.None);
+        }
+
+        public void showTxtToLbl(MessageModel message)
+        {
+            main.KeysLbl(message);
+        }
+
+        public void updatelbxRooms(List<RoomModel> rooms)
+        {
+            main.updateRoomsLbx(rooms);
+        }
+
+        public void HandeKeyPress(ProtocolInterface.MsgType msgType)
+        {
+            main.handleKeyPress( msgType);
         }
     }
     }

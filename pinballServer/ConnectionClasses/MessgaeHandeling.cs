@@ -37,13 +37,8 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS:
                     handleUpdateRooms(message, connected);
                     break;
-
-            }
-           
-            switch(message.MsgType)
-            {
-                case ProtocolInterface.MsgType.DOWN:
-                    handleKeyDown(message, connected);
+                case ProtocolInterface.MsgType.KEY_G:
+                    handleKeyG(message, connected);
                     break;
                 case ProtocolInterface.MsgType.KEY_S:
                     handleKeyS(message, connected);
@@ -51,8 +46,8 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.KEY_W:
                     handleKeyW(message, connected);
                     break;
-                case ProtocolInterface.MsgType.UP:
-                    handleKeyUp(message, connected);
+                case ProtocolInterface.MsgType.KEY_T:
+                    handleKeyT(message, connected);
                     break;
             }
            
@@ -67,11 +62,11 @@ namespace pinballServer.ConnectionClasses
             manager.sendMessageToClient(connected, msg);
         }
 
-        private void handleKeyUp(MessageModel message, ConnectedPlayer connected)
+        private void handleKeyT(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
-            msg.MsgType = ProtocolInterface.MsgType.UP;
-            if (message.player == manager.currGame.player1)
+            msg.MsgType = ProtocolInterface.MsgType.KEY_T;
+            if (message.player.username == manager.currGame.player1.username)
             {
                 manager.sendMessageToClient(connected, msg);
                 foreach (ConnectedPlayer connected1 in manager.main.gameManager.players)
@@ -82,24 +77,13 @@ namespace pinballServer.ConnectionClasses
                     }
                 }
             }
-            if(message.player == manager.currGame.player2)
-            {
-                foreach (ConnectedPlayer connected1 in manager.main.gameManager.players)
-                {
-                    if (connected1.player.username == manager.currGame.player1.username)
-                    {
-                        manager.sendMessageToClient(connected1, msg);
-                        manager.sendMessageToClient(connected1, msg);
-                    }
-                }
-            
-            }
 
-            }
-        private void handleKeyDown(MessageModel message, ConnectedPlayer connected)
+
+        }
+        private void handleKeyG(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
-            msg.MsgType = ProtocolInterface.MsgType.DOWN;
+            msg.MsgType = ProtocolInterface.MsgType.KEY_G;
             if (message.player.username == manager.currGame.player1.username)
             {
                 manager.sendMessageToClient(connected, msg);
@@ -112,6 +96,8 @@ namespace pinballServer.ConnectionClasses
                 }
             }
         }
+
+        //key G and Key T are for player 1
         private void handleKeyW(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
@@ -128,12 +114,11 @@ namespace pinballServer.ConnectionClasses
                 }
             }
         }
-
         private void handleKeyS(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.KEY_S;
-            if (message.player == manager.currGame.player2)
+            if (message.player.username == manager.currGame.player2.username)
             {
                 manager.sendMessageToClient(connected, msg);
                 foreach (ConnectedPlayer connected1 in manager.main.gameManager.players)
@@ -146,7 +131,7 @@ namespace pinballServer.ConnectionClasses
             }
         }
 
-
+        // key W and key S are for player 2
 
         private void handleJoinRoom(MessageModel message, ConnectedPlayer connected)
         {
@@ -172,11 +157,26 @@ namespace pinballServer.ConnectionClasses
             MessageModel msgToSend = new MessageModel();
             msgToSend.MsgType = ProtocolInterface.MsgType.OPEN_GAME;
             msgToSend.game = curGame;
-            foreach (ConnectedPlayer player in manager.main.gameManager.players)
+            manager.sendMessageToClient(connected, msgToSend);
+            ConnectedPlayer player1 = new ConnectedPlayer();
+            foreach (ConnectedPlayer connectedPlayer in manager.main.gameManager.players)
             {
-                manager.sendMessageToClient(player, msgToSend);
-                //לתקן
+                if(connectedPlayer.player.username == curGame.player1.username)
+                {
+                    player1 = connectedPlayer;
+                    manager.sendMessageToClient(connectedPlayer, msgToSend);
+
+                }
             }
+            MessageModel keysMsg = new MessageModel();
+            keysMsg.MsgType = ProtocolInterface.MsgType.Txt;
+            keysMsg.msgStr = "your keys are T and G for up&down and your player is the right player";
+            keysMsg.player = player1.player;
+            manager.sendMessageToClient(player1, keysMsg);
+            keysMsg.msgStr = "your keys are W and S for up&down and your player is the left player";
+            keysMsg.player = connected.player;
+            manager.sendMessageToClient(connected, keysMsg);
+
         }
 
         private void handleOpenListRooms(MessageModel message, ConnectedPlayer connected)
@@ -207,10 +207,30 @@ namespace pinballServer.ConnectionClasses
        
         public void handleLogin(MessageModel message, ConnectedPlayer conncted)
         {
+            /*
+            if (manager.players != null )
+            {
+                foreach (ConnectedPlayer connected1 in manager.players)
+                {
+                    if (connected1.player != null)
+                    {
+                        if (connected1.player.username == message.player.username)
+                        {
+                            MessageModel msg = new MessageModel();
+                            msg.MsgType = ProtocolInterface.MsgType.ALREADY_ONLINE;
+                            msg.player = message.player;
+                            manager.sendMessageToClient(conncted, msg);
+                            return;
+                        }
+                    }
+                }
+            }
+            */
             string userName = message.userName;
             playerTBL player = (from s in db.playerTBL where s.username == userName select s).FirstOrDefault();
             if (player != null)
             {
+               
                 if (player.password == message.pass)
                 {
                     PlayerS playerS = new PlayerS();
