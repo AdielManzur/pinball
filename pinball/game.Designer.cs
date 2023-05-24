@@ -56,7 +56,6 @@
             this.leftPlayer.Size = new System.Drawing.Size(14, 150);
             this.leftPlayer.TabIndex = 0;
             this.leftPlayer.TabStop = false;
-            this.leftPlayer.Click += new System.EventHandler(this.leftPlayer_Click);
             // 
             // ball
             // 
@@ -68,9 +67,9 @@
             this.ball.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this.ball.BorderSize = 2;
             this.ball.GradientAngle = 50F;
-            this.ball.Location = new System.Drawing.Point(509, 225);
+            this.ball.Location = new System.Drawing.Point(503, 219);
             this.ball.Name = "ball";
-            this.ball.Size = new System.Drawing.Size(36, 36);
+            this.ball.Size = new System.Drawing.Size(42, 42);
             this.ball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ball.TabIndex = 2;
             this.ball.TabStop = false;

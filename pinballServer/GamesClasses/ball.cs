@@ -11,36 +11,72 @@ namespace pinballServer.GamesClasses
     public class Ball
     {
         public Vector2 vector { get; set; }
-        public Point ballPosition { get; set; }
-        public int ballSpeed;
-        public int ballRadius;
-        /*
-        public bool checkCollisionWithWalls(int ScreenWidth, int ScreenHeight)
+        public Point ballLocation { get; set; }
+        public int ballSpeedY { get; set; }
+        public int ballSpeedX { get; set; }
+        public int ballRadius { get; set; }
+
+        public bool goalToRightPlayer(int screenWidth)
         {
-            
-            if (ballPosition.Y == ScreenHeight) //Collision with the lower wall
-            {
-                return true;
-            }
-            if (ballPosition.Y == 0) //Collision with the upper wall
-            {
-                return true;
-            }
-            if (ballPosition.X == ScreenWidth)//Collision with the right wall
-            {
-                return true;
-            }
-            if (ballPosition.X == 0)//Collision with the left wall
+            if (ballLocation.X + 2 * ballRadius == screenWidth)
             {
                 return true;
             }
             return false;
         }
-            */
-        public bool checkCollisionWithPlayers()
+        public bool goalToLeftPlayer()
         {
-            return true;
+            if (ballLocation.X == 0)
+            {
+                return true;
+            }
+            return false;
         }
+        public bool collisionUpperWall()
+        {
+            if (ballLocation.Y == 0)
+            {
+                return true;
+            }
+            return false;
 
+        }
+        public bool collisionLowerWall(int screenHeight)
+        {
+            if (ballLocation.Y + 2 * ballRadius == screenHeight)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool checkCollisionWithRightPlayer(Point player1Location, int playerHeight,int playerWidth)
+        {
+            int playerTop = player1Location.Y;
+            int playerBottom = player1Location.Y + playerHeight;
+
+            if (ballLocation.X + (2 * ballRadius) == player1Location.X &&
+                ballLocation.Y + (2 * ballRadius)  > playerTop &&
+                ballLocation.Y  < playerBottom )
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+        public bool checkCollisionWithLeftPlayer(Point player2Location, int playerHeight, int playerWidth)
+        {
+            int playerTop = player2Location.Y;
+            int playerBottom = player2Location.Y + playerHeight;
+
+            if (ballLocation.X == player2Location.X + playerWidth &&
+                ballLocation.Y + (2 * ballRadius) > playerTop &&
+                ballLocation.Y < playerBottom)
+            {
+                return true;
+            }
+            return false;
+
+        }
     }
 }

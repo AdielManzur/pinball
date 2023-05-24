@@ -18,7 +18,10 @@ namespace pinball
         ClientMainWin main;
 
 
-        int screenHeight ;
+        int screenHeight;
+        int screenWidth;
+        Ball ball1;
+
 
         public game(ClientMainWin main)
         {
@@ -29,10 +32,16 @@ namespace pinball
         private void Game_Load(object sender, EventArgs e)
         {
             screenHeight = this.Height;
-            
+            screenWidth = this.Width;
+            ball1.ballRadius = ball.Width / 2;
+            ball1.ballLocation = ball.Location;
+            ballStart();
         }
+        public void ballStart()
+        {
+            MessageModel msg = new MessageModel();
 
-        
+        }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
         {
@@ -60,10 +69,7 @@ namespace pinball
             }
         }
 
-        private void leftPlayer_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         public void MykeyPressed(MsgType MsgType)
         {
