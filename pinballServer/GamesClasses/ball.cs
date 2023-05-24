@@ -12,8 +12,6 @@ namespace pinballServer.GamesClasses
     {
         public Vector2 vector { get; set; }
         public Point ballLocation { get; set; }
-        public int ballSpeedY { get; set; }
-        public int ballSpeedX { get; set; }
         public int ballRadius { get; set; }
 
         public bool goalToRightPlayer(int screenWidth)

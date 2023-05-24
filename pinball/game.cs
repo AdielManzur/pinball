@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,11 +36,6 @@ namespace pinball
             screenWidth = this.Width;
             ball1.ballRadius = ball.Width / 2;
             ball1.ballLocation = ball.Location;
-            ballStart();
-        }
-        public void ballStart()
-        {
-            MessageModel msg = new MessageModel();
 
         }
 
