@@ -207,14 +207,14 @@ namespace pinballServer.ConnectionClasses
        
         public void handleLogin(MessageModel message, ConnectedPlayer conncted)
         {
-            /*
+            
             if (manager.players != null )
             {
                 foreach (ConnectedPlayer connected1 in manager.players)
                 {
                     if (connected1.player != null)
                     {
-                        if (connected1.player.username == message.player.username)
+                        if (connected1.player.username == message.userName)
                         {
                             MessageModel msg = new MessageModel();
                             msg.MsgType = ProtocolInterface.MsgType.ALREADY_ONLINE;
@@ -225,7 +225,7 @@ namespace pinballServer.ConnectionClasses
                     }
                 }
             }
-            */
+            
             string userName = message.userName;
             playerTBL player = (from s in db.playerTBL where s.username == userName select s).FirstOrDefault();
             if (player != null)
@@ -284,10 +284,10 @@ namespace pinballServer.ConnectionClasses
                 newPlayer.regDate = DateTime.Now;
                 PlayerS playerS = new PlayerS();
                 playerS.convertFromUserTBL(newPlayer);
-
                 MessageModel mToSend = new MessageModel();
                 mToSend.player = playerS;
                 mToSend.MsgType = ProtocolInterface.MsgType.REGISTER_OK;
+                connected.player = playerS;
                 db.playerTBL.Add(newPlayer);
                 db.SaveChanges();
                 manager.sendMessageToClient(connected, mToSend);
