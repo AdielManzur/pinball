@@ -1,6 +1,7 @@
 ﻿using pinballServer.GamesClasses;
 using System;
 using System.Linq;
+using System.Numerics;
 
 namespace pinballServer.ConnectionClasses
 {
@@ -49,6 +50,7 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.KEY_T:
                     handleKeyT(message, connected);
                     break;
+                
             }
            
         }
@@ -169,15 +171,23 @@ namespace pinballServer.ConnectionClasses
                 }
             }
             MessageModel keysMsg = new MessageModel();
-            keysMsg.MsgType = ProtocolInterface.MsgType.Txt;
+            Random ballVectorX = new Random();
+            Random ballVectorY = new Random();          
+            Vector2 ballVector = new Vector2(ballVectorX.Next(-100,101), ballVectorY.Next(-100,101));
+            ballVector = Vector2.Normalize(ballVector);
+            keysMsg.MsgType = ProtocolInterface.MsgType.FirstBallMovement;
             keysMsg.msgStr = "your keys are T and G for up&down and your player is the right player";
             keysMsg.player = player1.player;
+            keysMsg.BallVector = ballVector;
             manager.sendMessageToClient(player1, keysMsg);
             keysMsg.msgStr = "your keys are W and S for up&down and your player is the left player";
             keysMsg.player = connected.player;
             manager.sendMessageToClient(connected, keysMsg);
 
+
         }
+        
+
 
         private void handleOpenListRooms(MessageModel message, ConnectedPlayer connected)
         {

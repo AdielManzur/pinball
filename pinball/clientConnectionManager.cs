@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System;
 using pinballServer.ConnectionClasses;
 using pinballServer.GamesClasses;
+using System.Numerics;
 
 namespace pinball
 {
@@ -89,6 +90,13 @@ namespace pinball
         {
             main.KeysLbl(message);
         }
+
+        public void firstBallMovement(Vector2 ballVector)
+        {
+            main.firstBallMovement(ballVector);
+        }
+
+       
 
         public void updatelbxRooms(List<RoomModel> rooms)
         {

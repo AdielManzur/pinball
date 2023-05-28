@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -108,6 +109,18 @@ namespace pinball
             }
         }
 
+        public void firstBallMovement(Vector2 ballVector)
+        {
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    tmp.firstBallMovement(ballVector);
+                });
+            }
+        }
+
         public void KeysLbl(MessageModel message)
         {
             if (current is game)
@@ -118,6 +131,9 @@ namespace pinball
                     playerLabel.Text = message.msgStr;
                     playerLabel.Location = new Point((int)((this.Width - playerLabel.Width) / 2), playerLabel.Location.Y);
                     playerNameLbl.Text = "Your name: " + message.player.username;
+                    scoreLBL.Text = "your score: 0 , enemy score: 0";
+                    scoreLBL.Location = new Point(scoreLBL.Location.X, playerLabel.Location.Y);
+
                 });
             }
         }

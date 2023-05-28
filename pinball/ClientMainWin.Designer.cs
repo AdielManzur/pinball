@@ -36,7 +36,9 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.playerLabel = new System.Windows.Forms.Label();
             this.playerNameLbl = new System.Windows.Forms.Label();
+            this.scoreLBL = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -82,6 +84,7 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.scoreLBL);
             this.mainPanel.Location = new System.Drawing.Point(0, 27);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1068, 455);
@@ -105,6 +108,15 @@
             this.playerNameLbl.Size = new System.Drawing.Size(0, 13);
             this.playerNameLbl.TabIndex = 3;
             // 
+            // scoreLBL
+            // 
+            this.scoreLBL.AutoSize = true;
+            this.scoreLBL.Location = new System.Drawing.Point(894, 14);
+            this.scoreLBL.Name = "scoreLBL";
+            this.scoreLBL.Size = new System.Drawing.Size(7, 13);
+            this.scoreLBL.TabIndex = 0;
+            this.scoreLBL.Text = "\r\n";
+            // 
             // ClientMainWin
             // 
             this.ClientSize = new System.Drawing.Size(1068, 481);
@@ -120,6 +132,8 @@
             this.Load += new System.EventHandler(this.ClientMainWin_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.mainPanel.ResumeLayout(false);
+            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +150,7 @@
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label playerLabel;
         private System.Windows.Forms.Label playerNameLbl;
+        private System.Windows.Forms.Label scoreLBL;
     }
 }
 

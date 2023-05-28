@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace pinballServer.ConnectionClasses
         public PlayerS player { get; set; }
         public GameModel game { get; set; }
         public List<RoomModel> rooms { get; set; }
+        public Vector2 BallVector { get; set; }
 
     }
 }

@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.rightPlayer = new System.Windows.Forms.PictureBox();
             this.leftPlayer = new System.Windows.Forms.PictureBox();
             this.ball = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             this.lblDebug = new System.Windows.Forms.Label();
+            this.timerBallMovement = new System.Windows.Forms.Timer(this.components);
+            this.countdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.countdownLBL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rightPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
@@ -82,12 +86,33 @@
             this.lblDebug.Size = new System.Drawing.Size(0, 13);
             this.lblDebug.TabIndex = 3;
             // 
+            // timerBallMovement
+            // 
+            this.timerBallMovement.Interval = 60;
+            this.timerBallMovement.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // countdownTimer
+            // 
+            this.countdownTimer.Interval = 1000;
+            this.countdownTimer.Tick += new System.EventHandler(this.CountdownTimer_Tick);
+            // 
+            // countdownLBL
+            // 
+            this.countdownLBL.AutoSize = true;
+            this.countdownLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.countdownLBL.Location = new System.Drawing.Point(410, 58);
+            this.countdownLBL.Name = "countdownLBL";
+            this.countdownLBL.Size = new System.Drawing.Size(0, 39);
+            this.countdownLBL.TabIndex = 4;
+            this.countdownLBL.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1084, 520);
+            this.Controls.Add(this.countdownLBL);
             this.Controls.Add(this.lblDebug);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.leftPlayer);
@@ -114,5 +139,8 @@
         private System.Windows.Forms.PictureBox leftPlayer;
         private RJCodeAdvance.RJControls.RJCircularPictureBox ball;
         private System.Windows.Forms.Label lblDebug;
+        private System.Windows.Forms.Timer timerBallMovement;
+        private System.Windows.Forms.Timer countdownTimer;
+        private System.Windows.Forms.Label countdownLBL;
     }
 }

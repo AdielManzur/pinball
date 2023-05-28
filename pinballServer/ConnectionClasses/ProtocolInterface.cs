@@ -41,7 +41,13 @@ namespace pinballServer.ConnectionClasses
             UPDATE_OPEN_ROOMS,
             KEY_T,
             KEY_G,
-            Txt
+            FirstBallMovement,
+            COLLISION_UPPER_WALL,
+            COLLISION_LOWER_WALL,
+            COLLISION_RIGHT_WALL,
+            COLLISION_LEFT_WALL,
+            COLLISION_RIGHT_PLAYER,
+            COLLISION_LEFT_PLAYER
         }
         
 

@@ -12,7 +12,10 @@ namespace pinballServer.GamesClasses
     {
         public Vector2 vector { get; set; }
         public Point ballLocation { get; set; }
-        public int ballRadius { get; set; }
+        public float ballRadius { get; set; }
+        public float ballSpeedY { get; set; }
+        public float ballSpeedX { get; set; }
+
 
         public bool goalToRightPlayer(int screenWidth)
         {

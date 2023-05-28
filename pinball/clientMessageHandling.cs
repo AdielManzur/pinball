@@ -63,8 +63,8 @@ namespace pinball
                 case ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS:
                     handleUpdateRooms(message);
                     break;
-                case ProtocolInterface.MsgType.Txt:
-                    handleTxtKeys(message);
+                case ProtocolInterface.MsgType.FirstBallMovement:
+                    handleTxtAndBallMovement(message);
                     break;
 
 
@@ -77,9 +77,10 @@ namespace pinball
             MessageBox.Show("User already online");
         }
 
-        private void handleTxtKeys(MessageModel message)
+        private void handleTxtAndBallMovement(MessageModel message)
         {
             manager.showTxtToLbl(message);
+            manager.firstBallMovement(message.BallVector);
         }
 
         private void handleUpdateRooms(MessageModel message)
