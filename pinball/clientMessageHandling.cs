@@ -66,10 +66,18 @@ namespace pinball
                 case ProtocolInterface.MsgType.FirstBallMovement:
                     handleTxtAndBallMovement(message);
                     break;
+                case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
+                    handleCollisionUpperOrLowerWall(message);
+                    break;
 
 
             }
 
+        }
+
+        private void handleCollisionUpperOrLowerWall(MessageModel message)
+        {
+            manager.main.collisionWithUpperOrLowerWall(message.BallVector);
         }
 
         private void handleAlreadyOnline(MessageModel message)

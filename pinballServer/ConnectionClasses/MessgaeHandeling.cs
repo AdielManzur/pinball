@@ -50,9 +50,30 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.KEY_T:
                     handleKeyT(message, connected);
                     break;
-                
+                case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
+                    handleCollisionUpperLowerWall(message, connected);
+                    break;
+
+
+
             }
            
+        }
+
+
+
+        private void handleCollisionUpperLowerWall(MessageModel message, ConnectedPlayer connected)
+        {
+            MessageModel msg = new MessageModel();
+            Vector2 returnVector = new Vector2(message.BallVector.X, -message.BallVector.Y);
+            msg.MsgType = ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL;
+            foreach(ConnectedPlayer connectedPlayer in manager.players)
+            {
+                if(manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
+                {
+                    manager.sendMessageToClient(connectedPlayer, msg);
+                }
+            }
         }
 
         private void handleUpdateRooms(MessageModel message, ConnectedPlayer connected)

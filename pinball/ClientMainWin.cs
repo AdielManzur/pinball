@@ -100,6 +100,18 @@ namespace pinball
             });
         }
 
+        public void collisionWithUpperOrLowerWall(Vector2 ballVector)
+        {
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    tmp.collisionWithUpperOrLowerWall(ballVector);
+                });
+            }
+        }
+
         public void updateRoomsLbx(List<RoomModel> rooms)
         {
             if (current is RoomsListWin)
@@ -132,7 +144,7 @@ namespace pinball
                     playerLabel.Location = new Point((int)((this.Width - playerLabel.Width) / 2), playerLabel.Location.Y);
                     playerNameLbl.Text = "Your name: " + message.player.username;
                     scoreLBL.Text = "your score: 0 , enemy score: 0";
-                    scoreLBL.Location = new Point(scoreLBL.Location.X, playerLabel.Location.Y);
+                    scoreLBL.Top =  playerNameLbl.Location.Y;
 
                 });
             }

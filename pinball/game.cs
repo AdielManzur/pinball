@@ -111,10 +111,18 @@ namespace pinball
             
 
         }
-        
+
+        public void collisionWithUpperOrLowerWall(Vector2 ballVector)
+        {
+            ball1.vector = ballVector;
+            timerBallMovement.Enabled = true;
+
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
-            UpdatenBallLocation();
+
+            UpdateBallLocation();
             
             if (ball1.checkCollisionWithLeftPlayer(leftPlayer.Location,leftPlayer.Height, rightPlayer.Width))
             {
@@ -134,24 +142,16 @@ namespace pinball
                 msg.player = main.connectionManager.currPlayer;
                 main.sendMessageToServer(msg);
             }
-            else if (ball1.collisionLowerWall(screenHeight))
+            else if (ball1.collisionLowerWall(screenHeight) || ball1.collisionUpperWall())
             {
                 timerBallMovement.Enabled = false;
                 MessageModel msg = new MessageModel();
                 msg.BallVector = ball1.vector;
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_LOWER_WALL;
+                msg.MsgType = ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL;
                 msg.player = main.connectionManager.currPlayer;
                 main.sendMessageToServer(msg);
             }
-            else if (ball1.collisionUpperWall())
-            {
-                timerBallMovement.Enabled = false;
-                MessageModel msg = new MessageModel();
-                msg.BallVector = ball1.vector;
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_UPPER_WALL;
-                msg.player = main.connectionManager.currPlayer;
-                main.sendMessageToServer(msg);
-            }
+           
             else if (ball1.goalToLeftPlayer())
             {
                 timerBallMovement.Enabled = false;
@@ -173,7 +173,7 @@ namespace pinball
 
         }
 
-        private void UpdatenBallLocation()
+        private void UpdateBallLocation()
         {
             ball1.ballLocation = ball.Location;
             ball1.ballSpeedY = 15 * ball1.vector.Y;
@@ -194,7 +194,7 @@ namespace pinball
                 timerBallMovement.Enabled = true;
             }
             countdownLBL.Text = counter.ToString();
-            countdownLBL.Location = new Point((int)((this.Width - countdownLBL.Width) / 2), countdownLBL.Location.Y);
+            countdownLBL.Location = new Point(ball.Location.X, countdownLBL.Location.Y);
         }
     }
 }

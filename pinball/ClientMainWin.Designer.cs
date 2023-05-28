@@ -34,11 +34,10 @@
             this.btnLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRegister = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.scoreLBL = new System.Windows.Forms.Label();
             this.playerLabel = new System.Windows.Forms.Label();
             this.playerNameLbl = new System.Windows.Forms.Label();
-            this.scoreLBL = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -64,31 +63,39 @@
             // btnConnectToServer
             // 
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(170, 22);
+            this.btnConnectToServer.Size = new System.Drawing.Size(169, 22);
             this.btnConnectToServer.Text = "Connect To Server";
             this.btnConnectToServer.Click += new System.EventHandler(this.connectToServer);
             // 
             // btnLogin
             // 
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(170, 22);
+            this.btnLogin.Size = new System.Drawing.Size(169, 22);
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.openLoginWin);
             // 
             // btnRegister
             // 
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(170, 22);
+            this.btnRegister.Size = new System.Drawing.Size(169, 22);
             this.btnRegister.Text = "Register";
             this.btnRegister.Click += new System.EventHandler(this.openRegWin);
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.scoreLBL);
             this.mainPanel.Location = new System.Drawing.Point(0, 27);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1068, 455);
             this.mainPanel.TabIndex = 1;
+            // 
+            // scoreLBL
+            // 
+            this.scoreLBL.AutoSize = true;
+            this.scoreLBL.Location = new System.Drawing.Point(880, 41);
+            this.scoreLBL.Name = "scoreLBL";
+            this.scoreLBL.Size = new System.Drawing.Size(7, 13);
+            this.scoreLBL.TabIndex = 0;
+            this.scoreLBL.Text = "\r\n";
             // 
             // playerLabel
             // 
@@ -108,18 +115,10 @@
             this.playerNameLbl.Size = new System.Drawing.Size(0, 13);
             this.playerNameLbl.TabIndex = 3;
             // 
-            // scoreLBL
-            // 
-            this.scoreLBL.AutoSize = true;
-            this.scoreLBL.Location = new System.Drawing.Point(894, 14);
-            this.scoreLBL.Name = "scoreLBL";
-            this.scoreLBL.Size = new System.Drawing.Size(7, 13);
-            this.scoreLBL.TabIndex = 0;
-            this.scoreLBL.Text = "\r\n";
-            // 
             // ClientMainWin
             // 
             this.ClientSize = new System.Drawing.Size(1068, 481);
+            this.Controls.Add(this.scoreLBL);
             this.Controls.Add(this.playerNameLbl);
             this.Controls.Add(this.playerLabel);
             this.Controls.Add(this.mainPanel);
@@ -132,8 +131,6 @@
             this.Load += new System.EventHandler(this.ClientMainWin_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
