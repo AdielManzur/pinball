@@ -116,8 +116,8 @@ namespace pinball
         {
             String scorePlayer2 = message.scorePlayer2.ToString();
             String scorePlayer1 = message.scorePlayer1.ToString();
-
-            if (message.player == message.game.player1)
+            this.Invoke((MethodInvoker)delegate {
+                if (message.player == message.game.player1)
             {
                 scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
             }
@@ -125,6 +125,7 @@ namespace pinball
             {
                 scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: " + scorePlayer1;
             }
+            });
             if (current is game)
             {
                 game tmp = (game)current;
@@ -141,8 +142,8 @@ namespace pinball
 
             String scorePlayer2 = message.scorePlayer2.ToString();
             String scorePlayer1 = message.scorePlayer1.ToString();
-
-            if (message.player == message.game.player2)
+            this.Invoke((MethodInvoker)delegate {
+                if (message.player == message.game.player2)
             {
                 scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: "+scorePlayer1;
             }
@@ -150,6 +151,7 @@ namespace pinball
             {
                 scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
             }
+            });
             if (current is game)
             {
                 game tmp = (game)current;

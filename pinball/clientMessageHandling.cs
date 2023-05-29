@@ -84,12 +84,12 @@ namespace pinball
 
         private void handleGoalLeftWall(MessageModel message)
         {
-            manager.main.GoalRightWall(message);
+            manager.main.GoalLeftWall(message);
         }
 
         private void handleGoalRightWall(MessageModel message)
         {
-            manager.main.GoalLeftWall(message);
+            manager.main.GoalRightWall(message);
 
         }
 

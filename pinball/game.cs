@@ -206,6 +206,11 @@ namespace pinball
                 ball.Location = new Point(screenWidth - (int)(2 * ball1.ballRadius), ball1.ballLocation.Y);
                 ball1.ballLocation = new Point(screenWidth - (int)(2 * ball1.ballRadius), ball1.ballLocation.Y);
             }
+            if (ball1.ballLocation.X + ball1.ballSpeedX < 0 )
+            {
+                ball.Location = new Point(0, ball1.ballLocation.Y);
+                ball1.ballLocation = new Point(0, ball1.ballLocation.Y);
+            }
         }
 
         public void StopTimer()
