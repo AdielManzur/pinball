@@ -46,7 +46,9 @@ namespace pinballServer.ConnectionClasses
             COLLISION_RIGHT_WALL,
             COLLISION_LEFT_WALL,
             COLLISION_RIGHT_PLAYER,
-            COLLISION_LEFT_PLAYER
+            COLLISION_LEFT_PLAYER,
+            GOAL_RIGHT_WALL,
+            GOAL_LEFT_WALL
         }
         
 

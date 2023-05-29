@@ -53,6 +53,12 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
                     handleCollisionUpperLowerWall(message, connected);
                     break;
+                case ProtocolInterface.MsgType.COLLISION_RIGHT_WALL:
+                    handleCollisionRightWall(message, connected);
+                    break;
+                case ProtocolInterface.MsgType.COLLISION_LEFT_WALL:
+                    handleCollisionLeftWall(message, connected);
+                    break;
 
 
 
@@ -60,12 +66,46 @@ namespace pinballServer.ConnectionClasses
            
         }
 
+        private void handleCollisionLeftWall(MessageModel message, ConnectedPlayer connected)
+        {
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.GOAL_LEFT_WALL;
+            msg.scorePlayer2 = message.scorePlayer2;
+            msg.scorePlayer1 = message.scorePlayer1 + 1;
+            msg.player = connected.player;
+            msg.game = manager.currGame;
+            foreach (ConnectedPlayer connectedPlayer in manager.players)
+            {
+                if (manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
+                {
+                    manager.sendMessageToClient(connectedPlayer, msg);
+                }
+            }
+        }
+
+        private void handleCollisionRightWall(MessageModel message, ConnectedPlayer connected)
+        {
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.GOAL_RIGHT_WALL;
+            msg.scorePlayer2 = message.scorePlayer2 + 1;
+            msg.scorePlayer1 = message.scorePlayer1;
+            msg.player = connected.player;
+            msg.game = manager.currGame;
+            foreach (ConnectedPlayer connectedPlayer in manager.players)
+            {
+                if (manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
+                {
+                    manager.sendMessageToClient(connectedPlayer, msg);
+                }
+            }
+        }
 
 
         private void handleCollisionUpperLowerWall(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
             Vector2 returnVector = new Vector2(message.BallVector.X, -message.BallVector.Y);
+            msg.BallVector = returnVector;
             msg.MsgType = ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL;
             foreach(ConnectedPlayer connectedPlayer in manager.players)
             {

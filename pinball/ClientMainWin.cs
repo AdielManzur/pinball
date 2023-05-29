@@ -41,7 +41,7 @@ namespace pinball
             isLogined = false;
             connectionManager = new clientConnectionManager(this);
             clientHandle = new clientMessageHandling(connectionManager);
-            gameWin = new game(this);
+            gameWin = new game(this, mainPanel.Height, mainPanel.Width);
             RoomsListWin = new RoomsListWin(this);
             updateMenuBTNs();
         }
@@ -108,6 +108,55 @@ namespace pinball
                 this.Invoke((MethodInvoker)delegate
                 {
                     tmp.collisionWithUpperOrLowerWall(ballVector);
+                });
+            }
+        }
+
+        public void GoalLeftWall(MessageModel message)
+        {
+            String scorePlayer2 = message.scorePlayer2.ToString();
+            String scorePlayer1 = message.scorePlayer1.ToString();
+
+            if (message.player == message.game.player1)
+            {
+                scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
+            }
+            else
+            {
+                scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: " + scorePlayer1;
+            }
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate {
+                    tmp.scoreRightPlayer = message.scorePlayer1;
+                    tmp.scoreLeftPlayer = message.scorePlayer2;
+                    tmp.StopTimer();
+                });
+            }
+        }
+
+        public void GoalRightWall(MessageModel message)
+        {
+
+            String scorePlayer2 = message.scorePlayer2.ToString();
+            String scorePlayer1 = message.scorePlayer1.ToString();
+
+            if (message.player == message.game.player2)
+            {
+                scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: "+scorePlayer1;
+            }
+            else
+            {
+                scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
+            }
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate {
+                    tmp.scoreRightPlayer = message.scorePlayer1;
+                    tmp.scoreLeftPlayer = message.scorePlayer2;
+                    tmp.StopTimer();
                 });
             }
         }
@@ -209,7 +258,7 @@ namespace pinball
                     current.Close();
                 }
 
-                current = new game(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new game(this, mainPanel.Height,mainPanel.Width) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();

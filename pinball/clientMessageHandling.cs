@@ -69,9 +69,27 @@ namespace pinball
                 case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
                     handleCollisionUpperOrLowerWall(message);
                     break;
+                case ProtocolInterface.MsgType.GOAL_RIGHT_WALL:
+                    handleGoalRightWall(message);
+                    break;
+                case ProtocolInterface.MsgType.GOAL_LEFT_WALL:
+                    handleGoalLeftWall(message);
+                    break;
+
 
 
             }
+
+        }
+
+        private void handleGoalLeftWall(MessageModel message)
+        {
+            manager.main.GoalRightWall(message);
+        }
+
+        private void handleGoalRightWall(MessageModel message)
+        {
+            manager.main.GoalLeftWall(message);
 
         }
 

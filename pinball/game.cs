@@ -21,13 +21,16 @@ namespace pinball
         int screenWidth;
         Ball ball1 = new Ball();
         int counter = 6;
+        public int scoreRightPlayer = 0;
+        public int scoreLeftPlayer = 0;
 
-
-        public game(ClientMainWin main)
+        public game(ClientMainWin main,int mainPanelHeight, int mainPanelWidth)
         {
 
             InitializeComponent();
             this.main = main;
+            this.Height = mainPanelHeight;
+            this.Width = mainPanelWidth;
         }
        
         private void Game_Load(object sender, EventArgs e)
@@ -37,6 +40,7 @@ namespace pinball
             ball1.ballRadius = ball.Width / 2;
             ball1.ballLocation = ball.Location;
             
+
 
         }
 
@@ -123,7 +127,8 @@ namespace pinball
         {
 
             UpdateBallLocation();
-            
+            label1.Text = "(" + ball1.ballLocation.X + "," + ball1.ballLocation.Y + ")";
+            checkLocations();
             if (ball1.checkCollisionWithLeftPlayer(leftPlayer.Location,leftPlayer.Height, rightPlayer.Width))
             {
                 timerBallMovement.Enabled = false;
@@ -131,6 +136,7 @@ namespace pinball
                 msg.BallVector = ball1.vector;
                 msg.MsgType = ProtocolInterface.MsgType.COLLISION_LEFT_PLAYER;
                 msg.player = main.connectionManager.currPlayer;
+                
                 main.sendMessageToServer(msg);
             }
             else if(ball1.checkCollisionWithRightPlayer(rightPlayer.Location, rightPlayer.Height, rightPlayer.Width))
@@ -142,8 +148,10 @@ namespace pinball
                 msg.player = main.connectionManager.currPlayer;
                 main.sendMessageToServer(msg);
             }
+
             else if (ball1.collisionLowerWall(screenHeight) || ball1.collisionUpperWall())
             {
+                
                 timerBallMovement.Enabled = false;
                 MessageModel msg = new MessageModel();
                 msg.BallVector = ball1.vector;
@@ -159,6 +167,8 @@ namespace pinball
                 msg.BallVector = ball1.vector;
                 msg.MsgType = ProtocolInterface.MsgType.COLLISION_LEFT_WALL;
                 msg.player = main.connectionManager.currPlayer;
+                msg.scorePlayer1 = scoreRightPlayer;
+                msg.scorePlayer2 = scoreLeftPlayer;
                 main.sendMessageToServer(msg);
             }
             else if (ball1.goalToRightPlayer(screenWidth))
@@ -168,8 +178,39 @@ namespace pinball
                 msg.BallVector = ball1.vector;
                 msg.MsgType = ProtocolInterface.MsgType.COLLISION_RIGHT_WALL;
                 msg.player = main.connectionManager.currPlayer;
+                msg.scorePlayer1 = scoreRightPlayer;
+                msg.scorePlayer2 = scoreLeftPlayer;
                 main.sendMessageToServer(msg);
+
             }
+
+        }
+
+        private void checkLocations()
+        {
+            if(ball1.ballLocation.Y + ball1.ballSpeedY < 0)
+            {
+                ball.Location = new Point(ball1.ballLocation.X, 0);
+                ball1.ballLocation = new Point(ball1.ballLocation.X, 0);
+
+            }
+            if(ball1.ballLocation.Y + ball1.ballSpeedY + (2 * ball1.ballRadius) > screenHeight)
+            {
+                ball.Location = new Point(ball1.ballLocation.X, screenHeight - (int)(2 * ball1.ballRadius));
+                ball1.ballLocation = new Point(ball1.ballLocation.X, screenHeight - (int)(2 * ball1.ballRadius));
+
+
+            }
+            if (ball1.ballLocation.X + (2*ball1.ballRadius) + ball1.ballSpeedX > screenWidth)
+            {
+                ball.Location = new Point(screenWidth - (int)(2 * ball1.ballRadius), ball1.ballLocation.Y);
+                ball1.ballLocation = new Point(screenWidth - (int)(2 * ball1.ballRadius), ball1.ballLocation.Y);
+            }
+        }
+
+        public void StopTimer()
+        {
+            timerBallMovement.Enabled = false;
 
         }
 
@@ -195,6 +236,11 @@ namespace pinball
             }
             countdownLBL.Text = counter.ToString();
             countdownLBL.Location = new Point(ball.Location.X, countdownLBL.Location.Y);
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

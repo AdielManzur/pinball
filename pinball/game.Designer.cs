@@ -36,6 +36,7 @@
             this.timerBallMovement = new System.Windows.Forms.Timer(this.components);
             this.countdownTimer = new System.Windows.Forms.Timer(this.components);
             this.countdownLBL = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rightPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
@@ -106,12 +107,22 @@
             this.countdownLBL.TabIndex = 4;
             this.countdownLBL.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(464, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1084, 520);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.countdownLBL);
             this.Controls.Add(this.lblDebug);
             this.Controls.Add(this.ball);
@@ -142,5 +153,6 @@
         private System.Windows.Forms.Timer timerBallMovement;
         private System.Windows.Forms.Timer countdownTimer;
         private System.Windows.Forms.Label countdownLBL;
+        private System.Windows.Forms.Label label1;
     }
 }
