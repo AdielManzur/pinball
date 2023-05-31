@@ -25,14 +25,9 @@ namespace pinball
 
         }
 
-        private void CircularProgressBar1_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            main.backButtonPressed();
         }
     }
 }

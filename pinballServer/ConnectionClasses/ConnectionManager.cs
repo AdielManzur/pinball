@@ -121,9 +121,10 @@ namespace pinballServer.ConnectionClasses
             string str = ProtocolInterface.SerializeMessage(message);
             byte[] data = Encoding.UTF8.GetBytes(str);
             connected.client.Send(data, 0, data.Length, SocketFlags.None);
+
         }
-        
- 
+
+
 
         public void stopServer()
         {

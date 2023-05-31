@@ -33,6 +33,8 @@
             this.btnConnectToServer = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRegister = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSignOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLeaveGame = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.scoreLBL = new System.Windows.Forms.Label();
             this.playerLabel = new System.Windows.Forms.Label();
@@ -55,7 +57,9 @@
             this.conectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnConnectToServer,
             this.btnLogin,
-            this.btnRegister});
+            this.btnRegister,
+            this.btnSignOut,
+            this.btnLeaveGame});
             this.conectionToolStripMenuItem.Name = "conectionToolStripMenuItem";
             this.conectionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.conectionToolStripMenuItem.Text = "Connection";
@@ -81,11 +85,25 @@
             this.btnRegister.Text = "Register";
             this.btnRegister.Click += new System.EventHandler(this.openRegWin);
             // 
+            // btnSignOut
+            // 
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Size = new System.Drawing.Size(169, 22);
+            this.btnSignOut.Text = "Sign Out";
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            // 
+            // btnLeaveGame
+            // 
+            this.btnLeaveGame.Name = "btnLeaveGame";
+            this.btnLeaveGame.Size = new System.Drawing.Size(169, 22);
+            this.btnLeaveGame.Text = "Leave Game";
+            this.btnLeaveGame.Visible = false;
+            // 
             // mainPanel
             // 
             this.mainPanel.Location = new System.Drawing.Point(0, 27);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1068, 455);
+            this.mainPanel.Size = new System.Drawing.Size(1068, 456);
             this.mainPanel.TabIndex = 1;
             // 
             // scoreLBL
@@ -105,7 +123,6 @@
             this.playerLabel.Name = "playerLabel";
             this.playerLabel.Size = new System.Drawing.Size(0, 13);
             this.playerLabel.TabIndex = 2;
-            this.playerLabel.Click += new System.EventHandler(this.Label1_Click);
             // 
             // playerNameLbl
             // 
@@ -123,6 +140,7 @@
             this.Controls.Add(this.playerLabel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(200, 100);
@@ -148,6 +166,8 @@
         private System.Windows.Forms.Label playerLabel;
         private System.Windows.Forms.Label playerNameLbl;
         private System.Windows.Forms.Label scoreLBL;
+        private System.Windows.Forms.ToolStripMenuItem btnSignOut;
+        private System.Windows.Forms.ToolStripMenuItem btnLeaveGame;
     }
 }
 

@@ -27,18 +27,12 @@ namespace pinballServer
         {
             manager = new ConnectionManager(this);
             gameManager = new serverGameManager(this);
-            pictureBox1.BackColor = Color.Red;
+            startServer();
+
 
         }
 
-        private void btnStartServer_Click(object sender, EventArgs e)
-        {
-            manager.StartServer();
-            updateIcon();
-            btnStartServer.Enabled = false;
-            btnStopServer.Enabled = true;
-
-        }
+        
         private void updateIcon()
         {
             if (manager.isListening())
@@ -58,6 +52,13 @@ namespace pinballServer
             btnStopServer.Enabled = false;
             btnStartServer.Enabled = true;
 
+        }
+        private void startServer()
+        {
+            manager.StartServer();
+            updateIcon();
+            btnStartServer.Enabled = false;
+            btnStopServer.Enabled = true;
         }
 
         public void updateConnectedClients(List<string> lst)
@@ -80,6 +81,14 @@ namespace pinballServer
         private void LbxConnectedClients_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnStartServer_Click(object sender, EventArgs e)
+        {
+            manager.StartServer();
+            updateIcon();
+            btnStartServer.Enabled = false;
+            btnStopServer.Enabled = true;
         }
     }
 }

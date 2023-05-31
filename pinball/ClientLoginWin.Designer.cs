@@ -37,7 +37,8 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(277, 256);
+            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLogin.Location = new System.Drawing.Point(277, 230);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(161, 60);
             this.btnLogin.TabIndex = 0;
@@ -47,13 +48,16 @@
             // 
             // txbPass
             // 
+            this.txbPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbPass.Location = new System.Drawing.Point(277, 192);
             this.txbPass.Name = "txbPass";
             this.txbPass.Size = new System.Drawing.Size(161, 20);
             this.txbPass.TabIndex = 1;
+            this.txbPass.TextChanged += new System.EventHandler(this.txbPass_TextChanged);
             // 
             // txbUsername
             // 
+            this.txbUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbUsername.Location = new System.Drawing.Point(277, 143);
             this.txbUsername.Name = "txbUsername";
             this.txbUsername.Size = new System.Drawing.Size(161, 20);
@@ -62,6 +66,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(280, 127);
             this.label1.Name = "label1";
@@ -71,6 +76,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(281, 176);
             this.label2.Name = "label2";
@@ -82,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 521);
+            this.ClientSize = new System.Drawing.Size(1068, 456);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbUsername);

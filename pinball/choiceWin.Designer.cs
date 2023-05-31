@@ -34,7 +34,7 @@
             // 
             // btnOpenWatingRoom
             // 
-            this.btnOpenWatingRoom.Location = new System.Drawing.Point(82, 189);
+            this.btnOpenWatingRoom.Location = new System.Drawing.Point(245, 189);
             this.btnOpenWatingRoom.Name = "btnOpenWatingRoom";
             this.btnOpenWatingRoom.Size = new System.Drawing.Size(157, 68);
             this.btnOpenWatingRoom.TabIndex = 0;
@@ -44,7 +44,7 @@
             // 
             // btnJoinGame
             // 
-            this.btnJoinGame.Location = new System.Drawing.Point(442, 189);
+            this.btnJoinGame.Location = new System.Drawing.Point(664, 189);
             this.btnJoinGame.Name = "btnJoinGame";
             this.btnJoinGame.Size = new System.Drawing.Size(157, 68);
             this.btnJoinGame.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1068, 456);
             this.Controls.Add(this.btnJoinGame);
             this.Controls.Add(this.btnOpenWatingRoom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

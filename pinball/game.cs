@@ -23,14 +23,17 @@ namespace pinball
         int counter = 6;
         public int scoreRightPlayer = 0;
         public int scoreLeftPlayer = 0;
+        public int speed = 5; 
 
         public game(ClientMainWin main,int mainPanelHeight, int mainPanelWidth)
         {
-
             InitializeComponent();
             this.main = main;
             this.Height = mainPanelHeight;
             this.Width = mainPanelWidth;
+            screenHeight = mainPanelHeight;
+            screenWidth = mainPanelWidth;
+            label2.Text = "screenWidth: " + screenWidth + "; screenHeight: " + screenHeight;
         }
        
         private void Game_Load(object sender, EventArgs e)
@@ -40,8 +43,6 @@ namespace pinball
             ball1.ballRadius = ball.Width / 2;
             ball1.ballLocation = ball.Location;
             
-
-
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
@@ -109,8 +110,8 @@ namespace pinball
         {
             ball1.vector = ballVector;
             ball1.ballLocation = ball.Location;
-            ball1.ballSpeedY = 15 * ball1.vector.Y;
-            ball1.ballSpeedX = 15 * ball1.vector.X;
+            ball1.ballSpeedY = speed * ball1.vector.Y;
+            ball1.ballSpeedX = speed * ball1.vector.X;
             countdownTimer.Enabled = true;
             
 
@@ -164,7 +165,6 @@ namespace pinball
             {
                 timerBallMovement.Enabled = false;
                 MessageModel msg = new MessageModel();
-                msg.BallVector = ball1.vector;
                 msg.MsgType = ProtocolInterface.MsgType.COLLISION_LEFT_WALL;
                 msg.player = main.connectionManager.currPlayer;
                 msg.scorePlayer1 = scoreRightPlayer;
@@ -175,7 +175,6 @@ namespace pinball
             {
                 timerBallMovement.Enabled = false;
                 MessageModel msg = new MessageModel();
-                msg.BallVector = ball1.vector;
                 msg.MsgType = ProtocolInterface.MsgType.COLLISION_RIGHT_WALL;
                 msg.player = main.connectionManager.currPlayer;
                 msg.scorePlayer1 = scoreRightPlayer;
@@ -222,8 +221,8 @@ namespace pinball
         private void UpdateBallLocation()
         {
             ball1.ballLocation = ball.Location;
-            ball1.ballSpeedY = 15 * ball1.vector.Y;
-            ball1.ballSpeedX = 15 * ball1.vector.X;
+            ball1.ballSpeedY = speed * ball1.vector.Y;
+            ball1.ballSpeedX = speed * ball1.vector.X;
             ball.Top += (int)ball1.ballSpeedY;
             ball.Left += (int)ball1.ballSpeedX;
             ball1.ballLocation = ball.Location;
@@ -239,8 +238,9 @@ namespace pinball
                 countdownLBL.Text = "";
                 timerBallMovement.Enabled = true;
             }
-            countdownLBL.Text = counter.ToString();
             countdownLBL.Location = new Point(ball.Location.X, countdownLBL.Location.Y);
+            countdownLBL.Text = counter.ToString();
+
         }
 
         private void Label1_Click(object sender, EventArgs e)

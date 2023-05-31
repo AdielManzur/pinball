@@ -62,7 +62,38 @@ namespace pinball
             });                
           
         }
+        public void updatelbxRooms(MessageModel msg ,List<RoomModel> rooms)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                if(msg.MsgType == ProtocolInterface.MsgType.ROOM_REMOVED || msg.MsgType == ProtocolInterface.MsgType.ROOM_IS_FULL)
+                {
+                    lbxRooms.Items.Remove(msg.msgStr);
+                    return;
+                }
+                if (rooms.Count == 0)
+                {
+                    MessageBox.Show("There are no open games");
+                    return;
+                }
+                bool isExsist = false;
+                foreach (RoomModel p in rooms)
+                {
+                    for (int i = 0; i < lbxRooms.Items.Count; i++)
+                    {
+                        if (lbxRooms.Items[i].ToString() == p.name)
+                        {
+                            isExsist = true;
+                        }
+                    }
+                    if (!isExsist)
+                    {
+                        lbxRooms.Items.Add(p.name);
+                    }
+                }
+            });
 
+        }
         public void LbxRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(lbxRooms.SelectedItem == null)
@@ -85,6 +116,10 @@ namespace pinball
             message.player = main.connectionManager.currPlayer;
             main.connectionManager.sendMessageToServer(message);
         }
-        
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            main.backButtonPressed();
+        }
     }
 }

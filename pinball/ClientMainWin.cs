@@ -23,7 +23,12 @@ namespace pinball
         public clientMessageHandling clientHandle;
         public game gameWin;
         public RoomsListWin RoomsListWin;
-        
+
+        public void backButtonPressedFromNewWaitinRoom()
+        {
+            
+        }
+
         public bool isConnected;
         public bool isLogined;
         public ClientMainWin()
@@ -44,6 +49,9 @@ namespace pinball
             gameWin = new game(this, mainPanel.Height, mainPanel.Width);
             RoomsListWin = new RoomsListWin(this);
             updateMenuBTNs();
+            connectToServer();
+            updateMenuBTNs();
+            
         }
         public void openLoginWin(object sender, EventArgs e)
         {
@@ -55,7 +63,7 @@ namespace pinball
                 }
                 current.Close();
             }
-            current = new ClientLoginWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            current = new ClientLoginWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
             mainPanel.Controls.Add(current);
             current.Show();
             updateMenuBTNs();
@@ -75,7 +83,7 @@ namespace pinball
                     }
                     current.Close();
                 }
-                current = new RoomsListWin(this,rooms) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new RoomsListWin(this,rooms) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
@@ -93,7 +101,7 @@ namespace pinball
                     }
                     current.Close();
                 }
-                current = new newWaitingRoom(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new newWaitingRoom(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
@@ -110,6 +118,53 @@ namespace pinball
                     tmp.collisionWithUpperOrLowerWall(ballVector);
                 });
             }
+        }
+
+        public void roomIsFull(MessageModel message)
+        {
+            if(current is RoomsListWin)
+            {
+                updateRoomsLbx(message);
+            }
+        }
+
+        public void roomRemoved(MessageModel message)
+        {
+           if(current is RoomsListWin)
+            {
+                updateRoomsLbx(message);
+            }
+        }
+
+        private void updateRoomsLbx(MessageModel message)
+        {
+            if (current is RoomsListWin)
+            {
+                RoomsListWin tmp = (RoomsListWin)current;
+                tmp.updatelbxRooms(message,message.rooms);
+            }
+        }
+
+        public void backButtonPressed()
+        {
+            if(current is RoomsListWin)
+            {
+                openChoiceWin();
+            }
+            if(current is newWaitingRoom)
+            {
+                removeThisOpendRoom();
+                openChoiceWin();
+            }
+        }
+
+        public void signOut()
+        {
+            this.Invoke((MethodInvoker)delegate {
+                mainPanel.Controls.Clear();         
+                isLogined = false;               
+                updateMenuBTNs();
+            });
         }
 
         public void GoalLeftWall(MessageModel message)
@@ -139,11 +194,10 @@ namespace pinball
 
         public void GoalRightWall(MessageModel message)
         {
-
             String scorePlayer2 = message.scorePlayer2.ToString();
             String scorePlayer1 = message.scorePlayer1.ToString();
             this.Invoke((MethodInvoker)delegate {
-                if (message.player == message.game.player2)
+            if (message.player == message.game.player2)
             {
                 scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: "+scorePlayer1;
             }
@@ -221,7 +275,7 @@ namespace pinball
                 }
                 current.Close();
             }
-            current = new registerWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            current = new registerWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
             mainPanel.Controls.Add(current);
             current.Show();
             updateMenuBTNs();
@@ -240,7 +294,7 @@ namespace pinball
                     }
                     current.Close();
                 }
-                current = new choiceWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new choiceWin(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 updateMenuBTNs();
@@ -260,10 +314,12 @@ namespace pinball
                     current.Close();
                 }
 
-                current = new game(this, mainPanel.Height,mainPanel.Width) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                current = new game(this, mainPanel.Height,mainPanel.Width) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
                 mainPanel.Controls.Add(current);
                 current.Show();
+                btnLeaveGame.Visible = true;
                 updateMenuBTNs();
+                btnSignOut.Enabled = false;
                 mainPanel.Height -= 36;
                 mainPanel.Location = new Point(0, mainPanel.Location.Y + 35);
 
@@ -279,8 +335,6 @@ namespace pinball
                 message.MsgType = ProtocolInterface.MsgType.MSG_LOGIN;
                 message.userName = userName;
                 message.pass = pass;
-                //message.msgStr = "";
-                //message.player = null;
                 connectionManager.sendMessageToServer(message);
             }
             isLogined = clientHandle.isLogined();
@@ -295,6 +349,15 @@ namespace pinball
             else
                 MessageBox.Show("Connection failed");
         }
+
+        private void connectToServer()
+        {
+            isConnected = connectionManager.connectToServer();
+            updateMenuBTNs();
+            if (!isConnected)
+                MessageBox.Show("Connection failed");
+            
+        }
         public void sendMessageToServer(MessageModel message)
         {
             connectionManager.sendMessageToServer(message);
@@ -306,13 +369,30 @@ namespace pinball
                 btnConnectToServer.Enabled = !isConnected;
                 btnLogin.Enabled = isConnected && !isLogined;
                 btnRegister.Enabled = isConnected && !isLogined;
+                btnSignOut.Enabled = !btnRegister.Enabled || !btnLogin.Enabled;
             });
         
         }
 
-        private void Label1_Click(object sender, EventArgs e)
-        {
 
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            if(current is newWaitingRoom)
+            {
+                removeThisOpendRoom();
+            }
+            MessageModel signOutMsg = new MessageModel();
+            signOutMsg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
+            signOutMsg.player = connectionManager.currPlayer;
+            sendMessageToServer(signOutMsg);
         }
+        private void removeThisOpendRoom()
+        {
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.REMOVE_ROOM;
+            msg.player = connectionManager.currPlayer;
+            sendMessageToServer(msg);
+        }
+        
     }   
 }

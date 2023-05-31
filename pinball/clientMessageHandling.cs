@@ -36,6 +36,9 @@ namespace pinball
                 case ProtocolInterface.MsgType.LOGIN_ERROR:
                     handleLoginError(message);
                     break;
+                case ProtocolInterface.MsgType.SIGN_OUT:
+                    handleSignOut(message);
+                    break;
                 case ProtocolInterface.MsgType.ALREADY_ONLINE:
                     handleAlreadyOnline(message);
                     break;
@@ -75,11 +78,33 @@ namespace pinball
                 case ProtocolInterface.MsgType.GOAL_LEFT_WALL:
                     handleGoalLeftWall(message);
                     break;
-
+                case ProtocolInterface.MsgType.ROOM_REMOVED:
+                    handleRoomRemoved(message);
+                    break;
+                case ProtocolInterface.MsgType.ROOM_IS_FULL:
+                    handleRoomIsFull(message);
+                    break;
 
 
             }
 
+        }
+
+        private void handleRoomIsFull(MessageModel message)
+        {
+            manager.main.roomIsFull(message);
+        }
+
+        private void handleRoomRemoved(MessageModel message)
+        {
+            manager.main.roomRemoved(message);
+        }
+
+        private void handleSignOut(MessageModel message)
+        {
+            manager.main.signOut();
+            isReg = false;
+            isLog = false;
         }
 
         private void handleGoalLeftWall(MessageModel message)
@@ -90,7 +115,6 @@ namespace pinball
         private void handleGoalRightWall(MessageModel message)
         {
             manager.main.GoalRightWall(message);
-
         }
 
         private void handleCollisionUpperOrLowerWall(MessageModel message)

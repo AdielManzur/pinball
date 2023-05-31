@@ -37,7 +37,7 @@ namespace pinball
                 isConnected = clientSocket.Connected;
               
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 isConnected = false;
             }
@@ -84,6 +84,7 @@ namespace pinball
             string str = ProtocolInterface.SerializeMessage(message);
             byte[] data = Encoding.UTF8.GetBytes(str);
             clientSocket.Send(data, 0, data.Length, SocketFlags.None);
+
         }
 
         public void showTxtToLbl(MessageModel message)

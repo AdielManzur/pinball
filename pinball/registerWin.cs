@@ -27,7 +27,16 @@ namespace pinball
         }
         private void registerWin_Load(object sender, EventArgs e)
         {
-            
+            btnRegister.Left = (this.ClientSize.Width - btnRegister.Width) / 2;
+            label1.Left = (this.ClientSize.Width - label1.Width) / 2;
+            label2.Left = (this.ClientSize.Width - label2.Width) / 2;
+            txbPass.Left = (this.ClientSize.Width - txbPass.Width) / 2;
+            txbUsername.Left = (this.ClientSize.Width - txbUsername.Width) / 2;
+            label3.Left = (this.ClientSize.Width - label3.Width) / 2;
+            label4.Left = (this.ClientSize.Width - label4.Width) / 2;
+            firstNameTxb.Left = (this.ClientSize.Width - firstNameTxb.Width) / 2;
+            LastNameTxb.Left = (this.ClientSize.Width - LastNameTxb.Width) / 2;
+
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {

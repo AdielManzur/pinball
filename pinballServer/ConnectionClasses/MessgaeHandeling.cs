@@ -25,6 +25,9 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.MSG_REGISTER:
                     handleRegister(message, connected);
                     break;
+                case ProtocolInterface.MsgType.SIGN_OUT:
+                    handleSignOut(message, connected);
+                    break;
                 case ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM:
                     handleOpenNewWaitingRoom(message, connected);
                     break;
@@ -59,11 +62,56 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.COLLISION_LEFT_WALL:
                     handleCollisionLeftWall(message, connected);
                     break;
-
+                case ProtocolInterface.MsgType.REMOVE_ROOM:
+                    handleRemoveRoom(message, connected);
+                    break;
 
 
             }
            
+        }
+
+        private void handleRemoveRoom(MessageModel message, ConnectedPlayer connected)
+        {
+            foreach(GameModel game in manager.main.gameManager.games)
+            {
+                if(message.player.username == game.player1.username)
+                {
+                    manager.main.gameManager.games.Remove(game);
+                    if (manager.main.gameManager.games.Count == 0)
+                    {
+                        break;
+                    }
+                }
+            }
+            foreach (RoomModel room in manager.main.gameManager.rooms)
+            {
+                if (message.player.username == room.player1.username)
+                {
+                    manager.main.gameManager.rooms.Remove(room);
+                    if (manager.main.gameManager.rooms.Count == 0)
+                    {
+                        break;
+                    }
+                }
+            }
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.ROOM_REMOVED;
+            msg.rooms = manager.main.gameManager.rooms;
+            msg.msgStr = connected.player.username;
+            foreach (ConnectedPlayer player in manager.players)
+            {
+                manager.sendMessageToClient(player, msg);
+            }
+
+        }
+
+        private void handleSignOut(MessageModel message, ConnectedPlayer connected)
+        {
+            connected.player = null;
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
+            manager.sendMessageToClient(connected, msg);
         }
 
         private void handleCollisionLeftWall(MessageModel message, ConnectedPlayer connected)
@@ -244,7 +292,16 @@ namespace pinballServer.ConnectionClasses
             keysMsg.msgStr = "your keys are W and S for up&down and your player is the left player";
             keysMsg.player = connected.player;
             manager.sendMessageToClient(connected, keysMsg);
-
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.ROOM_IS_FULL;
+            manager.main.gameManager.rooms.Remove(curr);
+            msg.msgStr = curr.name;
+            msg.rooms = manager.main.gameManager.rooms;
+            foreach (ConnectedPlayer player in manager.players)
+            {
+                if(player.player.username != curr.player1.username && player.player.username != curr.player2.username)
+                    manager.sendMessageToClient(player, msg);
+            }
 
         }
         

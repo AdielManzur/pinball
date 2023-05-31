@@ -20,6 +20,7 @@ namespace pinball
         {
             InitializeComponent();
             this.main = main;
+
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -31,10 +32,19 @@ namespace pinball
 
         private void ClientLoginWin_Load(object sender, EventArgs e)
         {
-
+            btnLogin.Left = (this.ClientSize.Width - btnLogin.Width) / 2;
+            label1.Left = (this.ClientSize.Width - label1.Width) / 2;
+            label2.Left = (this.ClientSize.Width - label2.Width) / 2;
+            txbPass.Left = (this.ClientSize.Width - txbPass.Width) / 2;
+            txbUsername.Left = (this.ClientSize.Width - txbUsername.Width) / 2;
         }
 
         private void TxbUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbPass_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -37,6 +37,7 @@
             this.countdownTimer = new System.Windows.Forms.Timer(this.components);
             this.countdownLBL = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rightPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
@@ -67,12 +68,12 @@
             this.ball.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ball.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ball.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            this.ball.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.ball.BorderColor2 = System.Drawing.Color.HotPink;
+            this.ball.BorderColor = System.Drawing.Color.Honeydew;
+            this.ball.BorderColor2 = System.Drawing.Color.Red;
             this.ball.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this.ball.BorderSize = 2;
             this.ball.GradientAngle = 50F;
-            this.ball.Location = new System.Drawing.Point(503, 219);
+            this.ball.Location = new System.Drawing.Point(520, 224);
             this.ball.Name = "ball";
             this.ball.Size = new System.Drawing.Size(42, 42);
             this.ball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -116,18 +117,31 @@
             this.label1.TabIndex = 5;
             this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label2.Location = new System.Drawing.Point(262, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 25);
+            this.label2.TabIndex = 6;
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackgroundImage = global::pinball.Properties.Resources.pong_game_background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1084, 520);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.countdownLBL);
             this.Controls.Add(this.lblDebug);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.leftPlayer);
             this.Controls.Add(this.rightPlayer);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(100, 200);
@@ -154,5 +168,6 @@
         private System.Windows.Forms.Timer countdownTimer;
         private System.Windows.Forms.Label countdownLBL;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
