@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.lbxRooms = new System.Windows.Forms.ListBox();
-            this.rjButton1 = new RJCodeAdvance.RJControls.RJButton();
+            this.btnUpdateRooms = new RJCodeAdvance.RJControls.RJButton();
             this.BackButton = new System.Windows.Forms.PictureBox();
+            this.lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,24 +44,24 @@
             this.lbxRooms.TabIndex = 0;
             this.lbxRooms.SelectedIndexChanged += new System.EventHandler(this.LbxRooms_SelectedIndexChanged);
             // 
-            // rjButton1
+            // btnUpdateRooms
             // 
-            this.rjButton1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.rjButton1.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.rjButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton1.BorderRadius = 10;
-            this.rjButton1.BorderSize = 0;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(445, 355);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(163, 50);
-            this.rjButton1.TabIndex = 1;
-            this.rjButton1.Text = "update list";
-            this.rjButton1.TextColor = System.Drawing.Color.White;
-            this.rjButton1.UseVisualStyleBackColor = false;
-            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
+            this.btnUpdateRooms.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnUpdateRooms.BackgroundColor = System.Drawing.Color.CornflowerBlue;
+            this.btnUpdateRooms.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnUpdateRooms.BorderRadius = 10;
+            this.btnUpdateRooms.BorderSize = 0;
+            this.btnUpdateRooms.FlatAppearance.BorderSize = 0;
+            this.btnUpdateRooms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateRooms.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateRooms.Location = new System.Drawing.Point(445, 355);
+            this.btnUpdateRooms.Name = "btnUpdateRooms";
+            this.btnUpdateRooms.Size = new System.Drawing.Size(163, 50);
+            this.btnUpdateRooms.TabIndex = 1;
+            this.btnUpdateRooms.Text = "update list";
+            this.btnUpdateRooms.TextColor = System.Drawing.Color.White;
+            this.btnUpdateRooms.UseVisualStyleBackColor = false;
+            this.btnUpdateRooms.Click += new System.EventHandler(this.btnUpdateRooms_Click);
             // 
             // BackButton
             // 
@@ -73,13 +74,23 @@
             this.BackButton.TabStop = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lbl.Location = new System.Drawing.Point(396, 24);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(0, 25);
+            this.lbl.TabIndex = 3;
+            // 
             // RoomsListWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 456);
+            this.Controls.Add(this.lbl);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.rjButton1);
+            this.Controls.Add(this.btnUpdateRooms);
             this.Controls.Add(this.lbxRooms);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RoomsListWin";
@@ -87,13 +98,15 @@
             this.Load += new System.EventHandler(this.RoomsList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ListBox lbxRooms;
-        private RJCodeAdvance.RJControls.RJButton rjButton1;
+        private RJCodeAdvance.RJControls.RJButton btnUpdateRooms;
         private System.Windows.Forms.PictureBox BackButton;
+        private System.Windows.Forms.Label lbl;
     }
 }

@@ -170,7 +170,7 @@ namespace pinball
 
         private void handleLoginOk(MessageModel message)
         {
-            MessageBox.Show("connected");
+
             manager.currPlayer = message.player;
             manager.main.isLogined = true;
             manager.main.openChoiceWin();

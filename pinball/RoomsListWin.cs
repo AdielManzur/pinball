@@ -32,6 +32,11 @@ namespace pinball
 
         private void RoomsList_Load(object sender, EventArgs e)
         {
+            lbxRooms.Left = (this.ClientSize.Width - lbxRooms.Width) / 2;
+            btnUpdateRooms.Left = (this.ClientSize.Width - btnUpdateRooms.Width) / 2;
+
+
+
             updatelbxRooms(rooms);
         }
         
@@ -39,11 +44,16 @@ namespace pinball
         {
             this.Invoke((MethodInvoker)delegate
             {
+
                 if (rooms.Count == 0)
                 {
-                    MessageBox.Show("There are no open games");
+                    lbl.Visible = true;
+                    lbl.Text = "There are no open rooms";
+                    lbl.Left = (this.ClientSize.Width - lbl.Width) / 2;
+                    lbl.Top = 10;
                     return;
                 }
+                lbl.Visible = false;               
                 bool isExsist = false;
                 foreach (RoomModel p in rooms)
                 {
@@ -73,8 +83,12 @@ namespace pinball
                 }
                 if (rooms.Count == 0)
                 {
-                    MessageBox.Show("There are no open games");
+                    lbl.Visible = true;
+                    lbl.Text = "There are no open rooms";
+                    lbl.Left = (this.ClientSize.Width - lbl.Width) / 2;
+                    lbl.Top = 10;
                     return;
+                  
                 }
                 bool isExsist = false;
                 foreach (RoomModel p in rooms)
@@ -109,7 +123,7 @@ namespace pinball
             main.sendMessageToServer(msgToSend);
         }
        
-        private void rjButton1_Click(object sender, EventArgs e)
+        private void btnUpdateRooms_Click(object sender, EventArgs e)
         {
             MessageModel message = new MessageModel();
             message.MsgType = ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS;
