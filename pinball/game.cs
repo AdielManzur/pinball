@@ -20,30 +20,39 @@ namespace pinball
         int screenHeight;
         int screenWidth;
         Ball ball1 = new Ball();
+        Point firstBallLocation;
         int counter = 6;
         public int scoreRightPlayer = 0;
         public int scoreLeftPlayer = 0;
-        public int speed = 5; 
+        public int speed = 10;
+        
+  
 
-        public game(ClientMainWin main,int mainPanelHeight, int mainPanelWidth)
+        public game(ClientMainWin main)
         {
             InitializeComponent();
             this.main = main;
-            this.Height = mainPanelHeight;
-            this.Width = mainPanelWidth;
-            screenHeight = mainPanelHeight;
-            screenWidth = mainPanelWidth;
-            label2.Text = "screenWidth: " + screenWidth + "; screenHeight: " + screenHeight;
+            //label2.Text = "screenWidth: " + this.ClientSize.Width + "; screenHeight: " + this.ClientSize.Height;
         }
        
         private void Game_Load(object sender, EventArgs e)
         {
             ball.Left = (this.ClientSize.Width - ball.Width) / 2;
-            screenHeight = this.Height;
-            screenWidth = this.Width;
+            ball.Top = (this.ClientSize.Height - ball.Width) / 2;
             ball1.ballRadius = ball.Width / 2;
             ball1.ballLocation = ball.Location;
+            screenHeight = this.ClientSize.Height;
+            screenWidth = this.ClientSize.Width;
+            firstBallLocation = ball.Location;
+            playerKeysLBL.Text = main.connectionManager.currPlayer.username;
+            updateLBL();
             
+        }
+
+        private void updateLBL()
+        {
+            scoreLeftLBL.Text = "score:" + scoreLeftPlayer;
+            scoreRightLBL.Text = "score:" + scoreRightPlayer;
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
@@ -107,80 +116,64 @@ namespace pinball
         }
 
 
-        public void firstBallMovement(Vector2 ballVector)
+        public void firstBallMovement(MessageModel message)
         {
-            ball1.vector = ballVector;
+            
+            ball1.vector = message.BallVector;
             ball1.ballLocation = ball.Location;
             ball1.ballSpeedY = speed * ball1.vector.Y;
             ball1.ballSpeedX = speed * ball1.vector.X;
             countdownTimer.Enabled = true;
             
-
         }
 
-        public void collisionWithUpperOrLowerWall(Vector2 ballVector)
-        {
-            ball1.vector = ballVector;
-            timerBallMovement.Enabled = true;
-
-        }
+ 
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-
+            
             UpdateBallLocation();
-            label1.Text = "(" + ball1.ballLocation.X + "," + ball1.ballLocation.Y + ")";
+            //label1.Text = "(" + ball1.ballLocation.X + "," + ball1.ballLocation.Y + ")";
             checkLocations();
+
             if (ball1.checkCollisionWithLeftPlayer(leftPlayer.Location,leftPlayer.Height, rightPlayer.Width))
             {
                 timerBallMovement.Enabled = false;
-                MessageModel msg = new MessageModel();
-                msg.BallVector = ball1.vector;
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_LEFT_PLAYER;
-                msg.player = main.connectionManager.currPlayer;
-                
-                main.sendMessageToServer(msg);
+             
             }
+            
             else if(ball1.checkCollisionWithRightPlayer(rightPlayer.Location, rightPlayer.Height, rightPlayer.Width))
             {
                 timerBallMovement.Enabled = false;
-                MessageModel msg = new MessageModel();
-                msg.BallVector = ball1.vector;
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_RIGHT_PLAYER;
-                msg.player = main.connectionManager.currPlayer;
-                main.sendMessageToServer(msg);
+               
             }
 
             else if (ball1.collisionLowerWall(screenHeight) || ball1.collisionUpperWall())
-            {
-                
-                timerBallMovement.Enabled = false;
-                MessageModel msg = new MessageModel();
-                msg.BallVector = ball1.vector;
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL;
-                msg.player = main.connectionManager.currPlayer;
-                main.sendMessageToServer(msg);
+            {                              
+                ball1.vector = new Vector2(ball1.vector.X, -ball1.vector.Y);
             }
            
             else if (ball1.goalToLeftPlayer())
             {
-                timerBallMovement.Enabled = false;
+                ball.Location = firstBallLocation;
+                ball1.ballLocation = firstBallLocation;
                 MessageModel msg = new MessageModel();
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_LEFT_WALL;
+                msg.MsgType = MsgType.FirstBallMovement;
                 msg.player = main.connectionManager.currPlayer;
-                msg.scorePlayer1 = scoreRightPlayer;
-                msg.scorePlayer2 = scoreLeftPlayer;
-                main.sendMessageToServer(msg);
+                main.connectionManager.sendMessageToServer(msg);
+                scoreRightPlayer++;
+                updateLBL();
             }
             else if (ball1.goalToRightPlayer(screenWidth))
             {
-                timerBallMovement.Enabled = false;
+                ball.Location = firstBallLocation;
+                ball1.ballLocation = firstBallLocation;
                 MessageModel msg = new MessageModel();
-                msg.MsgType = ProtocolInterface.MsgType.COLLISION_RIGHT_WALL;
+                msg.MsgType = MsgType.FirstBallMovement;
                 msg.player = main.connectionManager.currPlayer;
-                msg.scorePlayer1 = scoreRightPlayer;
-                msg.scorePlayer2 = scoreLeftPlayer;
-                main.sendMessageToServer(msg);
+                main.connectionManager.sendMessageToServer(msg);
+                scoreLeftPlayer++;
+                updateLBL();
 
             }
 
@@ -245,6 +238,11 @@ namespace pinball
         }
 
         private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

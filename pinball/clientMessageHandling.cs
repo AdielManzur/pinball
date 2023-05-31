@@ -69,6 +69,7 @@ namespace pinball
                 case ProtocolInterface.MsgType.FirstBallMovement:
                     handleTxtAndBallMovement(message);
                     break;
+                    /*
                 case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
                     handleCollisionUpperOrLowerWall(message);
                     break;
@@ -78,6 +79,7 @@ namespace pinball
                 case ProtocolInterface.MsgType.GOAL_LEFT_WALL:
                     handleGoalLeftWall(message);
                     break;
+                    */
                 case ProtocolInterface.MsgType.ROOM_REMOVED:
                     handleRoomRemoved(message);
                     break;
@@ -106,7 +108,7 @@ namespace pinball
             isReg = false;
             isLog = false;
         }
-
+        /*
         private void handleGoalLeftWall(MessageModel message)
         {
             manager.main.GoalLeftWall(message);
@@ -121,16 +123,16 @@ namespace pinball
         {
             manager.main.collisionWithUpperOrLowerWall(message.BallVector);
         }
-
+        */
         private void handleAlreadyOnline(MessageModel message)
         {
             MessageBox.Show("User already online");
         }
 
         private void handleTxtAndBallMovement(MessageModel message)
-        {
-            manager.showTxtToLbl(message);
-            manager.firstBallMovement(message.BallVector);
+        {            
+            //manager.showTxtToLbl(message);
+            manager.firstBallMovement(message);
         }
 
         private void handleUpdateRooms(MessageModel message)

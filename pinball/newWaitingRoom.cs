@@ -27,6 +27,11 @@ namespace pinball
             waitingLBL.Text = "waiting for player";
             waitingLBL.Left = (this.ClientSize.Width - waitingLBL.Width) / 2;
             loadGif.Left = (this.ClientSize.Width - loadGif.Width) / 2;
+            waitingLBL.Top = (this.ClientSize.Height - waitingLBL.Height) / 2;
+            loadGif.Top = ((this.ClientSize.Height - loadGif.Height) / 2 ) + loadGif.Height + 10;
+            playerLBL.Text = main.connectionManager.currPlayer.username;
+            playerLBL.Location = new Point(((playerPicture.Width - playerLBL.Width) / 2) + playerPicture.Left, playerLBL.Location.Y);
+            
         }
 
         private void BackButton_Click(object sender, EventArgs e)

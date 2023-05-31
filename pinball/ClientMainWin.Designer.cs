@@ -36,9 +36,6 @@
             this.btnSignOut = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLeaveGame = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.scoreLBL = new System.Windows.Forms.Label();
-            this.playerLabel = new System.Windows.Forms.Label();
-            this.playerNameLbl = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,45 +98,17 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Location = new System.Drawing.Point(0, 27);
+            this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1068, 456);
+            this.mainPanel.Size = new System.Drawing.Size(1068, 457);
             this.mainPanel.TabIndex = 1;
-            // 
-            // scoreLBL
-            // 
-            this.scoreLBL.AutoSize = true;
-            this.scoreLBL.Location = new System.Drawing.Point(880, 41);
-            this.scoreLBL.Name = "scoreLBL";
-            this.scoreLBL.Size = new System.Drawing.Size(7, 13);
-            this.scoreLBL.TabIndex = 0;
-            this.scoreLBL.Text = "\r\n";
-            // 
-            // playerLabel
-            // 
-            this.playerLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.playerLabel.AutoSize = true;
-            this.playerLabel.Location = new System.Drawing.Point(514, 41);
-            this.playerLabel.Name = "playerLabel";
-            this.playerLabel.Size = new System.Drawing.Size(0, 13);
-            this.playerLabel.TabIndex = 2;
-            // 
-            // playerNameLbl
-            // 
-            this.playerNameLbl.AutoSize = true;
-            this.playerNameLbl.Location = new System.Drawing.Point(12, 41);
-            this.playerNameLbl.Name = "playerNameLbl";
-            this.playerNameLbl.Size = new System.Drawing.Size(0, 13);
-            this.playerNameLbl.TabIndex = 3;
             // 
             // ClientMainWin
             // 
             this.ClientSize = new System.Drawing.Size(1068, 481);
-            this.Controls.Add(this.scoreLBL);
-            this.Controls.Add(this.playerNameLbl);
-            this.Controls.Add(this.playerLabel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
@@ -163,9 +132,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnLogin;
         private System.Windows.Forms.ToolStripMenuItem btnRegister;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Label playerLabel;
-        private System.Windows.Forms.Label playerNameLbl;
-        private System.Windows.Forms.Label scoreLBL;
         private System.Windows.Forms.ToolStripMenuItem btnSignOut;
         private System.Windows.Forms.ToolStripMenuItem btnLeaveGame;
     }

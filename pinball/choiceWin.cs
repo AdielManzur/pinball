@@ -25,6 +25,10 @@ namespace pinball
         private void WaitingRoom_Load(object sender, EventArgs e)
         {
 
+            playerLBL.Text = main.connectionManager.currPlayer.username;
+            playerLBL.Left = (this.ClientSize.Width - playerLBL.Width) / 2;
+            playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
+
         }
 
         private void BtnOpenWatingRoom_Click(object sender, EventArgs e)
@@ -43,6 +47,14 @@ namespace pinball
             main.connectionManager.sendMessageToServer(message);
         }
 
-        
+        private void playerLBL_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void playerPicture_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -23,12 +23,6 @@ namespace pinball
         public clientMessageHandling clientHandle;
         public game gameWin;
         public RoomsListWin RoomsListWin;
-
-        public void backButtonPressedFromNewWaitinRoom()
-        {
-            
-        }
-
         public bool isConnected;
         public bool isLogined;
         public ClientMainWin()
@@ -46,12 +40,12 @@ namespace pinball
             isLogined = false;
             connectionManager = new clientConnectionManager(this);
             clientHandle = new clientMessageHandling(connectionManager);
-            gameWin = new game(this, mainPanel.Height, mainPanel.Width);
+            gameWin = new game(this);
             RoomsListWin = new RoomsListWin(this);
             updateMenuBTNs();
             connectToServer();
             updateMenuBTNs();
-            
+
         }
         public void openLoginWin(object sender, EventArgs e)
         {
@@ -107,7 +101,7 @@ namespace pinball
                 updateMenuBTNs();
             });
         }
-
+        /*
         public void collisionWithUpperOrLowerWall(Vector2 ballVector)
         {
             if (current is game)
@@ -119,7 +113,7 @@ namespace pinball
                 });
             }
         }
-
+        */
         public void roomIsFull(MessageModel message)
         {
             if(current is RoomsListWin)
@@ -166,7 +160,7 @@ namespace pinball
                 updateMenuBTNs();
             });
         }
-
+        /*
         public void GoalLeftWall(MessageModel message)
         {
             String scorePlayer2 = message.scorePlayer2.ToString();
@@ -191,7 +185,7 @@ namespace pinball
                 });
             }
         }
-
+        
         public void GoalRightWall(MessageModel message)
         {
             String scorePlayer2 = message.scorePlayer2.ToString();
@@ -216,7 +210,7 @@ namespace pinball
                 });
             }
         }
-
+        */
         public void updateRoomsLbx(List<RoomModel> rooms)
         {
             if (current is RoomsListWin)
@@ -226,18 +220,19 @@ namespace pinball
             }
         }
 
-        public void firstBallMovement(Vector2 ballVector)
+        public void firstBallMovement(MessageModel message)
         {
             if (current is game)
             {
                 game tmp = (game)current;
                 this.Invoke((MethodInvoker)delegate
                 {
-                    tmp.firstBallMovement(ballVector);
+                    tmp.firstBallMovement(message);
                 });
             }
+            
         }
-
+        /*
         public void KeysLbl(MessageModel message)
         {
             if (current is game)
@@ -248,13 +243,16 @@ namespace pinball
                     playerLabel.Text = message.msgStr;
                     playerLabel.Location = new Point((int)((this.Width - playerLabel.Width) / 2), playerLabel.Location.Y);
                     playerNameLbl.Text = "Your name: " + message.player.username;
+                    playerNameLbl.BackColor = Color.Transparent;
+                    playerLabel.BackColor = Color.Transparent;
                     scoreLBL.Text = "your score: 0 , enemy score: 0";
+                    scoreLBL.BackColor = Color.Transparent;
                     scoreLBL.Top =  playerNameLbl.Location.Y;
 
                 });
             }
         }
-
+        */
         public void handleKeyPress(ProtocolInterface.MsgType msgType)
         {
             if (current is game)
@@ -313,15 +311,15 @@ namespace pinball
                     }
                     current.Close();
                 }
-
-                current = new game(this, mainPanel.Height,mainPanel.Width) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Size = mainPanel.Size };
+                //mainPanel.Height -= 36;
+                //mainPanel.Location = new Point(0, mainPanel.Location.Y + 36);
+                current = new game(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, };
                 mainPanel.Controls.Add(current);
                 current.Show();
                 btnLeaveGame.Visible = true;
                 updateMenuBTNs();
                 btnSignOut.Enabled = false;
-                mainPanel.Height -= 36;
-                mainPanel.Location = new Point(0, mainPanel.Location.Y + 35);
+                
 
             });
 

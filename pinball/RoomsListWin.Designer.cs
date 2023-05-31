@@ -30,9 +30,12 @@
         {
             this.lbxRooms = new System.Windows.Forms.ListBox();
             this.btnUpdateRooms = new RJCodeAdvance.RJControls.RJButton();
-            this.BackButton = new System.Windows.Forms.PictureBox();
             this.lbl = new System.Windows.Forms.Label();
+            this.BackButton = new System.Windows.Forms.PictureBox();
+            this.playerPicture = new System.Windows.Forms.PictureBox();
+            this.playerLBL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // lbxRooms
@@ -63,6 +66,15 @@
             this.btnUpdateRooms.UseVisualStyleBackColor = false;
             this.btnUpdateRooms.Click += new System.EventHandler(this.btnUpdateRooms_Click);
             // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lbl.Location = new System.Drawing.Point(396, 24);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(0, 25);
+            this.lbl.TabIndex = 3;
+            // 
             // BackButton
             // 
             this.BackButton.Image = global::pinball.Properties.Resources.returnButton;
@@ -74,20 +86,35 @@
             this.BackButton.TabStop = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // lbl
+            // playerPicture
             // 
-            this.lbl.AutoSize = true;
-            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lbl.Location = new System.Drawing.Point(396, 24);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(0, 25);
-            this.lbl.TabIndex = 3;
+            this.playerPicture.BackColor = System.Drawing.Color.Transparent;
+            this.playerPicture.Image = global::pinball.Properties.Resources.profile;
+            this.playerPicture.Location = new System.Drawing.Point(963, 12);
+            this.playerPicture.Name = "playerPicture";
+            this.playerPicture.Size = new System.Drawing.Size(71, 72);
+            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPicture.TabIndex = 4;
+            this.playerPicture.TabStop = false;
+            // 
+            // playerLBL
+            // 
+            this.playerLBL.AutoSize = true;
+            this.playerLBL.BackColor = System.Drawing.Color.Transparent;
+            this.playerLBL.Location = new System.Drawing.Point(982, 87);
+            this.playerLBL.Name = "playerLBL";
+            this.playerLBL.Size = new System.Drawing.Size(33, 13);
+            this.playerLBL.TabIndex = 5;
+            this.playerLBL.Text = "name";
+            this.playerLBL.Click += new System.EventHandler(this.playerLBL_Click);
             // 
             // RoomsListWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 456);
+            this.Controls.Add(this.playerLBL);
+            this.Controls.Add(this.playerPicture);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.btnUpdateRooms);
@@ -97,6 +124,7 @@
             this.Text = "RoomsList";
             this.Load += new System.EventHandler(this.RoomsList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +136,7 @@
         private RJCodeAdvance.RJControls.RJButton btnUpdateRooms;
         private System.Windows.Forms.PictureBox BackButton;
         private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.PictureBox playerPicture;
+        private System.Windows.Forms.Label playerLBL;
     }
 }

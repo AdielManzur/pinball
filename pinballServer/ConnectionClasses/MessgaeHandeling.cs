@@ -1,5 +1,6 @@
 ﻿using pinballServer.GamesClasses;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
@@ -53,6 +54,7 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.KEY_T:
                     handleKeyT(message, connected);
                     break;
+                    /*
                 case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
                     handleCollisionUpperLowerWall(message, connected);
                     break;
@@ -62,8 +64,12 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.COLLISION_LEFT_WALL:
                     handleCollisionLeftWall(message, connected);
                     break;
+                    */
                 case ProtocolInterface.MsgType.REMOVE_ROOM:
                     handleRemoveRoom(message, connected);
+                    break;
+                case ProtocolInterface.MsgType.FirstBallMovement:
+                    handleMoveBall(message, connected);
                     break;
 
 
@@ -71,31 +77,55 @@ namespace pinballServer.ConnectionClasses
            
         }
 
-        private void handleRemoveRoom(MessageModel message, ConnectedPlayer connected)
+        private void handleMoveBall(MessageModel message, ConnectedPlayer connected)
         {
-            foreach(GameModel game in manager.main.gameManager.games)
+            MessageModel msg = new MessageModel();
+            Random ballVectorX = new Random();
+            Random ballVectorY = new Random();
+            Vector2 ballVector = new Vector2(ballVectorX.Next(-100, 101), ballVectorY.Next(-100, 101));
+            ballVector = Vector2.Normalize(ballVector);
+            msg.MsgType = ProtocolInterface.MsgType.FirstBallMovement;
+            msg.BallVector = ballVector;
+            msg.game = manager.currGame;
+            foreach (ConnectedPlayer connectedPlayer in manager.players)
             {
-                if(message.player.username == game.player1.username)
+                if (manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
                 {
-                    manager.main.gameManager.games.Remove(game);
-                    if (manager.main.gameManager.games.Count == 0)
-                    {
-                        break;
-                    }
+                    manager.sendMessageToClient(connectedPlayer, msg);
                 }
             }
+
+        }
+
+        private void handleRemoveRoom(MessageModel message, ConnectedPlayer connected)
+        {
+            List<GameModel> gamesToRemove = new List<GameModel>();
+            foreach (GameModel game in manager.main.gameManager.games)
+            {
+                if (message.player.username == game.player1.username)
+                {
+                    gamesToRemove.Add(game);
+                }
+            }
+            foreach (GameModel gameToRemove in gamesToRemove)
+            {
+                manager.main.gameManager.games.Remove(gameToRemove);
+            }
+            List<RoomModel> roomsToRemove = new List<RoomModel>();
+
             foreach (RoomModel room in manager.main.gameManager.rooms)
             {
                 if (message.player.username == room.player1.username)
                 {
-                    manager.main.gameManager.rooms.Remove(room);
-                    if (manager.main.gameManager.rooms.Count == 0)
-                    {
-                        break;
-                    }
+                    roomsToRemove.Add(room);
                 }
             }
-            MessageModel msg = new MessageModel();
+
+            foreach (RoomModel roomToRemove in roomsToRemove)
+            {
+                manager.main.gameManager.rooms.Remove(roomToRemove);
+            }
+                MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.ROOM_REMOVED;
             msg.rooms = manager.main.gameManager.rooms;
             msg.msgStr = connected.player.username;
@@ -113,7 +143,7 @@ namespace pinballServer.ConnectionClasses
             msg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
             manager.sendMessageToClient(connected, msg);
         }
-
+        /*
         private void handleCollisionLeftWall(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
@@ -163,7 +193,7 @@ namespace pinballServer.ConnectionClasses
                 }
             }
         }
-
+        */
         private void handleUpdateRooms(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();

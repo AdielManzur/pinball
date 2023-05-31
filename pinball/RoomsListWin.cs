@@ -135,5 +135,10 @@ namespace pinball
         {
             main.backButtonPressed();
         }
+
+        private void playerLBL_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

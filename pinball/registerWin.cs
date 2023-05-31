@@ -28,23 +28,34 @@ namespace pinball
         private void registerWin_Load(object sender, EventArgs e)
         {
             btnRegister.Left = (this.ClientSize.Width - btnRegister.Width) / 2;
-            label1.Left = (this.ClientSize.Width - label1.Width) / 2;
-            label2.Left = (this.ClientSize.Width - label2.Width) / 2;
             txbPass.Left = (this.ClientSize.Width - txbPass.Width) / 2;
             txbUsername.Left = (this.ClientSize.Width - txbUsername.Width) / 2;
-            label3.Left = (this.ClientSize.Width - label3.Width) / 2;
-            label4.Left = (this.ClientSize.Width - label4.Width) / 2;
             firstNameTxb.Left = (this.ClientSize.Width - firstNameTxb.Width) / 2;
             LastNameTxb.Left = (this.ClientSize.Width - LastNameTxb.Width) / 2;
+            label1.Left = firstNameTxb.Left;
+            label2.Left = LastNameTxb.Left;
+            label3.Left = txbUsername.Left;
+            label4.Left = txbPass.Left;
+            playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
 
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            if (txbUsername.Text.Trim() == "" && LastNameTxb.Text.Trim() == "" && txbPass.Text.Trim() == "" && txbUsername.Text.Trim() == "")
+            {
+                MessageBox.Show("Insert your details");
+                return;
+            }
+            else if (txbUsername.Text.Trim() == "" || LastNameTxb.Text.Trim() == "" || txbPass.Text.Trim() == "" || txbUsername.Text.Trim() == "")
+            {
+                MessageBox.Show("you are missing something");
+                return;
+            }
             PlayerS newPlayer = new PlayerS();
             newPlayer.firstName = firstNameTxb.Text.Trim();
             newPlayer.lastName = LastNameTxb.Text.Trim();
             newPlayer.password = txbPass.Text.Trim();
-            newPlayer.username = txbUsername.Text.Trim();
+            newPlayer.username = txbUsername.Text.Trim();          
             MessageModel mToSend = new MessageModel();
             mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;

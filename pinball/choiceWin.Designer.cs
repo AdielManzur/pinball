@@ -30,8 +30,9 @@
         {
             this.btnOpenWatingRoom = new System.Windows.Forms.Button();
             this.btnJoinGame = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.playerLBL = new System.Windows.Forms.Label();
+            this.playerPicture = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpenWatingRoom
@@ -54,16 +55,28 @@
             this.btnJoinGame.UseVisualStyleBackColor = true;
             this.btnJoinGame.Click += new System.EventHandler(this.BtnJoinGame_Click);
             // 
-            // pictureBox1
+            // playerLBL
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::pinball.Properties.Resources.pongGif;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1068, 456);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.playerLBL.AutoSize = true;
+            this.playerLBL.BackColor = System.Drawing.Color.Transparent;
+            this.playerLBL.Location = new System.Drawing.Point(520, 102);
+            this.playerLBL.Name = "playerLBL";
+            this.playerLBL.Size = new System.Drawing.Size(33, 13);
+            this.playerLBL.TabIndex = 7;
+            this.playerLBL.Text = "name";
+            this.playerLBL.Click += new System.EventHandler(this.playerLBL_Click);
+            // 
+            // playerPicture
+            // 
+            this.playerPicture.BackColor = System.Drawing.Color.Transparent;
+            this.playerPicture.Image = global::pinball.Properties.Resources.profile;
+            this.playerPicture.Location = new System.Drawing.Point(501, 27);
+            this.playerPicture.Name = "playerPicture";
+            this.playerPicture.Size = new System.Drawing.Size(70, 70);
+            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPicture.TabIndex = 6;
+            this.playerPicture.TabStop = false;
+            this.playerPicture.Click += new System.EventHandler(this.playerPicture_Click);
             // 
             // choiceWin
             // 
@@ -71,16 +84,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1068, 456);
+            this.Controls.Add(this.playerLBL);
+            this.Controls.Add(this.playerPicture);
             this.Controls.Add(this.btnJoinGame);
             this.Controls.Add(this.btnOpenWatingRoom);
-            this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "choiceWin";
             this.Text = "waitingRoom";
             this.Load += new System.EventHandler(this.WaitingRoom_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -88,6 +103,7 @@
 
         private System.Windows.Forms.Button btnOpenWatingRoom;
         private System.Windows.Forms.Button btnJoinGame;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label playerLBL;
+        private System.Windows.Forms.PictureBox playerPicture;
     }
 }
