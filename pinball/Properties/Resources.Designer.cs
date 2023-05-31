@@ -63,9 +63,29 @@ namespace pinball.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap loading_gif {
+            get {
+                object obj = ResourceManager.GetObject("loading-gif", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pong_game_background {
             get {
                 object obj = ResourceManager.GetObject("pong game background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pongGif {
+            get {
+                object obj = ResourceManager.GetObject("pongGif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

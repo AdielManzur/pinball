@@ -38,6 +38,7 @@ namespace pinball
        
         private void Game_Load(object sender, EventArgs e)
         {
+            ball.Left = (this.ClientSize.Width - ball.Width) / 2;
             screenHeight = this.Height;
             screenWidth = this.Width;
             ball1.ballRadius = ball.Width / 2;

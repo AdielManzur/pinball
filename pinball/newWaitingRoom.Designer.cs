@@ -28,19 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
+            this.loadGif = new System.Windows.Forms.PictureBox();
             this.BackButton = new System.Windows.Forms.PictureBox();
+            this.waitingLBL = new System.Windows.Forms.Label();
+            this.waitingTimer = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.loadGif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // loadGif
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBox1.Location = new System.Drawing.Point(287, 218);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(211, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "waiting for another player...";
+            this.loadGif.Image = global::pinball.Properties.Resources.loading_gif;
+            this.loadGif.Location = new System.Drawing.Point(367, 232);
+            this.loadGif.Name = "loadGif";
+            this.loadGif.Size = new System.Drawing.Size(48, 46);
+            this.loadGif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadGif.TabIndex = 2;
+            this.loadGif.TabStop = false;
             // 
             // BackButton
             // 
@@ -53,17 +58,34 @@
             this.BackButton.TabStop = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
+            // waitingLBL
+            // 
+            this.waitingLBL.AutoSize = true;
+            this.waitingLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.waitingLBL.Location = new System.Drawing.Point(317, 170);
+            this.waitingLBL.Name = "waitingLBL";
+            this.waitingLBL.Size = new System.Drawing.Size(0, 31);
+            this.waitingLBL.TabIndex = 3;
+            // 
+            // waitingTimer
+            // 
+            this.waitingTimer.Enabled = true;
+            this.waitingTimer.Interval = 1000;
+            this.waitingTimer.Tick += new System.EventHandler(this.waitingTimer_Tick);
+            // 
             // newWaitingRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.waitingLBL);
+            this.Controls.Add(this.loadGif);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "newWaitingRoom";
             this.Text = "newWaitingRoom";
             this.Load += new System.EventHandler(this.NewWaitingRoom_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.loadGif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -71,8 +93,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox BackButton;
+        private System.Windows.Forms.PictureBox loadGif;
+        private System.Windows.Forms.Label waitingLBL;
+        private System.Windows.Forms.Timer waitingTimer;
     }
 }
