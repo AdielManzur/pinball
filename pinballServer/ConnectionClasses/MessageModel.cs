@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace pinballServer.ConnectionClasses
 {
@@ -21,6 +22,8 @@ namespace pinballServer.ConnectionClasses
         public GameModel game { get; set; }
         public List<RoomModel> rooms { get; set; }
         public Vector2 BallVector { get; set; }
+        public PictureBox profilePicture { get; set; }
+
         //public int scorePlayer1 { get; set; }
         //public int scorePlayer2 { get; set; }
 

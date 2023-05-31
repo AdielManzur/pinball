@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace pinballServer.ConnectionClasses
 {
@@ -18,7 +19,8 @@ namespace pinballServer.ConnectionClasses
         public string firstName { get; set; }
         public string lastName { get; set; }
         public DateTime regDate { get; set; }
-     
+        public PictureBox profilePicture { get; set; }
+
         public void convertFromUserTBL(playerTBL p)
         {
             //Id = p.Id;
@@ -26,7 +28,8 @@ namespace pinballServer.ConnectionClasses
             password = p.password;
             firstName = p.firstName;
             lastName = p.lastName;
-            regDate = p.regDate;
+            regDate = p.regDate;    
+            profilePicture = p.profilePicture;
         }
 
        
@@ -39,6 +42,7 @@ namespace pinballServer.ConnectionClasses
             user.firstName = msg.player.firstName;
             user.lastName = msg.player.lastName;
             user.regDate = DateTime.Now ;
+            user.profilePicture = msg.profilePicture;
             return user;
         }
         

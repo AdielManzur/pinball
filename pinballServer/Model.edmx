@@ -15,6 +15,7 @@
           <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
+          <Property Name="profilePicture" Type="image" />
         </EntityType>
         <EntityContainer Name="dbModelStoreContainer">
           <EntitySet Name="playerTBL" EntityType="Self.playerTBL" Schema="dbo" store:Type="Tables" />
@@ -36,6 +37,7 @@
           <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="profilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -46,6 +48,7 @@
           <EntitySetMapping Name="playerTBL">
             <EntityTypeMapping TypeName="dbModel.playerTBL">
               <MappingFragment StoreEntitySet="playerTBL">
+                <ScalarProperty Name="profilePicture" ColumnName="profilePicture" />
                 <ScalarProperty Name="regDate" ColumnName="regDate" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />

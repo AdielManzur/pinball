@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.playerPicture = new System.Windows.Forms.PictureBox();
+            this.resetPicture = new RJCodeAdvance.RJControls.RJButton();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,12 +127,33 @@
             this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPicture.TabIndex = 8;
             this.playerPicture.TabStop = false;
+            this.playerPicture.Click += new System.EventHandler(this.playerPicture_Click);
+            // 
+            // resetPicture
+            // 
+            this.resetPicture.BackColor = System.Drawing.Color.Transparent;
+            this.resetPicture.BackgroundColor = System.Drawing.Color.Transparent;
+            this.resetPicture.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.resetPicture.BorderRadius = 0;
+            this.resetPicture.BorderSize = 0;
+            this.resetPicture.FlatAppearance.BorderSize = 0;
+            this.resetPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetPicture.ForeColor = System.Drawing.Color.Black;
+            this.resetPicture.Location = new System.Drawing.Point(550, 63);
+            this.resetPicture.Name = "resetPicture";
+            this.resetPicture.Size = new System.Drawing.Size(42, 22);
+            this.resetPicture.TabIndex = 9;
+            this.resetPicture.Text = "reset picture";
+            this.resetPicture.TextColor = System.Drawing.Color.Black;
+            this.resetPicture.UseVisualStyleBackColor = false;
+            this.resetPicture.Click += new System.EventHandler(this.resetPicture_Click);
             // 
             // registerWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 456);
+            this.Controls.Add(this.resetPicture);
             this.Controls.Add(this.playerPicture);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -164,5 +186,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox playerPicture;
+        private RJCodeAdvance.RJControls.RJButton resetPicture;
     }
 }

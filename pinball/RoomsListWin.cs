@@ -34,9 +34,8 @@ namespace pinball
         {
             lbxRooms.Left = (this.ClientSize.Width - lbxRooms.Width) / 2;
             btnUpdateRooms.Left = (this.ClientSize.Width - btnUpdateRooms.Width) / 2;
-
-
-
+            playerLBL.Text = main.connectionManager.currPlayer.username;
+            playerLBL.Location = new Point(((playerPicture.Width - playerLBL.Width) / 2) + playerPicture.Left, playerLBL.Location.Y);
             updatelbxRooms(rooms);
         }
         

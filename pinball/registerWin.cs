@@ -37,6 +37,7 @@ namespace pinball
             label3.Left = txbUsername.Left;
             label4.Left = txbPass.Left;
             playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
+            resetPicture.Left = playerPicture.Left + playerPicture.Width;
 
         }
         private void btnRegister_Click(object sender, EventArgs e)
@@ -55,7 +56,8 @@ namespace pinball
             newPlayer.firstName = firstNameTxb.Text.Trim();
             newPlayer.lastName = LastNameTxb.Text.Trim();
             newPlayer.password = txbPass.Text.Trim();
-            newPlayer.username = txbUsername.Text.Trim();          
+            newPlayer.username = txbUsername.Text.Trim();
+            
             MessageModel mToSend = new MessageModel();
             mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;
@@ -64,6 +66,22 @@ namespace pinball
             
         }
 
-      
+        private void playerPicture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFilePath = openFileDialog.FileName;
+                playerPicture.Image = Image.FromFile(selectedFilePath);               
+            }
+
+        }
+
+        private void resetPicture_Click(object sender, EventArgs e)
+        {
+            playerPicture.Image = Properties.Resources.profile;
+        }
     }
 }

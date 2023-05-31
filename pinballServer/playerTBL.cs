@@ -20,5 +20,6 @@ namespace pinballServer
         public string firstName { get; set; }
         public string lastName { get; set; }
         public System.DateTime regDate { get; set; }
+        public byte[] profilePicture { get; set; }
     }
 }
