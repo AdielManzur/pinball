@@ -56,7 +56,7 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.REMOVE_ROOM:
                     handleRemoveRoom(message, connected);
                     break;
-                case ProtocolInterface.MsgType.FirstBallMovement:
+                case ProtocolInterface.MsgType.GOAL:
                     handleMoveBall(message, connected);
                     break;
                 case ProtocolInterface.MsgType.playrLeft:
@@ -108,8 +108,8 @@ namespace pinballServer.ConnectionClasses
             Random ballVectorX = new Random();
             Random ballVectorY = new Random();
             Vector2 ballVector = new Vector2(ballVectorX.Next(-100, 101), ballVectorY.Next(-100, 101));
-            ballVector = Vector2.Normalize(ballVector);
-            msg.MsgType = ProtocolInterface.MsgType.FirstBallMovement;
+            //ballVector = Vector2.Normalize(ballVector);
+            msg.MsgType = ProtocolInterface.MsgType.GOAL;
             msg.BallVector = ballVector;
             msg.game = currGame;
             manager.SendMessageToPlayer(msg, currGame.player1);
@@ -267,7 +267,7 @@ namespace pinballServer.ConnectionClasses
             Random ballVectorX = new Random();
             Random ballVectorY = new Random();          
             Vector2 ballVector = new Vector2(ballVectorX.Next(-100,101), ballVectorY.Next(-100,101));
-            ballVector = Vector2.Normalize(ballVector);
+            //ballVector = Vector2.Normalize(ballVector);
             keysMsg.MsgType = ProtocolInterface.MsgType.FirstBallMovement;
             keysMsg.msgStr = "your keys are T and G for up&down and your player is the right player";
             keysMsg.player = player1.player;

@@ -101,19 +101,7 @@ namespace pinball
                 updateMenuBTNs();
             });
         }
-        /*
-        public void collisionWithUpperOrLowerWall(Vector2 ballVector)
-        {
-            if (current is game)
-            {
-                game tmp = (game)current;
-                this.Invoke((MethodInvoker)delegate
-                {
-                    tmp.collisionWithUpperOrLowerWall(ballVector);
-                });
-            }
-        }
-        */
+
         public void roomIsFull(MessageModel message)
         {
             if(current is RoomsListWin)
@@ -127,6 +115,18 @@ namespace pinball
            if(current is RoomsListWin)
             {
                 updateRoomsLbx(message);
+            }
+        }
+
+        public void handleGoal(MessageModel message)
+        {
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    tmp.hadGoal(message);
+                });
             }
         }
 
@@ -172,69 +172,7 @@ namespace pinball
                 updateMenuBTNs();
             });
         }
-        /*
-        public void DisableRegBtn()
-        {
-            if(current is registerWin)
-            {
-                registerWin tmp = (registerWin)current;
-                this.Invoke((MethodInvoker)delegate {
-                    tmp.disableRegBtn();
-                });
-            }
-        }
-
-        /*
-public void GoalLeftWall(MessageModel message)
-{
-   String scorePlayer2 = message.scorePlayer2.ToString();
-   String scorePlayer1 = message.scorePlayer1.ToString();
-   this.Invoke((MethodInvoker)delegate {
-       if (message.player == message.game.player1)
-   {
-       scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
-   }
-   else
-   {
-       scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: " + scorePlayer1;
-   }
-   });
-   if (current is game)
-   {
-       game tmp = (game)current;
-       this.Invoke((MethodInvoker)delegate {
-           tmp.scoreRightPlayer = message.scorePlayer1;
-           tmp.scoreLeftPlayer = message.scorePlayer2;
-           tmp.StopTimer();
-       });
-   }
-}
-
-public void GoalRightWall(MessageModel message)
-{
-   String scorePlayer2 = message.scorePlayer2.ToString();
-   String scorePlayer1 = message.scorePlayer1.ToString();
-   this.Invoke((MethodInvoker)delegate {
-   if (message.player == message.game.player2)
-   {
-       scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: "+scorePlayer1;
-   }
-   else
-   {
-       scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
-   }
-   });
-   if (current is game)
-   {
-       game tmp = (game)current;
-       this.Invoke((MethodInvoker)delegate {
-           tmp.scoreRightPlayer = message.scorePlayer1;
-           tmp.scoreLeftPlayer = message.scorePlayer2;
-           tmp.StopTimer();
-       });
-   }
-}
-*/
+        
         public void updateRoomsLbx(List<RoomModel> rooms)
         {
             if (current is RoomsListWin)
@@ -256,27 +194,7 @@ public void GoalRightWall(MessageModel message)
             }
             
         }
-        /*
-        public void KeysLbl(MessageModel message)
-        {
-            if (current is game)
-            {
-                game tmp = (game)current;
-                this.Invoke((MethodInvoker)delegate
-                {
-                    playerLabel.Text = message.msgStr;
-                    playerLabel.Location = new Point((int)((this.Width - playerLabel.Width) / 2), playerLabel.Location.Y);
-                    playerNameLbl.Text = "Your name: " + message.player.username;
-                    playerNameLbl.BackColor = Color.Transparent;
-                    playerLabel.BackColor = Color.Transparent;
-                    scoreLBL.Text = "your score: 0 , enemy score: 0";
-                    scoreLBL.BackColor = Color.Transparent;
-                    scoreLBL.Top =  playerNameLbl.Location.Y;
-
-                });
-            }
-        }
-        */
+        
         public void handleKeyPress(ProtocolInterface.MsgType msgType)
         {
             if (current is game)
@@ -335,8 +253,7 @@ public void GoalRightWall(MessageModel message)
                     }
                     current.Close();
                 }
-                //mainPanel.Height -= 36;
-                //mainPanel.Location = new Point(0, mainPanel.Location.Y + 36);
+
                 current = new game(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, };
                 mainPanel.Controls.Add(current);
                 current.Show();

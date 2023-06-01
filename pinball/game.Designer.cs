@@ -96,7 +96,7 @@
             // 
             // timerBallMovement
             // 
-            this.timerBallMovement.Interval = 60;
+            this.timerBallMovement.Interval = 10;
             this.timerBallMovement.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // countdownTimer

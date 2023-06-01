@@ -89,10 +89,17 @@ namespace pinball
                 case ProtocolInterface.MsgType.LEAVE_GAME:
                     handleLeaveGame(message);
                     break;
-
+                case ProtocolInterface.MsgType.GOAL:
+                    handleGoal(message);
+                    break;
 
             }
 
+        }
+
+        private void handleGoal(MessageModel message)
+        {
+            manager.main.handleGoal(message);
         }
 
         private void handleLeaveGame(MessageModel message)
@@ -116,22 +123,7 @@ namespace pinball
             isReg = false;
             isLog = false;
         }
-        /*
-        private void handleGoalLeftWall(MessageModel message)
-        {
-            manager.main.GoalLeftWall(message);
-        }
 
-        private void handleGoalRightWall(MessageModel message)
-        {
-            manager.main.GoalRightWall(message);
-        }
-
-        private void handleCollisionUpperOrLowerWall(MessageModel message)
-        {
-            manager.main.collisionWithUpperOrLowerWall(message.BallVector);
-        }
-        */
         private void handleAlreadyOnline(MessageModel message)
         {
             MessageBox.Show("User already online");
@@ -139,7 +131,6 @@ namespace pinball
 
         private void handleTxtAndBallMovement(MessageModel message)
         {            
-            //manager.showTxtToLbl(message);
             manager.firstBallMovement(message);
         }
 

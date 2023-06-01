@@ -54,7 +54,8 @@ namespace pinballServer.ConnectionClasses
             ROOM_REMOVED,
             ROOM_IS_FULL,
             playrLeft,
-            LEAVE_GAME
+            LEAVE_GAME,
+            GOAL
         }
         
 

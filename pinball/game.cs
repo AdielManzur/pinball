@@ -24,7 +24,7 @@ namespace pinball
         int counter = 6;
         public int scoreRightPlayer = 0;
         public int scoreLeftPlayer = 0;
-        public int speed = 10;
+        public int speed = 6;
         bool boolEnemyLeft = false;
         String leftPlayerName = "";
         String rightPlayerName = "";
@@ -126,6 +126,16 @@ namespace pinball
            
         }
 
+        public void hadGoal(MessageModel message)
+        {
+            ball1.vector = message.BallVector;
+            ball1.vector = Vector2.Normalize(ball1.vector);
+            ball1.ballLocation = ball.Location;
+            ball1.ballSpeedY = speed * ball1.vector.Y;
+            ball1.ballSpeedX = speed * ball1.vector.X;
+            timerBallMovement.Enabled = true;
+        }
+
         public void enemyLeft()
         {
             boolEnemyLeft = true;
@@ -137,13 +147,13 @@ namespace pinball
 
         public void firstBallMovement(MessageModel message)
         {
-            if(message.msgStr != "") { //not first time
-                playerKeysLBL.Text = message.msgStr;
-                playerKeysLBL.Left = (this.ClientSize.Width - playerKeysLBL.Width) / 2;
-                leftPlayerName = message.game.player2.username;
-                rightPlayerName = message.game.player1.username;
-            }
+
+            playerKeysLBL.Text = message.msgStr;
+            playerKeysLBL.Left = (this.ClientSize.Width - playerKeysLBL.Width) / 2;
+            leftPlayerName = message.game.player2.username;
+            rightPlayerName = message.game.player1.username;
             ball1.vector = message.BallVector;
+            ball1.vector = Vector2.Normalize(ball1.vector);
             ball1.ballLocation = ball.Location;
             ball1.ballSpeedY = speed * ball1.vector.Y;
             ball1.ballSpeedX = speed * ball1.vector.X;
@@ -190,8 +200,9 @@ namespace pinball
                 ball.Location = firstBallLocation;
                 ball1.ballLocation = firstBallLocation;
                 MessageModel msg = new MessageModel();
-                msg.MsgType = MsgType.FirstBallMovement;
+                msg.MsgType = MsgType.GOAL;
                 msg.player = main.connectionManager.currPlayer;
+                msg.BallVector = ball1.vector * 100;
                 main.connectionManager.sendMessageToServer(msg);
                 scoreRightPlayer++;
                 scoreRightLBL.Text = scoreRightPlayer + "";
@@ -204,8 +215,9 @@ namespace pinball
                 ball.Location = firstBallLocation;
                 ball1.ballLocation = firstBallLocation;
                 MessageModel msg = new MessageModel();
-                msg.MsgType = MsgType.FirstBallMovement;
+                msg.MsgType = MsgType.GOAL;
                 msg.player = main.connectionManager.currPlayer;
+                msg.BallVector = ball1.vector * 100;
                 main.connectionManager.sendMessageToServer(msg);
                 scoreLeftPlayer++;
                 scoreLeftLBL.Text = scoreLeftPlayer +"";
