@@ -62,7 +62,7 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.playrLeft:
                     handlePlayerLeft(message, connected);
                     break;
-
+                
 
             }
            
