@@ -31,7 +31,7 @@
             this.btnOpenWatingRoom = new System.Windows.Forms.Button();
             this.btnJoinGame = new System.Windows.Forms.Button();
             this.playerLBL = new System.Windows.Forms.Label();
-            this.playerPicture = new System.Windows.Forms.PictureBox();
+            this.playerPicture = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,15 +68,19 @@
             // 
             // playerPicture
             // 
-            this.playerPicture.BackColor = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            this.playerPicture.BorderColor = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderColor2 = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.playerPicture.BorderSize = 2;
+            this.playerPicture.GradientAngle = 50F;
             this.playerPicture.Image = global::pinball.Properties.Resources.profile;
-            this.playerPicture.Location = new System.Drawing.Point(501, 27);
+            this.playerPicture.Location = new System.Drawing.Point(500, 25);
             this.playerPicture.Name = "playerPicture";
-            this.playerPicture.Size = new System.Drawing.Size(70, 70);
+            this.playerPicture.Size = new System.Drawing.Size(74, 74);
             this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.playerPicture.TabIndex = 6;
+            this.playerPicture.TabIndex = 9;
             this.playerPicture.TabStop = false;
-            this.playerPicture.Click += new System.EventHandler(this.playerPicture_Click);
             // 
             // choiceWin
             // 
@@ -84,8 +88,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1068, 456);
-            this.Controls.Add(this.playerLBL);
             this.Controls.Add(this.playerPicture);
+            this.Controls.Add(this.playerLBL);
             this.Controls.Add(this.btnJoinGame);
             this.Controls.Add(this.btnOpenWatingRoom);
             this.DoubleBuffered = true;
@@ -104,6 +108,6 @@
         private System.Windows.Forms.Button btnOpenWatingRoom;
         private System.Windows.Forms.Button btnJoinGame;
         private System.Windows.Forms.Label playerLBL;
-        private System.Windows.Forms.PictureBox playerPicture;
+        private RJCodeAdvance.RJControls.RJCircularPictureBox playerPicture;
     }
 }

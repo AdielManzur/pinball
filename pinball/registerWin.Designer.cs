@@ -37,8 +37,8 @@
             this.firstNameTxb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.playerPicture = new System.Windows.Forms.PictureBox();
             this.resetPicture = new RJCodeAdvance.RJControls.RJButton();
+            this.playerPicture = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,18 +117,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "First Name";
             // 
-            // playerPicture
-            // 
-            this.playerPicture.BackColor = System.Drawing.Color.Transparent;
-            this.playerPicture.Image = global::pinball.Properties.Resources.profile;
-            this.playerPicture.Location = new System.Drawing.Point(473, 33);
-            this.playerPicture.Name = "playerPicture";
-            this.playerPicture.Size = new System.Drawing.Size(70, 70);
-            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.playerPicture.TabIndex = 8;
-            this.playerPicture.TabStop = false;
-            this.playerPicture.Click += new System.EventHandler(this.playerPicture_Click);
-            // 
             // resetPicture
             // 
             this.resetPicture.BackColor = System.Drawing.Color.Transparent;
@@ -148,13 +136,30 @@
             this.resetPicture.UseVisualStyleBackColor = false;
             this.resetPicture.Click += new System.EventHandler(this.resetPicture_Click);
             // 
+            // playerPicture
+            // 
+            this.playerPicture.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            this.playerPicture.BorderColor = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderColor2 = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.playerPicture.BorderSize = 2;
+            this.playerPicture.GradientAngle = 50F;
+            this.playerPicture.Image = global::pinball.Properties.Resources.profile;
+            this.playerPicture.Location = new System.Drawing.Point(470, 24);
+            this.playerPicture.Name = "playerPicture";
+            this.playerPicture.Size = new System.Drawing.Size(74, 74);
+            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPicture.TabIndex = 10;
+            this.playerPicture.TabStop = false;
+            this.playerPicture.Click += new System.EventHandler(this.playerPicture_Click_1);
+            // 
             // registerWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 456);
-            this.Controls.Add(this.resetPicture);
             this.Controls.Add(this.playerPicture);
+            this.Controls.Add(this.resetPicture);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -185,7 +190,7 @@
         private System.Windows.Forms.TextBox firstNameTxb;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox playerPicture;
         private RJCodeAdvance.RJControls.RJButton resetPicture;
+        private RJCodeAdvance.RJControls.RJCircularPictureBox playerPicture;
     }
 }

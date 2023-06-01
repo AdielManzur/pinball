@@ -32,8 +32,8 @@
             this.btnUpdateRooms = new RJCodeAdvance.RJControls.RJButton();
             this.lbl = new System.Windows.Forms.Label();
             this.BackButton = new System.Windows.Forms.PictureBox();
-            this.playerPicture = new System.Windows.Forms.PictureBox();
             this.playerLBL = new System.Windows.Forms.Label();
+            this.playerPicture = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
@@ -86,17 +86,6 @@
             this.BackButton.TabStop = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // playerPicture
-            // 
-            this.playerPicture.BackColor = System.Drawing.Color.Transparent;
-            this.playerPicture.Image = global::pinball.Properties.Resources.profile;
-            this.playerPicture.Location = new System.Drawing.Point(963, 12);
-            this.playerPicture.Name = "playerPicture";
-            this.playerPicture.Size = new System.Drawing.Size(71, 72);
-            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.playerPicture.TabIndex = 4;
-            this.playerPicture.TabStop = false;
-            // 
             // playerLBL
             // 
             this.playerLBL.AutoSize = true;
@@ -108,13 +97,30 @@
             this.playerLBL.Text = "name";
             this.playerLBL.Click += new System.EventHandler(this.playerLBL_Click);
             // 
+            // playerPicture
+            // 
+            this.playerPicture.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            this.playerPicture.BorderColor = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderColor2 = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.playerPicture.BorderSize = 2;
+            this.playerPicture.GradientAngle = 50F;
+            this.playerPicture.Image = global::pinball.Properties.Resources.profile;
+            this.playerPicture.Location = new System.Drawing.Point(961, 12);
+            this.playerPicture.Name = "playerPicture";
+            this.playerPicture.Size = new System.Drawing.Size(74, 74);
+            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPicture.TabIndex = 9;
+            this.playerPicture.TabStop = false;
+            this.playerPicture.Click += new System.EventHandler(this.pictureProfile_Click);
+            // 
             // RoomsListWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 456);
-            this.Controls.Add(this.playerLBL);
             this.Controls.Add(this.playerPicture);
+            this.Controls.Add(this.playerLBL);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.btnUpdateRooms);
@@ -136,7 +142,7 @@
         private RJCodeAdvance.RJControls.RJButton btnUpdateRooms;
         private System.Windows.Forms.PictureBox BackButton;
         private System.Windows.Forms.Label lbl;
-        private System.Windows.Forms.PictureBox playerPicture;
         private System.Windows.Forms.Label playerLBL;
+        private RJCodeAdvance.RJControls.RJCircularPictureBox playerPicture;
     }
 }

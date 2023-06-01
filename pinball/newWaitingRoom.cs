@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,14 @@ namespace pinball
             loadGif.Top = ((this.ClientSize.Height - loadGif.Height) / 2 ) + loadGif.Height + 10;
             playerLBL.Text = main.connectionManager.currPlayer.username;
             playerLBL.Location = new Point(((playerPicture.Width - playerLBL.Width) / 2) + playerPicture.Left, playerLBL.Location.Y);
-            
+            byte[] imageData = main.connectionManager.currPlayer.profilePicture;
+            Image image;
+            using (MemoryStream ms = new MemoryStream(imageData))
+            {
+                image = Image.FromStream(ms);
+            }
+            playerPicture.Image = image;
+
         }
 
         private void BackButton_Click(object sender, EventArgs e)

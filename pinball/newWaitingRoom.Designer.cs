@@ -34,7 +34,7 @@
             this.waitingLBL = new System.Windows.Forms.Label();
             this.waitingTimer = new System.Windows.Forms.Timer(this.components);
             this.playerLBL = new System.Windows.Forms.Label();
-            this.playerPicture = new System.Windows.Forms.PictureBox();
+            this.playerPicture = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.loadGif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
@@ -88,13 +88,18 @@
             // 
             // playerPicture
             // 
-            this.playerPicture.BackColor = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            this.playerPicture.BorderColor = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderColor2 = System.Drawing.Color.Transparent;
+            this.playerPicture.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.playerPicture.BorderSize = 2;
+            this.playerPicture.GradientAngle = 50F;
             this.playerPicture.Image = global::pinball.Properties.Resources.profile;
-            this.playerPicture.Location = new System.Drawing.Point(946, 12);
+            this.playerPicture.Location = new System.Drawing.Point(948, 10);
             this.playerPicture.Name = "playerPicture";
-            this.playerPicture.Size = new System.Drawing.Size(71, 72);
+            this.playerPicture.Size = new System.Drawing.Size(74, 74);
             this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.playerPicture.TabIndex = 6;
+            this.playerPicture.TabIndex = 9;
             this.playerPicture.TabStop = false;
             // 
             // newWaitingRoom
@@ -102,8 +107,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 520);
-            this.Controls.Add(this.playerLBL);
             this.Controls.Add(this.playerPicture);
+            this.Controls.Add(this.playerLBL);
             this.Controls.Add(this.waitingLBL);
             this.Controls.Add(this.loadGif);
             this.Controls.Add(this.BackButton);
@@ -125,6 +130,6 @@
         private System.Windows.Forms.Label waitingLBL;
         private System.Windows.Forms.Timer waitingTimer;
         private System.Windows.Forms.Label playerLBL;
-        private System.Windows.Forms.PictureBox playerPicture;
+        private RJCodeAdvance.RJControls.RJCircularPictureBox playerPicture;
     }
 }

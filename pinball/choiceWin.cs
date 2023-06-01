@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace pinball
             playerLBL.Text = main.connectionManager.currPlayer.username;
             playerLBL.Left = (this.ClientSize.Width - playerLBL.Width) / 2;
             playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
+            byte[] imageData = main.connectionManager.currPlayer.profilePicture;
+            Image image;
+            using (MemoryStream ms = new MemoryStream(imageData))
+            {
+                image = Image.FromStream(ms);
+            }
+            playerPicture.Image = image;
 
         }
 

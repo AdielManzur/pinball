@@ -1,4 +1,5 @@
-﻿using pinballServer.GamesClasses;
+﻿using Elasticsearch.Net;
+using pinballServer.GamesClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,7 @@ namespace pinballServer.ConnectionClasses
         public GameModel game { get; set; }
         public List<RoomModel> rooms { get; set; }
         public Vector2 BallVector { get; set; }
-        public PictureBox profilePicture { get; set; }
-
+        
         //public int scorePlayer1 { get; set; }
         //public int scorePlayer2 { get; set; }
 

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pinballServer;
 using pinballServer.ConnectionClasses;
+using System.IO;
 
 namespace pinball
 {
@@ -57,7 +58,13 @@ namespace pinball
             newPlayer.lastName = LastNameTxb.Text.Trim();
             newPlayer.password = txbPass.Text.Trim();
             newPlayer.username = txbUsername.Text.Trim();
-            
+            Image result = playerPicture.Image;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                    result.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] picture = ms.ToArray();
+                    newPlayer.profilePicture = picture;
+            }            
             MessageModel mToSend = new MessageModel();
             mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;
@@ -68,20 +75,26 @@ namespace pinball
 
         private void playerPicture_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+           
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-                playerPicture.Image = Image.FromFile(selectedFilePath);               
-            }
 
         }
 
         private void resetPicture_Click(object sender, EventArgs e)
         {
             playerPicture.Image = Properties.Resources.profile;
+        }
+
+        private void playerPicture_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFilePath = openFileDialog.FileName;
+                playerPicture.Image = Image.FromFile(selectedFilePath);
+            }
         }
     }
 }

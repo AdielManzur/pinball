@@ -47,7 +47,7 @@ namespace pinball
             txbUsername.Left = (this.ClientSize.Width - txbUsername.Width) / 2;
             label1.Left = txbUsername.Left;
             label2.Left = txbPass.Left;
-            playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
+            pictureProfile.Left = (this.ClientSize.Width - pictureProfile.Width) / 2;
 
 
         }
