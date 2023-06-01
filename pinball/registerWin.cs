@@ -18,7 +18,7 @@ namespace pinball
     {
         ClientMainWin main;
         dbEntities db = new dbEntities();
-
+        bool flag = false;
 
         public registerWin(ClientMainWin main)
         {
@@ -58,13 +58,16 @@ namespace pinball
             newPlayer.lastName = LastNameTxb.Text.Trim();
             newPlayer.password = txbPass.Text.Trim();
             newPlayer.username = txbUsername.Text.Trim();
-            Image result = playerPicture.Image;
-            using (MemoryStream ms = new MemoryStream())
+            if (flag)
             {
+                Image result = playerPicture.Image;
+                using (MemoryStream ms = new MemoryStream())
+                {
                     result.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] picture = ms.ToArray();
                     newPlayer.profilePicture = picture;
-            }            
+                }
+            }
             MessageModel mToSend = new MessageModel();
             mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;
@@ -88,13 +91,19 @@ namespace pinball
         private void playerPicture_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";            
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                flag = true;
                 string selectedFilePath = openFileDialog.FileName;
                 playerPicture.Image = Image.FromFile(selectedFilePath);
             }
         }
+        /*
+        public void disableRegBtn()
+        {
+            btnRegister.Enabled = false;
+        }
+        */
     }
 }

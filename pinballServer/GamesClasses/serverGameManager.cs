@@ -27,6 +27,29 @@ namespace pinballServer.GamesClasses
         {
             players = main.manager.players;
         }
+        public bool isGameExist(String gameName)
+        {
+            foreach (GameModel game in games)
+            {
+                if (gameName == game.gameName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public GameModel getGameByString(String gameName)
+        {
+            GameModel result = new GameModel();
+            foreach(GameModel game in games)
+            {
+                if(gameName == game.gameName)
+                {
+                    result = game;
+                }
+            }
+            return result;
+        }
 
 
     }

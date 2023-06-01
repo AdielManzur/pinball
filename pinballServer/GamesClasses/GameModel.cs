@@ -16,8 +16,8 @@ namespace pinballServer.GamesClasses
         public PlayerS player1;
         public PlayerS player2;
         public gameState gstate { get; set; }
+        public String gameName { get; set; }
 
-       
 
     }
 }

@@ -42,6 +42,8 @@
             this.playerKeysLBL = new System.Windows.Forms.Label();
             this.scoreRightLBL = new System.Windows.Forms.Label();
             this.scoreLeftLBL = new System.Windows.Forms.Label();
+            this.enemyPlayerLeftLBL = new System.Windows.Forms.Label();
+            this.playerWonLBL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rightPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
@@ -106,7 +108,7 @@
             // 
             this.countdownLBL.AutoSize = true;
             this.countdownLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.countdownLBL.Location = new System.Drawing.Point(410, 58);
+            this.countdownLBL.Location = new System.Drawing.Point(410, 1);
             this.countdownLBL.Name = "countdownLBL";
             this.countdownLBL.Size = new System.Drawing.Size(0, 39);
             this.countdownLBL.TabIndex = 4;
@@ -119,13 +121,12 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 5;
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label2.Location = new System.Drawing.Point(262, 78);
+            this.label2.Location = new System.Drawing.Point(262, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 25);
             this.label2.TabIndex = 6;
@@ -133,12 +134,11 @@
             // nameLBL
             // 
             this.nameLBL.AutoSize = true;
-            this.nameLBL.Location = new System.Drawing.Point(38, 18);
+            this.nameLBL.Location = new System.Drawing.Point(38, 27);
             this.nameLBL.Name = "nameLBL";
             this.nameLBL.Size = new System.Drawing.Size(33, 13);
             this.nameLBL.TabIndex = 7;
             this.nameLBL.Text = "name";
-            this.nameLBL.Click += new System.EventHandler(this.label3_Click);
             // 
             // playerKeysLBL
             // 
@@ -167,14 +167,37 @@
             this.scoreLeftLBL.TabIndex = 9;
             this.scoreLeftLBL.Text = "score";
             // 
+            // enemyPlayerLeftLBL
+            // 
+            this.enemyPlayerLeftLBL.AutoSize = true;
+            this.enemyPlayerLeftLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.enemyPlayerLeftLBL.Location = new System.Drawing.Point(262, 147);
+            this.enemyPlayerLeftLBL.Name = "enemyPlayerLeftLBL";
+            this.enemyPlayerLeftLBL.Size = new System.Drawing.Size(519, 25);
+            this.enemyPlayerLeftLBL.TabIndex = 10;
+            this.enemyPlayerLeftLBL.Text = "The enemy player left. press Space to go back to the lobby";
+            this.enemyPlayerLeftLBL.Visible = false;
+            // 
+            // playerWonLBL
+            // 
+            this.playerWonLBL.AutoSize = true;
+            this.playerWonLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.playerWonLBL.Location = new System.Drawing.Point(295, 223);
+            this.playerWonLBL.Name = "playerWonLBL";
+            this.playerWonLBL.Size = new System.Drawing.Size(0, 31);
+            this.playerWonLBL.TabIndex = 11;
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::pinball.Properties.Resources.pong_game_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1068, 460);
+            this.Controls.Add(this.playerWonLBL);
+            this.Controls.Add(this.enemyPlayerLeftLBL);
+            this.Controls.Add(this.leftPlayer);
             this.Controls.Add(this.scoreLeftLBL);
             this.Controls.Add(this.scoreRightLBL);
             this.Controls.Add(this.playerKeysLBL);
@@ -184,7 +207,6 @@
             this.Controls.Add(this.countdownLBL);
             this.Controls.Add(this.lblDebug);
             this.Controls.Add(this.ball);
-            this.Controls.Add(this.leftPlayer);
             this.Controls.Add(this.rightPlayer);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -218,5 +240,7 @@
         private System.Windows.Forms.Label playerKeysLBL;
         private System.Windows.Forms.Label scoreRightLBL;
         private System.Windows.Forms.Label scoreLeftLBL;
+        private System.Windows.Forms.Label enemyPlayerLeftLBL;
+        private System.Windows.Forms.Label playerWonLBL;
     }
 }

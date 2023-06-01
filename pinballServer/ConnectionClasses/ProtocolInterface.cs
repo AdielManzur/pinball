@@ -52,7 +52,9 @@ namespace pinballServer.ConnectionClasses
             SIGN_OUT,
             REMOVE_ROOM,
             ROOM_REMOVED,
-            ROOM_IS_FULL
+            ROOM_IS_FULL,
+            playrLeft,
+            LEAVE_GAME
         }
         
 

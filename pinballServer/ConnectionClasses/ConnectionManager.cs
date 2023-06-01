@@ -21,7 +21,7 @@ namespace pinballServer.ConnectionClasses
         public ServerMainWin main;
         MessgaeHandeling messgaeHandeling;
         public List<ConnectedPlayer> players { get; set; }
-        public GameModel currGame { get; set; }
+        //public GameModel currGame { get; set; }
 
         public ConnectionManager(ServerMainWin main)
         {
@@ -123,7 +123,16 @@ namespace pinballServer.ConnectionClasses
             connected.client.Send(data, 0, data.Length, SocketFlags.None);
 
         }
-
+        public void SendMessageToPlayer(MessageModel message,PlayerS player)
+        {
+            foreach(ConnectedPlayer connectedPlayer in players)
+            {
+                if(connectedPlayer.player == player)
+                {
+                    sendMessageToClient(connectedPlayer, message);
+                }
+            }
+        }
 
 
         public void stopServer()

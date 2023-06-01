@@ -38,7 +38,6 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.JOIN_ROOM:
                     handleJoinRoom(message, connected);
                     break;
-
                 case ProtocolInterface.MsgType.UPDATE_OPEN_ROOMS:
                     handleUpdateRooms(message, connected);
                     break;
@@ -54,31 +53,57 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.KEY_T:
                     handleKeyT(message, connected);
                     break;
-                    /*
-                case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
-                    handleCollisionUpperLowerWall(message, connected);
-                    break;
-                case ProtocolInterface.MsgType.COLLISION_RIGHT_WALL:
-                    handleCollisionRightWall(message, connected);
-                    break;
-                case ProtocolInterface.MsgType.COLLISION_LEFT_WALL:
-                    handleCollisionLeftWall(message, connected);
-                    break;
-                    */
                 case ProtocolInterface.MsgType.REMOVE_ROOM:
                     handleRemoveRoom(message, connected);
                     break;
                 case ProtocolInterface.MsgType.FirstBallMovement:
                     handleMoveBall(message, connected);
                     break;
+                case ProtocolInterface.MsgType.playrLeft:
+                    handlePlayerLeft(message, connected);
+                    break;
 
 
             }
            
         }
+        
+        private void handlePlayerLeft(MessageModel message, ConnectedPlayer connected)
+        {
+            GameModel connectedCurrGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
+            List<GameModel> gamesToRemove = new List<GameModel>();
+            connected.player.currGameName = null;
+            connectedCurrGame.player2.currGameName = null;
+            foreach (GameModel gameToRemove in manager.main.gameManager.games)
+            {
+               if(connectedCurrGame == gameToRemove)
+                {
+                    gamesToRemove.Add(gameToRemove);
+                }
+            }         
+            foreach (GameModel gameToRemove in gamesToRemove)
+            {
+                manager.main.gameManager.games.Remove(gameToRemove);
+            }          
+            MessageModel msg = new MessageModel();
+            msg.MsgType = ProtocolInterface.MsgType.LEAVE_GAME;
+            msg.player = connected.player;            
+            if(connected.player == connectedCurrGame.player1)
+            {
+                manager.SendMessageToPlayer(msg, connectedCurrGame.player2);
+            }
+            else if (connected.player == connectedCurrGame.player2)
+            {
+                manager.SendMessageToPlayer(msg, connectedCurrGame.player1);
+            }
 
+        }     
+        
+        
         private void handleMoveBall(MessageModel message, ConnectedPlayer connected)
         {
+            GameModel currGame = new GameModel();
+            currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
             MessageModel msg = new MessageModel();
             Random ballVectorX = new Random();
             Random ballVectorY = new Random();
@@ -86,14 +111,9 @@ namespace pinballServer.ConnectionClasses
             ballVector = Vector2.Normalize(ballVector);
             msg.MsgType = ProtocolInterface.MsgType.FirstBallMovement;
             msg.BallVector = ballVector;
-            msg.game = manager.currGame;
-            foreach (ConnectedPlayer connectedPlayer in manager.players)
-            {
-                if (manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
-                {
-                    manager.sendMessageToClient(connectedPlayer, msg);
-                }
-            }
+            msg.game = currGame;
+            manager.SendMessageToPlayer(msg, currGame.player1);
+            manager.SendMessageToPlayer(msg, currGame.player2);
 
         }
 
@@ -143,57 +163,7 @@ namespace pinballServer.ConnectionClasses
             msg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
             manager.sendMessageToClient(connected, msg);
         }
-        /*
-        private void handleCollisionLeftWall(MessageModel message, ConnectedPlayer connected)
-        {
-            MessageModel msg = new MessageModel();
-            msg.MsgType = ProtocolInterface.MsgType.GOAL_LEFT_WALL;
-            msg.scorePlayer2 = message.scorePlayer2;
-            msg.scorePlayer1 = message.scorePlayer1 + 1;
-            msg.player = connected.player;
-            msg.game = manager.currGame;
-            foreach (ConnectedPlayer connectedPlayer in manager.players)
-            {
-                if (manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
-                {
-                    manager.sendMessageToClient(connectedPlayer, msg);
-                }
-            }
-        }
-
-        private void handleCollisionRightWall(MessageModel message, ConnectedPlayer connected)
-        {
-            MessageModel msg = new MessageModel();
-            msg.MsgType = ProtocolInterface.MsgType.GOAL_RIGHT_WALL;
-            msg.scorePlayer2 = message.scorePlayer2 + 1;
-            msg.scorePlayer1 = message.scorePlayer1;
-            msg.player = connected.player;
-            msg.game = manager.currGame;
-            foreach (ConnectedPlayer connectedPlayer in manager.players)
-            {
-                if (manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
-                {
-                    manager.sendMessageToClient(connectedPlayer, msg);
-                }
-            }
-        }
-
-
-        private void handleCollisionUpperLowerWall(MessageModel message, ConnectedPlayer connected)
-        {
-            MessageModel msg = new MessageModel();
-            Vector2 returnVector = new Vector2(message.BallVector.X, -message.BallVector.Y);
-            msg.BallVector = returnVector;
-            msg.MsgType = ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL;
-            foreach(ConnectedPlayer connectedPlayer in manager.players)
-            {
-                if(manager.currGame.player1.username == connectedPlayer.player.username || manager.currGame.player2.username == connectedPlayer.player.username)
-                {
-                    manager.sendMessageToClient(connectedPlayer, msg);
-                }
-            }
-        }
-        */
+        
         private void handleUpdateRooms(MessageModel message, ConnectedPlayer connected)
         {
             MessageModel msg = new MessageModel();
@@ -205,70 +175,53 @@ namespace pinballServer.ConnectionClasses
 
         private void handleKeyT(MessageModel message, ConnectedPlayer connected)
         {
+            GameModel currGame = new GameModel();
+            currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.KEY_T;
-            if (message.player.username == manager.currGame.player1.username)
+            if (message.player.username == currGame.player1.username)
             {
                 manager.sendMessageToClient(connected, msg);
-                foreach (ConnectedPlayer connected1 in manager.main.gameManager.players)
-                {
-                    if (connected1.player.username == manager.currGame.player2.username)
-                    {
-                        manager.sendMessageToClient(connected1, msg);
-                    }
-                }
+                manager.SendMessageToPlayer(msg, currGame.player2);
             }
-
 
         }
         private void handleKeyG(MessageModel message, ConnectedPlayer connected)
         {
+            GameModel currGame = new GameModel();
+            currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.KEY_G;
-            if (message.player.username == manager.currGame.player1.username)
+            if (message.player.username == currGame.player1.username)
             {
                 manager.sendMessageToClient(connected, msg);
-                foreach(ConnectedPlayer connected1 in manager.main.gameManager.players)
-                {
-                    if(connected1.player.username == manager.currGame.player2.username)
-                    {
-                        manager.sendMessageToClient(connected1, msg);
-                    }
-                }
+                manager.SendMessageToPlayer(msg, currGame.player2);
             }
         }
 
         //key G and Key T are for player 1
         private void handleKeyW(MessageModel message, ConnectedPlayer connected)
         {
+            GameModel currGame = new GameModel();
+            currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.KEY_W;
-            if (message.player.username == manager.currGame.player2.username)
+            if (message.player.username == currGame.player2.username)
             {
                 manager.sendMessageToClient(connected, msg);
-                foreach (ConnectedPlayer connected1 in manager.main.gameManager.players)
-                {
-                    if (connected1.player.username == manager.currGame.player1.username)
-                    {
-                        manager.sendMessageToClient(connected1, msg);
-                    }
-                }
+                manager.SendMessageToPlayer(msg,currGame.player1);
             }
         }
         private void handleKeyS(MessageModel message, ConnectedPlayer connected)
         {
+            GameModel currGame = new GameModel();
+            currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.KEY_S;
-            if (message.player.username == manager.currGame.player2.username)
+            if (message.player.username == currGame.player2.username)
             {
                 manager.sendMessageToClient(connected, msg);
-                foreach (ConnectedPlayer connected1 in manager.main.gameManager.players)
-                {
-                    if (connected1.player.username == manager.currGame.player1.username)
-                    {
-                        manager.sendMessageToClient(connected1, msg);
-                    }
-                }
+                manager.SendMessageToPlayer(message, currGame.player1);
             }
         }
 
@@ -294,7 +247,8 @@ namespace pinballServer.ConnectionClasses
                 }
             }
             curGame.player2 = connected.player;
-            manager.currGame = curGame;
+            //manager.currGame = curGame;
+            connected.player.currGameName = curGame.gameName;
             MessageModel msgToSend = new MessageModel();
             msgToSend.MsgType = ProtocolInterface.MsgType.OPEN_GAME;
             msgToSend.game = curGame;
@@ -318,6 +272,7 @@ namespace pinballServer.ConnectionClasses
             keysMsg.msgStr = "your keys are T and G for up&down and your player is the right player";
             keysMsg.player = player1.player;
             keysMsg.BallVector = ballVector;
+            keysMsg.game = curGame;
             manager.sendMessageToClient(player1, keysMsg);
             keysMsg.msgStr = "your keys are W and S for up&down and your player is the left player";
             keysMsg.player = connected.player;
@@ -354,8 +309,10 @@ namespace pinballServer.ConnectionClasses
             manager.main.gameManager.rooms.Add(room);
             GameModel newGame = new GameModel();
             newGame.player1 = connected.player;
+            newGame.gameName = connected.player.username;
             manager.main.gameManager.games.Add(newGame);
-            manager.currGame = newGame;
+            //manager.currGame = newGame;
+            connected.player.currGameName = newGame.gameName;
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM_OK;
             manager.sendMessageToClient(connected, msg);
@@ -363,7 +320,7 @@ namespace pinballServer.ConnectionClasses
         }
 
        
-        public void handleLogin(MessageModel message, ConnectedPlayer conncted)
+        public void handleLogin(MessageModel message, ConnectedPlayer connected)
         {
             
             if (manager.players != null )
@@ -377,7 +334,7 @@ namespace pinballServer.ConnectionClasses
                             MessageModel msg = new MessageModel();
                             msg.MsgType = ProtocolInterface.MsgType.ALREADY_ONLINE;
                             msg.player = message.player;
-                            manager.sendMessageToClient(conncted, msg);
+                            manager.sendMessageToClient(connected, msg);
                             return;
                         }
                     }
@@ -396,8 +353,8 @@ namespace pinballServer.ConnectionClasses
                     MessageModel mToSend = new MessageModel();
                     mToSend.player = playerS;
                     mToSend.MsgType = ProtocolInterface.MsgType.LOGIN_OK;
-                    conncted.player = playerS;
-                    manager.sendMessageToClient(conncted, mToSend);
+                    connected.player = playerS;
+                    manager.sendMessageToClient(connected, mToSend);
 
 
                 }
@@ -408,8 +365,8 @@ namespace pinballServer.ConnectionClasses
                     mToSend.player = null;
                     mToSend.MsgType = ProtocolInterface.MsgType.LOGIN_ERROR;
                     mToSend.msgStr = "Wrong password";
-                    conncted.player = null;
-                    manager.sendMessageToClient(conncted, mToSend);
+                    connected.player = null;
+                    manager.sendMessageToClient(connected, mToSend);
                 }
             }
             else // player == null
@@ -418,8 +375,8 @@ namespace pinballServer.ConnectionClasses
                 mToSend.player = null;
                 mToSend.MsgType = ProtocolInterface.MsgType.LOGIN_ERROR;
                 mToSend.msgStr = "No User in DB";
-                conncted.player = null;
-                manager.sendMessageToClient(conncted, mToSend);
+                connected.player = null;
+                manager.sendMessageToClient(connected, mToSend);
             }
 
         }

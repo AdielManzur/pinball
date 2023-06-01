@@ -130,6 +130,18 @@ namespace pinball
             }
         }
 
+        public void leaveGame()
+        {
+            if (current is game)
+            {
+                game tmp = (game)current;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    tmp.enemyLeft();
+                });
+            }
+        }
+
         private void updateRoomsLbx(MessageModel message)
         {
             if (current is RoomsListWin)
@@ -161,56 +173,68 @@ namespace pinball
             });
         }
         /*
-        public void GoalLeftWall(MessageModel message)
+        public void DisableRegBtn()
         {
-            String scorePlayer2 = message.scorePlayer2.ToString();
-            String scorePlayer1 = message.scorePlayer1.ToString();
-            this.Invoke((MethodInvoker)delegate {
-                if (message.player == message.game.player1)
+            if(current is registerWin)
             {
-                scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
-            }
-            else
-            {
-                scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: " + scorePlayer1;
-            }
-            });
-            if (current is game)
-            {
-                game tmp = (game)current;
+                registerWin tmp = (registerWin)current;
                 this.Invoke((MethodInvoker)delegate {
-                    tmp.scoreRightPlayer = message.scorePlayer1;
-                    tmp.scoreLeftPlayer = message.scorePlayer2;
-                    tmp.StopTimer();
+                    tmp.disableRegBtn();
                 });
             }
         }
-        
-        public void GoalRightWall(MessageModel message)
-        {
-            String scorePlayer2 = message.scorePlayer2.ToString();
-            String scorePlayer1 = message.scorePlayer1.ToString();
-            this.Invoke((MethodInvoker)delegate {
-            if (message.player == message.game.player2)
-            {
-                scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: "+scorePlayer1;
-            }
-            else
-            {
-                scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
-            }
-            });
-            if (current is game)
-            {
-                game tmp = (game)current;
-                this.Invoke((MethodInvoker)delegate {
-                    tmp.scoreRightPlayer = message.scorePlayer1;
-                    tmp.scoreLeftPlayer = message.scorePlayer2;
-                    tmp.StopTimer();
-                });
-            }
-        }
-        */
+
+        /*
+public void GoalLeftWall(MessageModel message)
+{
+   String scorePlayer2 = message.scorePlayer2.ToString();
+   String scorePlayer1 = message.scorePlayer1.ToString();
+   this.Invoke((MethodInvoker)delegate {
+       if (message.player == message.game.player1)
+   {
+       scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
+   }
+   else
+   {
+       scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: " + scorePlayer1;
+   }
+   });
+   if (current is game)
+   {
+       game tmp = (game)current;
+       this.Invoke((MethodInvoker)delegate {
+           tmp.scoreRightPlayer = message.scorePlayer1;
+           tmp.scoreLeftPlayer = message.scorePlayer2;
+           tmp.StopTimer();
+       });
+   }
+}
+
+public void GoalRightWall(MessageModel message)
+{
+   String scorePlayer2 = message.scorePlayer2.ToString();
+   String scorePlayer1 = message.scorePlayer1.ToString();
+   this.Invoke((MethodInvoker)delegate {
+   if (message.player == message.game.player2)
+   {
+       scoreLBL.Text = "your score: " + scorePlayer2 + "enemy score: "+scorePlayer1;
+   }
+   else
+   {
+       scoreLBL.Text = "your score: " + scorePlayer1 + "enemy score: " + scorePlayer2;
+   }
+   });
+   if (current is game)
+   {
+       game tmp = (game)current;
+       this.Invoke((MethodInvoker)delegate {
+           tmp.scoreRightPlayer = message.scorePlayer1;
+           tmp.scoreLeftPlayer = message.scorePlayer2;
+           tmp.StopTimer();
+       });
+   }
+}
+*/
         public void updateRoomsLbx(List<RoomModel> rooms)
         {
             if (current is RoomsListWin)
@@ -391,6 +415,14 @@ namespace pinball
             msg.player = connectionManager.currPlayer;
             sendMessageToServer(msg);
         }
-        
+
+        private void btnLeaveGame_Click(object sender, EventArgs e)
+        {
+            MessageModel leaveMsg = new MessageModel();
+            leaveMsg.MsgType = ProtocolInterface.MsgType.playrLeft;
+            leaveMsg.player = connectionManager.currPlayer;
+            sendMessageToServer(leaveMsg);
+            openChoiceWin();
+        }
     }   
 }

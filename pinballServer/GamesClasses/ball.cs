@@ -19,18 +19,18 @@ namespace pinballServer.GamesClasses
 
         public bool goalToRightPlayer(int screenWidth)
         {
-            return (ballLocation.X + 2 * ballRadius >= screenWidth);
+            return (ballLocation.X + 2 * ballRadius == screenWidth);
             
         }
         public bool goalToLeftPlayer()
         {
-            return (ballLocation.X <= 0);
+            return (ballLocation.X == 0);
             
         }
         public bool collisionUpperWall()
         {
            
-            return (ballLocation.Y <= 0);
+            return (ballLocation.Y == 0);
 
         }
         public bool collisionLowerWall(int screenHeight)

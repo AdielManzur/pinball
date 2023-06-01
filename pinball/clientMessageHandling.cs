@@ -86,10 +86,18 @@ namespace pinball
                 case ProtocolInterface.MsgType.ROOM_IS_FULL:
                     handleRoomIsFull(message);
                     break;
+                case ProtocolInterface.MsgType.LEAVE_GAME:
+                    handleLeaveGame(message);
+                    break;
 
 
             }
 
+        }
+
+        private void handleLeaveGame(MessageModel message)
+        {
+            manager.main.leaveGame();
         }
 
         private void handleRoomIsFull(MessageModel message)
@@ -187,7 +195,7 @@ namespace pinball
 
         private void handleRegisterOk(MessageModel message)
         {
-            MessageBox.Show("registration completed");
+            //manager.main.DisableRegBtn();
             manager.main.isLogined = true;
             manager.currPlayer = message.player;
             manager.main.updateMenuBTNs();

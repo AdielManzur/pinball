@@ -5,6 +5,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using pinballServer.GamesClasses;
 
 namespace pinballServer.ConnectionClasses
 {
@@ -20,6 +21,7 @@ namespace pinballServer.ConnectionClasses
         public string lastName { get; set; }
         public DateTime regDate { get; set; }
         public byte[] profilePicture { get; set; }
+        public String currGameName { get; set; }
 
         public void convertFromUserTBL(playerTBL p)
         {
