@@ -32,6 +32,7 @@ namespace pinball
         bool passedRightPlayer = false;
         bool passedLeftPlayer = false;
 
+
         public game(ClientMainWin main)
         {
             InitializeComponent();
@@ -173,24 +174,25 @@ namespace pinball
                 playerWonLBL.Text = leftPlayerName + "Won!";
                 playerWonLBL.Visible = true;
                 timerBallMovement.Enabled = false;
-
+                return;
             }
             if (scoreRightPlayer == 3)
             {
                 playerWonLBL.Text = rightPlayerName + "Won!";
                 playerWonLBL.Visible = true;
                 timerBallMovement.Enabled = false;
-                
+                return;
+
             }
-            if (ball1.checkCollisionWithLeftPlayer(leftPlayer.Location,leftPlayer.Height, leftPlayer.Width))
+            if (ball.Bounds.IntersectsWith(leftPlayer.Bounds))
             {
                 ball1.vector = new Vector2(-ball1.vector.X, ball1.vector.Y);
             }
-            else if(ball1.checkCollisionWithRightPlayer(rightPlayer.Location, rightPlayer.Height, rightPlayer.Width))
+            else if (ball.Bounds.IntersectsWith(rightPlayer.Bounds))
             {
-                ball1.vector = new Vector2(-ball1.vector.X,ball1.vector.Y);
+                ball1.vector = new Vector2(-ball1.vector.X, ball1.vector.Y);
             }
-            else if (ball1.collisionLowerWall(this.ClientSize.Height) || ball1.collisionUpperWall())
+            else if (ball1.collisionLowerWall(this.ClientSize.Height) || ball1.collisionUpperWall()) 
             {                              
                 ball1.vector = new Vector2(ball1.vector.X, -ball1.vector.Y);
             }    
@@ -230,6 +232,7 @@ namespace pinball
 
         private void checkLocations()
         {
+            
             if(ball1.ballLocation.Y + ball1.ballSpeedY < 0)
             {
                 ball.Location = new Point(ball1.ballLocation.X, 0);
@@ -254,6 +257,7 @@ namespace pinball
                 ball1.ballLocation = new Point(0, ball1.ballLocation.Y);
                 
             }
+            /*
             else if (ball1.ballLocation.X + (2 * ball1.ballRadius) + ball1.ballSpeedX > rightPlayer.Location.X && !passedRightPlayer)
             {
                 ball.Location = new Point(rightPlayer.Location.X - (int)(2 * ball1.ballRadius), ball1.ballLocation.Y);
@@ -275,6 +279,8 @@ namespace pinball
             {
                 passedLeftPlayer = false;
             }
+            */
+            
         }
 
 
