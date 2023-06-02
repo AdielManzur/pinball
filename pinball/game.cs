@@ -105,7 +105,7 @@ namespace pinball
                 else if (MsgType == MsgType.KEY_T && rightPlayer.Top >= 0)
                 {
                     rightPlayer.Top -= 20;
-
+                   
                 }
                 else if (MsgType == MsgType.KEY_S && leftPlayer.Top + leftPlayer.Height <= screenHeight)
                 {
