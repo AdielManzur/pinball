@@ -92,7 +92,7 @@ namespace pinballServer.ConnectionClasses
                 if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 1)
                     message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 1));
                 else if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 2)
-                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 2));
+                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 2)); // a huge error in Json
                 else if (CountOccurrences(msgStr, "{") == CountOccurrences(msgStr, "}") + 1)
                 {
                     message = JsonConvert.DeserializeObject<MessageModel>(msgStr + "}");
