@@ -58,6 +58,7 @@ namespace pinball
             newPlayer.lastName = LastNameTxb.Text.Trim();
             newPlayer.password = txbPass.Text.Trim();
             newPlayer.username = txbUsername.Text.Trim();
+            
             if (flag)
             {
                 Image result = playerPicture.Image;
@@ -68,6 +69,7 @@ namespace pinball
                     newPlayer.profilePicture = picture;
                 }
             }
+            
             MessageModel mToSend = new MessageModel();
             mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;
@@ -77,13 +79,14 @@ namespace pinball
         }
 
 
-        private void resetPicture_Click(object sender, EventArgs e)
+        private void resetPicture_Click(object sender, EventArgs e)// reset the choice 
         {
             playerPicture.Image = Properties.Resources.profile;
         }
 
-        private void playerPicture_Click_1(object sender, EventArgs e)
+        private void playerPicture_Click_1(object sender, EventArgs e)// let the player add an image and upload it to the PlayerPicture
         {
+            
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";            
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -92,6 +95,8 @@ namespace pinball
                 string selectedFilePath = openFileDialog.FileName;
                 playerPicture.Image = Image.FromFile(selectedFilePath);
             }
+            
+            
         }
 
     }

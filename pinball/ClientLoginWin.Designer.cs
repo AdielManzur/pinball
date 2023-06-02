@@ -53,6 +53,7 @@
             this.txbPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbPass.Location = new System.Drawing.Point(277, 192);
             this.txbPass.Name = "txbPass";
+            this.txbPass.PasswordChar = '*';
             this.txbPass.Size = new System.Drawing.Size(161, 20);
             this.txbPass.TabIndex = 1;
             this.txbPass.TextChanged += new System.EventHandler(this.txbPass_TextChanged);
