@@ -130,6 +130,14 @@ namespace pinball
             }
         }
 
+        public void disableLeaveBtn()
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                btnLeaveGame.Enabled = false;
+            });
+        }
+
         public void leaveGame()
         {
             if (current is game)

@@ -15,7 +15,7 @@ namespace pinballServer.ConnectionClasses
         {
             NOT_STARTED,
             INIT,
-            START, 
+            START,
             END
         }
         public enum MsgType
@@ -26,14 +26,14 @@ namespace pinballServer.ConnectionClasses
             ALREADY_ONLINE,
             MSG_REGISTER,
             REGISTER_OK,
-            REGISTER_ERROR,         
+            REGISTER_ERROR,
             OPEN_NEW_WAITING_ROOM,
             OPEN_NEW_WAITING_ROOM_OK,
             OPEN_NEW_WAITING_ROOM_ERROR,
             LIST_OPEN_ROOMS_OK,
             JOIN_ROOM,
             JOIN_ROOM_OK,
-            OPEN_GAME, 
+            OPEN_GAME,
             LIST_OPEN_ROOMS,
             JOIN_GAME_ERROR,
             KEY_W,
@@ -57,17 +57,61 @@ namespace pinballServer.ConnectionClasses
             LEAVE_GAME,
             GOAL
         }
-        
+
 
         public static string SerializeMessage(MessageModel message)
         {
+
             string str = JsonConvert.SerializeObject(message);
             return str;
+
         }
         public static MessageModel DeSerializeMessage(string msgStr)
         {
-            MessageModel message = JsonConvert.DeserializeObject<MessageModel>(msgStr);
+            MessageModel message = new MessageModel();
+            try
+            {
+                message = JsonConvert.DeserializeObject<MessageModel>(msgStr);
+
+            }
+            catch (JsonSerializationException) { 
+                 if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 1)
+                     message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0,msgStr.Length-1));
+                 else if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") +2 )
+                         message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 2));
+                 else if(CountOccurrences(msgStr, "{") == CountOccurrences(msgStr, "}") + 1)
+                 {
+                     message = JsonConvert.DeserializeObject<MessageModel>(msgStr + "}");
+
+                 }
+            }
+            catch (JsonReaderException)
+            {
+                if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 1)
+                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 1));
+                else if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 2)
+                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 2));
+                else if (CountOccurrences(msgStr, "{") == CountOccurrences(msgStr, "}") + 1)
+                {
+                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr + "}");
+
+                }
+            }
+
             return message;
+            }
+        public static int CountOccurrences(string input, string search)
+        {
+            int count = 0;
+            int index = 0;
+
+            while ((index = input.IndexOf(search, index)) != -1)
+            {
+                count++;
+                index += search.Length;
+            }
+
+            return count;
         }
     }
 }

@@ -44,6 +44,7 @@
             this.scoreLeftLBL = new System.Windows.Forms.Label();
             this.enemyPlayerLeftLBL = new System.Windows.Forms.Label();
             this.playerWonLBL = new System.Windows.Forms.Label();
+            this.backToLobbyLBL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rightPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
@@ -187,6 +188,16 @@
             this.playerWonLBL.Size = new System.Drawing.Size(0, 31);
             this.playerWonLBL.TabIndex = 11;
             // 
+            // backToLobbyLBL
+            // 
+            this.backToLobbyLBL.AutoSize = true;
+            this.backToLobbyLBL.Location = new System.Drawing.Point(452, 273);
+            this.backToLobbyLBL.Name = "backToLobbyLBL";
+            this.backToLobbyLBL.Size = new System.Drawing.Size(160, 13);
+            this.backToLobbyLBL.TabIndex = 12;
+            this.backToLobbyLBL.Text = "press Space to go back to lobby";
+            this.backToLobbyLBL.Visible = false;
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,6 +206,7 @@
             this.BackgroundImage = global::pinball.Properties.Resources.pong_game_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1068, 460);
+            this.Controls.Add(this.backToLobbyLBL);
             this.Controls.Add(this.playerWonLBL);
             this.Controls.Add(this.enemyPlayerLeftLBL);
             this.Controls.Add(this.leftPlayer);
@@ -242,5 +254,6 @@
         private System.Windows.Forms.Label scoreLeftLBL;
         private System.Windows.Forms.Label enemyPlayerLeftLBL;
         private System.Windows.Forms.Label playerWonLBL;
+        private System.Windows.Forms.Label backToLobbyLBL;
     }
 }
