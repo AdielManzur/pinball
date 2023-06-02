@@ -56,7 +56,10 @@ namespace pinballServer.ConnectionClasses
                 case ProtocolInterface.MsgType.REMOVE_ROOM:
                     handleRemoveRoom(message, connected);
                     break;
-                case ProtocolInterface.MsgType.GOAL:
+                case ProtocolInterface.MsgType.GOAL_TO_RIGHT:
+                    handleMoveBall(message, connected);
+                    break;
+                case ProtocolInterface.MsgType.GOAL_TO_LEFT:
                     handleMoveBall(message, connected);
                     break;
                 case ProtocolInterface.MsgType.playrLeft:
@@ -104,11 +107,23 @@ namespace pinballServer.ConnectionClasses
         {
             GameModel currGame = new GameModel();
             currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
-            MessageModel msg = new MessageModel();
+
             Random ballVectorX = new Random();
             Random ballVectorY = new Random();
             Vector2 ballVector = new Vector2(ballVectorX.Next(-100, 101), ballVectorY.Next(-100, 101));
-            //ballVector = Vector2.Normalize(ballVector);
+            MessageModel msg = new MessageModel();
+            if (message.MsgType == ProtocolInterface.MsgType.GOAL_TO_LEFT)
+            {
+                msg.scoreRightPlayer = message.scoreRightPlayer + 1;
+                msg.scoreLeftPlayer = message.scoreLeftPlayer;
+            }
+            else if(message.MsgType == ProtocolInterface.MsgType.GOAL_TO_RIGHT)
+            {
+                msg.scoreLeftPlayer = message.scoreLeftPlayer + 1;
+                msg.scoreRightPlayer = message.scoreRightPlayer;
+
+            }
+
             msg.MsgType = ProtocolInterface.MsgType.GOAL;
             msg.BallVector = ballVector;
             msg.game = currGame;

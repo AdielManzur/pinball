@@ -22,10 +22,9 @@ namespace pinballServer.ConnectionClasses
         public PlayerS player { get; set; }
         public GameModel game { get; set; }
         public List<RoomModel> rooms { get; set; }
-        public Vector2 BallVector { get; set; }
-        
-        //public int scorePlayer1 { get; set; }
-        //public int scorePlayer2 { get; set; }
+        public Vector2 BallVector { get; set; }       
+        public int scoreRightPlayer { get; set; }
+        public int scoreLeftPlayer { get; set; }
 
 
     }

@@ -115,7 +115,6 @@ namespace pinball
                 else if (MsgType == MsgType.KEY_G && rightPlayer.Top + rightPlayer.Height <= screenHeight)
                 {
                     rightPlayer.Top += 20;
-
                 }
 
                 leftPlayer.Invalidate();
@@ -128,11 +127,13 @@ namespace pinball
 
         public void hadGoal(MessageModel message)
         {
+            scoreRightPlayer = message.scoreRightPlayer;
+            scoreLeftPlayer = message.scoreLeftPlayer;
+            updateLBL();
             ball1.vector = message.BallVector;
             ball1.vector = Vector2.Normalize(ball1.vector);
             ball.Location = firstBallLocation;
             ball1.ballLocation = firstBallLocation;
-            updateLBL();
             timerBallMovement.Enabled = true;
         }
 
@@ -158,7 +159,7 @@ namespace pinball
             ball1.ballSpeedY = speed * ball1.vector.Y;
             ball1.ballSpeedX = speed * ball1.vector.X;
             countdownTimer.Enabled = true;
-           
+        
         }
 
  
@@ -207,12 +208,12 @@ namespace pinball
             {
                
                 MessageModel msg = new MessageModel();
-                msg.MsgType = MsgType.GOAL;
+                msg.MsgType = MsgType.GOAL_TO_LEFT;
                 msg.player = main.connectionManager.currPlayer;
                 msg.BallVector = ball1.vector * 100;
+                msg.scoreLeftPlayer = scoreLeftPlayer;
+                msg.scoreRightPlayer = scoreRightPlayer;
                 main.connectionManager.sendMessageToServer(msg);
-                scoreRightPlayer++;
-                updateLBL();
                 timerBallMovement.Enabled = false;
                 
             }
@@ -221,12 +222,12 @@ namespace pinball
             {
                 
                 MessageModel msg = new MessageModel();
-                msg.MsgType = MsgType.GOAL;
+                msg.MsgType = MsgType.GOAL_TO_RIGHT;
                 msg.player = main.connectionManager.currPlayer;
                 msg.BallVector = ball1.vector * 100;
+                msg.scoreLeftPlayer = scoreLeftPlayer;
+                msg.scoreRightPlayer = scoreRightPlayer;
                 main.connectionManager.sendMessageToServer(msg);
-                scoreLeftPlayer++;
-                updateLBL();
                 timerBallMovement.Enabled = false;
                 
             }
