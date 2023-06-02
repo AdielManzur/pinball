@@ -10,14 +10,10 @@ using pinballServer.ConnectionClasses;
 namespace pinballServer.GamesClasses
 {
     [Serializable]
-    public class GameModel
-    {
-
-        public PlayerS player1;
-        public PlayerS player2;
-        public gameState gstate { get; set; }
-        public String gameName { get; set; }
-
-
-    }
+        public class GameModel
+        {
+            public PlayerS player1;
+            public PlayerS player2;
+            public String gameName { get; set; }
+        }
 }

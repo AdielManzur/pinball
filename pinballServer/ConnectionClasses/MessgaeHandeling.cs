@@ -326,7 +326,6 @@ namespace pinballServer.ConnectionClasses
             newGame.player1 = connected.player;
             newGame.gameName = connected.player.username;
             manager.main.gameManager.games.Add(newGame);
-            //manager.currGame = newGame;
             connected.player.currGameName = newGame.gameName;
             MessageModel msg = new MessageModel();
             msg.MsgType = ProtocolInterface.MsgType.OPEN_NEW_WAITING_ROOM_OK;

@@ -11,13 +11,7 @@ namespace pinballServer.ConnectionClasses
     public static class ProtocolInterface
     {
         static JsonSerializer serializer = new JsonSerializer();
-        public enum gameState
-        {
-            NOT_STARTED,
-            INIT,
-            START,
-            END
-        }
+
         public enum MsgType
         {
             MSG_LOGIN,

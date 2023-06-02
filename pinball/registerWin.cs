@@ -76,12 +76,6 @@ namespace pinball
             
         }
 
-        private void playerPicture_Click(object sender, EventArgs e)
-        {
-           
-
-
-        }
 
         private void resetPicture_Click(object sender, EventArgs e)
         {
@@ -99,11 +93,6 @@ namespace pinball
                 playerPicture.Image = Image.FromFile(selectedFilePath);
             }
         }
-        /*
-        public void disableRegBtn()
-        {
-            btnRegister.Enabled = false;
-        }
-        */
+
     }
 }

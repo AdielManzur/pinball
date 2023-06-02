@@ -21,7 +21,7 @@ namespace pinballServer.ConnectionClasses
         public ServerMainWin main;
         MessgaeHandeling messgaeHandeling;
         public List<ConnectedPlayer> players { get; set; }
-        //public GameModel currGame { get; set; }
+
 
         public ConnectionManager(ServerMainWin main)
         {
