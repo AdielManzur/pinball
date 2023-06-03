@@ -66,27 +66,27 @@ namespace pinball
         {
             MessageModel msgToServer = new MessageModel();
             msgToServer.player = main.connectionManager.currPlayer;
-            if (e.KeyCode == Keys.W && leftPlayer.Top >= 0 && !boolEnemyLeft)
+            if (e.KeyCode == Keys.W && leftPlayer.Top >= 0 && !boolEnemyLeft && !isWin)
             {
                 msgToServer.MsgType = ProtocolInterface.MsgType.KEY_W;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
-            if (e.KeyCode == Keys.T && rightPlayer.Top >= 0 && !boolEnemyLeft)
+            if (e.KeyCode == Keys.T && rightPlayer.Top >= 0 && !boolEnemyLeft && !isWin)
             {
                 msgToServer.MsgType = ProtocolInterface.MsgType.KEY_T;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
-            if (e.KeyCode == Keys.S && leftPlayer.Top + leftPlayer.Height <= screenHeight && !boolEnemyLeft)
+            if (e.KeyCode == Keys.S && leftPlayer.Top + leftPlayer.Height <= screenHeight && !boolEnemyLeft && !isWin)
             {
                 msgToServer.MsgType = ProtocolInterface.MsgType.KEY_S;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
-            if (e.KeyCode == Keys.G && rightPlayer.Top + rightPlayer.Height <= screenHeight && !boolEnemyLeft)
+            if (e.KeyCode == Keys.G && rightPlayer.Top + rightPlayer.Height <= screenHeight && !boolEnemyLeft && !isWin)
             {
                 msgToServer.MsgType = ProtocolInterface.MsgType.KEY_G;
                 main.connectionManager.sendMessageToServer(msgToServer);
             }
-            if(e.KeyCode == Keys.Space && boolEnemyLeft || isWin)
+            if(e.KeyCode == Keys.Space && (boolEnemyLeft || isWin))
             {
                 main.openChoiceWin();
             }
@@ -143,7 +143,10 @@ namespace pinball
             timerBallMovement.Enabled = false;
             if(!isWin)
                 enemyPlayerLeftLBL.Visible = true;
-            
+            if (countdownTimer.Enabled)
+            {
+                countdownTimer.Enabled = false;
+            }
         }
 
         public void firstBallMovement(MessageModel message)
@@ -191,11 +194,12 @@ namespace pinball
 
 
             }
-            if (ball1.checkCollisionWithLeftPlayer(leftPlayer.Location,leftPlayer.Height,leftPlayer.Width))
+            if (ball1.checkCollisionWithLeftPlayer(leftPlayer.Location,leftPlayer.Height,leftPlayer.Width))              
             {
                 ball1.vector = new Vector2(-ball1.vector.X, ball1.vector.Y);
             }
             else if (ball1.checkCollisionWithRightPlayer(rightPlayer.Location, rightPlayer.Height, rightPlayer.Width))
+                
             {
                 ball1.vector = new Vector2(-ball1.vector.X, ball1.vector.Y);
             }
@@ -219,6 +223,7 @@ namespace pinball
             }
 
             else if (ball1.goalToRightPlayer(this.ClientSize.Width))
+                
             {
                 
                 MessageModel msg = new MessageModel();
@@ -240,6 +245,7 @@ namespace pinball
             backToLobbyLBL.Visible = true;
             backToLobbyLBL.Left = (this.ClientSize.Width - backToLobbyLBL.Width) / 2;
             main.disableLeaveBtn();
+            
 
         }
 
@@ -318,7 +324,7 @@ namespace pinball
                 timerBallMovement.Enabled = true;
                 countdownTimer.Enabled = false;
             }
-            countdownLBL.Location = new Point(ball.Location.X, countdownLBL.Location.Y);
+            countdownLBL.Location = new Point(ball.Location.X, countdownLBL.Location.Y );
             countdownLBL.Text = counter.ToString();
 
         }        

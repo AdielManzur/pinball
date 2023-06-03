@@ -15,7 +15,6 @@ namespace pinballServer.ConnectionClasses
     public class MessageModel
     {
         public ProtocolInterface.MsgType MsgType { get; set; }
-        //public ProtocolInterface.MsgType MsgType { get; set; }
         public string msgStr { get; set; }
         public string userName { get; set; }
         public string pass { get; set; }

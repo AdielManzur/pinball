@@ -14,14 +14,14 @@ namespace pinballServer.ConnectionClasses
     public class PlayerS
     {
  
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public DateTime regDate { get; set; }
         public byte[] profilePicture { get; set; }
-        public String currGameName { get; set; }
+        public string currGameName { get; set; }
 
         public void convertFromUserTBL(playerTBL p)
         {

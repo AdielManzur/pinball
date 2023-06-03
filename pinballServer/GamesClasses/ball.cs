@@ -65,7 +65,23 @@ namespace pinballServer.GamesClasses
                 return true;
             }
             return false;
-
         }
+        /*
+        public bool checkCollisionWithBall(Point ballLocation, Point PlayerLocation, int playerWidth, int ballWidth, int playerHeight)
+        {
+            
+            int playerTop = PlayerLocation.Y;
+            int playerBottom = PlayerLocation.Y + playerHeight;
+            if (ballLocation.X + ballWidth == PlayerLocation.X && ballLocation.Y + ballWidth > playerTop && ballLocation.Y < playerBottom) // הכדור בא משמאל והשחקן בימין
+            {
+                return true;
+            }
+            if(ballLocation.X == PlayerLocation.X + playerWidth && ballLocation.Y + ballWidth > playerTop && ballLocation.Y < playerBottom)// הכדור בא מימין והשחקן בשמאל
+            {
+                return true;
+            }
+            return false;
+        }
+        */
     }
 }

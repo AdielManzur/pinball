@@ -88,8 +88,6 @@ namespace pinballServer.ConnectionClasses
             Socket current = (Socket)ar.AsyncState;
             ConnectedPlayer conncted = players.Where(x => x.client == current).FirstOrDefault();
 
-
-
             int receivedMessageSize;
 
             try
@@ -102,7 +100,6 @@ namespace pinballServer.ConnectionClasses
                 // Don't shutdown because the socket may be disposed and its disconnected anyway.
                 current.Close();
                 clientsList.Remove(current);
-
                 players.Remove(conncted);
                 return;
             }
@@ -133,7 +130,6 @@ namespace pinballServer.ConnectionClasses
                 }
             }
         }
-
 
         public void stopServer()
         {

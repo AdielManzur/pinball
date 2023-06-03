@@ -109,7 +109,7 @@
             // 
             this.countdownLBL.AutoSize = true;
             this.countdownLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.countdownLBL.Location = new System.Drawing.Point(410, 1);
+            this.countdownLBL.Location = new System.Drawing.Point(403, 94);
             this.countdownLBL.Name = "countdownLBL";
             this.countdownLBL.Size = new System.Drawing.Size(0, 39);
             this.countdownLBL.TabIndex = 4;
