@@ -31,6 +31,14 @@ namespace pinball
             this.main = main;
         }
 
+        public game game
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void RoomsList_Load(object sender, EventArgs e)
         {
             lbxRooms.Left = (this.ClientSize.Width - lbxRooms.Width) / 2;
@@ -146,14 +154,6 @@ namespace pinball
             main.backButtonPressed();
         }
 
-        private void playerLBL_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void pictureProfile_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -169,7 +169,7 @@ namespace pinball
 
  
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void timerBallMovement_Tick(object sender, EventArgs e)
         {
             
             UpdateBallLocation();

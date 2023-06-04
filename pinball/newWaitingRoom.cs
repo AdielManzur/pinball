@@ -23,6 +23,14 @@ namespace pinball
 
         }
 
+        public game game
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void NewWaitingRoom_Load(object sender, EventArgs e)
         {
             waitingLBL.Text = "waiting for player";

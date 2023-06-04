@@ -24,7 +24,5 @@ namespace pinballServer.ConnectionClasses
         public Vector2 BallVector { get; set; }       
         public int scoreRightPlayer { get; set; }
         public int scoreLeftPlayer { get; set; }
-
-
     }
 }

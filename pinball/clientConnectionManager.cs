@@ -86,12 +86,7 @@ namespace pinball
             clientSocket.Send(data, 0, data.Length, SocketFlags.None);
 
         }
-        /*
-        public void showTxtToLbl(MessageModel message)
-        {
-            main.KeysLbl(message);
-        }
-        */
+
         public void firstBallMovement(MessageModel message)
         {
             main.firstBallMovement(message);

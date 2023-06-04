@@ -95,7 +95,6 @@
             this.playerLBL.Size = new System.Drawing.Size(33, 13);
             this.playerLBL.TabIndex = 5;
             this.playerLBL.Text = "name";
-            this.playerLBL.Click += new System.EventHandler(this.playerLBL_Click);
             // 
             // playerPicture
             // 
@@ -112,7 +111,6 @@
             this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPicture.TabIndex = 9;
             this.playerPicture.TabStop = false;
-            this.playerPicture.Click += new System.EventHandler(this.pictureProfile_Click);
             // 
             // RoomsListWin
             // 

@@ -73,15 +73,7 @@ namespace pinballServer
             });
 
         }
-        private void lbxConnectedClients_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void LbxConnectedClients_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {

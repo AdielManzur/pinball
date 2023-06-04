@@ -64,7 +64,6 @@
             this.playerLBL.Size = new System.Drawing.Size(33, 13);
             this.playerLBL.TabIndex = 7;
             this.playerLBL.Text = "name";
-            this.playerLBL.Click += new System.EventHandler(this.playerLBL_Click);
             // 
             // playerPicture
             // 

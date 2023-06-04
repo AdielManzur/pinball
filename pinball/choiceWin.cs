@@ -23,6 +23,22 @@ namespace pinball
             this.main = main;
         }
 
+        public newWaitingRoom newWaitingRoom
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public RoomsListWin RoomsListWin
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void WaitingRoom_Load(object sender, EventArgs e)
         {
 
@@ -57,14 +73,6 @@ namespace pinball
             main.connectionManager.sendMessageToServer(message);
         }
 
-        private void playerLBL_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void playerPicture_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

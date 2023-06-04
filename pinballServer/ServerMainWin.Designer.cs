@@ -62,7 +62,6 @@
             this.lbxConnectedClients.Name = "lbxConnectedClients";
             this.lbxConnectedClients.Size = new System.Drawing.Size(236, 277);
             this.lbxConnectedClients.TabIndex = 1;
-            this.lbxConnectedClients.SelectedIndexChanged += new System.EventHandler(this.LbxConnectedClients_SelectedIndexChanged_1);
             // 
             // pictureBox1
             // 

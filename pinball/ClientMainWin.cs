@@ -349,5 +349,7 @@ namespace pinball
             sendMessageToServer(leaveMsg);
             openChoiceWin();
         }
+
+
     }   
 }

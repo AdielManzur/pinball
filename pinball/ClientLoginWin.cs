@@ -52,14 +52,5 @@ namespace pinball
 
         }
 
-        private void TxbUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbPass_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

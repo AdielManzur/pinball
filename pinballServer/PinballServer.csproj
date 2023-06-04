@@ -112,9 +112,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="connectioncClasses.cs" />
     <Compile Include="ConnectionClasses\ConnectedPlayer.cs" />
     <Compile Include="ConnectionClasses\ConnectionManager.cs" />
-    <Compile Include="GamesClasses\ball.cs" />
     <Compile Include="GamesClasses\GameModel.cs" />
     <Compile Include="ConnectionClasses\MessageModel.cs" />
     <Compile Include="ConnectionClasses\MessgaeHandeling.cs" />
@@ -164,6 +164,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>

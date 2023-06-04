@@ -97,6 +97,7 @@ namespace pinballServer.ConnectionClasses
             
             return message;
             }
+        
         public static int CountOccurrences(string input, string search)
         {
             int count = 0;
@@ -110,5 +111,6 @@ namespace pinballServer.ConnectionClasses
 
             return count;
         }
+        
     }
 }

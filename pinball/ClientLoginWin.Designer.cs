@@ -56,7 +56,6 @@
             this.txbPass.PasswordChar = '*';
             this.txbPass.Size = new System.Drawing.Size(161, 20);
             this.txbPass.TabIndex = 1;
-            this.txbPass.TextChanged += new System.EventHandler(this.txbPass_TextChanged);
             // 
             // txbUsername
             // 
@@ -65,7 +64,6 @@
             this.txbUsername.Name = "txbUsername";
             this.txbUsername.Size = new System.Drawing.Size(161, 20);
             this.txbUsername.TabIndex = 1;
-            this.txbUsername.TextChanged += new System.EventHandler(this.TxbUsername_TextChanged);
             // 
             // label1
             // 

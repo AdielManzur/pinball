@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ball.cs" />
     <Compile Include="clientConnectionManager.cs" />
     <Compile Include="ClientLoginWin.cs">
       <SubType>Form</SubType>
@@ -152,6 +153,7 @@
     <EmbeddedResource Include="RoomsListWin.resx">
       <DependentUpon>RoomsListWin.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="clientDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -174,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\returnButton.png" />
+    <None Include="Resources\pongtitle1.jpg" />
     <None Include="Resources\profile.png" />
     <None Include="Resources\loading-gif.gif" />
     <None Include="Resources\pongGif.gif" />
