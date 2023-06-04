@@ -407,6 +407,7 @@ namespace pinballServer.ConnectionClasses
                 manager.sendMessageToClient(connected, mToSend);
             }
             else
+
             {
                 playerTBL newPlayer = PlayerS.convertUserTBLFromMessage(message);
                 newPlayer.regDate = DateTime.Now;
