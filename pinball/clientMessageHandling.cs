@@ -69,17 +69,6 @@ namespace pinball
                 case ProtocolInterface.MsgType.FirstBallMovement:
                     handleTxtAndBallMovement(message);
                     break;
-                    /*
-                case ProtocolInterface.MsgType.COLLISION_LOWER_OR_UPPER_WALL:
-                    handleCollisionUpperOrLowerWall(message);
-                    break;
-                case ProtocolInterface.MsgType.GOAL_RIGHT_WALL:
-                    handleGoalRightWall(message);
-                    break;
-                case ProtocolInterface.MsgType.GOAL_LEFT_WALL:
-                    handleGoalLeftWall(message);
-                    break;
-                    */
                 case ProtocolInterface.MsgType.ROOM_REMOVED:
                     handleRoomRemoved(message);
                     break;

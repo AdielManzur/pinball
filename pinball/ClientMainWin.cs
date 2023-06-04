@@ -140,6 +140,7 @@ namespace pinball
 
         public void leaveGame()
         {
+            btnLeaveGame.Enabled = false;
             if (current is game)
             {
                 game tmp = (game)current;

@@ -70,6 +70,7 @@ namespace pinballServer.ConnectionClasses
                 message = JsonConvert.DeserializeObject<MessageModel>(msgStr);
 
             }
+            
             catch (JsonSerializationException) { 
                  if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 1)
                      message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0,msgStr.Length-1));
@@ -93,7 +94,7 @@ namespace pinballServer.ConnectionClasses
 
                 }
             }
-
+            
             return message;
             }
         public static int CountOccurrences(string input, string search)

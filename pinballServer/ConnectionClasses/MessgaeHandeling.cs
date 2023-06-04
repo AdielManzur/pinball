@@ -107,7 +107,6 @@ namespace pinballServer.ConnectionClasses
         {
             GameModel currGame = new GameModel();
             currGame = manager.main.gameManager.getGameByString(connected.player.currGameName);
-
             Random ballVectorX = new Random();
             Random ballVectorY = new Random();
             Vector2 ballVector = new Vector2(ballVectorX.Next(-100, 101), ballVectorY.Next(-100, 101));

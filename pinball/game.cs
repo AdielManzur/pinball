@@ -20,6 +20,7 @@ namespace pinball
         int screenHeight;
         int screenWidth;
         Ball ball1 = new Ball();
+        GameModel currentGame = new GameModel();
         Point firstBallLocation;
         int counter = 6;
         public int scoreRightPlayer = 0;
@@ -156,6 +157,7 @@ namespace pinball
             playerKeysLBL.Left = (this.ClientSize.Width - playerKeysLBL.Width) / 2;
             leftPlayerName = message.game.player2.username;
             rightPlayerName = message.game.player1.username;
+            currentGame = message.game;
             ball1.vector = message.BallVector;
             ball1.vector = Vector2.Normalize(ball1.vector);
             ball1.ballLocation = ball.Location;
@@ -210,14 +212,16 @@ namespace pinball
             
             else if (ball1.goalToLeftPlayer())
             {
-               
-                MessageModel msg = new MessageModel();
-                msg.MsgType = MsgType.GOAL_TO_LEFT;
-                msg.player = main.connectionManager.currPlayer;
-                msg.BallVector = ball1.vector * 100;
-                msg.scoreLeftPlayer = scoreLeftPlayer;
-                msg.scoreRightPlayer = scoreRightPlayer;
-                main.connectionManager.sendMessageToServer(msg);
+                if (currentGame.player1.username == main.connectionManager.currPlayer.username)
+                {
+                    MessageModel msg = new MessageModel();
+                    msg.MsgType = MsgType.GOAL_TO_LEFT;
+                    msg.player = main.connectionManager.currPlayer;
+                    msg.BallVector = ball1.vector * 100;
+                    msg.scoreLeftPlayer = scoreLeftPlayer;
+                    msg.scoreRightPlayer = scoreRightPlayer;
+                    main.connectionManager.sendMessageToServer(msg);
+                }
                 timerBallMovement.Enabled = false;
                 
             }
@@ -225,14 +229,16 @@ namespace pinball
             else if (ball1.goalToRightPlayer(this.ClientSize.Width))
                 
             {
-                
-                MessageModel msg = new MessageModel();
+                if (currentGame.player1.username == main.connectionManager.currPlayer.username)
+                {
+                    MessageModel msg = new MessageModel();
                 msg.MsgType = MsgType.GOAL_TO_RIGHT;
                 msg.player = main.connectionManager.currPlayer;
                 msg.BallVector = ball1.vector * 100;
                 msg.scoreLeftPlayer = scoreLeftPlayer;
                 msg.scoreRightPlayer = scoreRightPlayer;
                 main.connectionManager.sendMessageToServer(msg);
+                }
                 timerBallMovement.Enabled = false;
                 
             }
