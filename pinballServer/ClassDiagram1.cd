@@ -54,7 +54,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAABQAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConnectionClasses\ProtocolInterface.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,9 +73,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="pinballServer.GamesClasses.serverGameManager">
-    <Position X="15.75" Y="2" Width="1.5" />
+    <Position X="15" Y="1.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAMAAAAAAAAAAAAAIAAAAEAAAAQ=</HashCode>
+      <HashCode>ABAAAAAAgARAAMcAAAMAAABAAAAAAAQFIAAAAEAAAAQ=</HashCode>
       <FileName>GamesClasses\serverGameManager.cs</FileName>
     </TypeIdentifier>
   </Class>

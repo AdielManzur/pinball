@@ -112,7 +112,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="connectioncClasses.cs" />
     <Compile Include="ConnectionClasses\ConnectedPlayer.cs" />
     <Compile Include="ConnectionClasses\ConnectionManager.cs" />
     <Compile Include="GamesClasses\GameModel.cs" />
