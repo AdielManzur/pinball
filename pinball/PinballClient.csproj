@@ -153,7 +153,6 @@
     <EmbeddedResource Include="RoomsListWin.resx">
       <DependentUpon>RoomsListWin.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="clientDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
