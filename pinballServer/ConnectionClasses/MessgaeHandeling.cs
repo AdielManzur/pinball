@@ -91,12 +91,7 @@ namespace pinballServer.ConnectionClasses
 
         private void handleSignOut(MessageModel message, ConnectedPlayer connected)
         {
-            /*
-            connected.player = null;
-            MessageModel msg = new MessageModel();
-            msg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
-            manager.sendMessageToClient(connected, msg);
-            */
+            
             manager.main.gameManager.handleSignOut(message, connected);
 
         }

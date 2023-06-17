@@ -97,7 +97,7 @@
             // 
             // timerBallMovement
             // 
-            this.timerBallMovement.Interval = 20;
+            this.timerBallMovement.Interval = 10;
             this.timerBallMovement.Tick += new System.EventHandler(this.timerBallMovement_Tick);
             // 
             // countdownTimer
@@ -135,42 +135,51 @@
             // nameLBL
             // 
             this.nameLBL.AutoSize = true;
+            this.nameLBL.BackColor = System.Drawing.Color.Transparent;
+            this.nameLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.nameLBL.Location = new System.Drawing.Point(38, 27);
             this.nameLBL.Name = "nameLBL";
-            this.nameLBL.Size = new System.Drawing.Size(33, 13);
+            this.nameLBL.Size = new System.Drawing.Size(43, 17);
             this.nameLBL.TabIndex = 7;
             this.nameLBL.Text = "name";
             // 
             // playerKeysLBL
             // 
             this.playerKeysLBL.AutoSize = true;
+            this.playerKeysLBL.BackColor = System.Drawing.Color.Transparent;
+            this.playerKeysLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.playerKeysLBL.Location = new System.Drawing.Point(509, 27);
             this.playerKeysLBL.Name = "playerKeysLBL";
-            this.playerKeysLBL.Size = new System.Drawing.Size(58, 13);
+            this.playerKeysLBL.Size = new System.Drawing.Size(78, 17);
             this.playerKeysLBL.TabIndex = 8;
             this.playerKeysLBL.Text = "playerKeys";
             // 
             // scoreRightLBL
             // 
             this.scoreRightLBL.AutoSize = true;
+            this.scoreRightLBL.BackColor = System.Drawing.Color.Transparent;
+            this.scoreRightLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.scoreRightLBL.Location = new System.Drawing.Point(799, 27);
             this.scoreRightLBL.Name = "scoreRightLBL";
-            this.scoreRightLBL.Size = new System.Drawing.Size(33, 13);
+            this.scoreRightLBL.Size = new System.Drawing.Size(43, 17);
             this.scoreRightLBL.TabIndex = 9;
             this.scoreRightLBL.Text = "score";
             // 
             // scoreLeftLBL
             // 
             this.scoreLeftLBL.AutoSize = true;
+            this.scoreLeftLBL.BackColor = System.Drawing.Color.Transparent;
+            this.scoreLeftLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.scoreLeftLBL.Location = new System.Drawing.Point(262, 27);
             this.scoreLeftLBL.Name = "scoreLeftLBL";
-            this.scoreLeftLBL.Size = new System.Drawing.Size(33, 13);
+            this.scoreLeftLBL.Size = new System.Drawing.Size(43, 17);
             this.scoreLeftLBL.TabIndex = 9;
             this.scoreLeftLBL.Text = "score";
             // 
             // enemyPlayerLeftLBL
             // 
             this.enemyPlayerLeftLBL.AutoSize = true;
+            this.enemyPlayerLeftLBL.BackColor = System.Drawing.Color.Transparent;
             this.enemyPlayerLeftLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.enemyPlayerLeftLBL.Location = new System.Drawing.Point(262, 147);
             this.enemyPlayerLeftLBL.Name = "enemyPlayerLeftLBL";
@@ -191,9 +200,11 @@
             // backToLobbyLBL
             // 
             this.backToLobbyLBL.AutoSize = true;
+            this.backToLobbyLBL.BackColor = System.Drawing.Color.Transparent;
+            this.backToLobbyLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.backToLobbyLBL.Location = new System.Drawing.Point(452, 273);
             this.backToLobbyLBL.Name = "backToLobbyLBL";
-            this.backToLobbyLBL.Size = new System.Drawing.Size(160, 13);
+            this.backToLobbyLBL.Size = new System.Drawing.Size(211, 17);
             this.backToLobbyLBL.TabIndex = 12;
             this.backToLobbyLBL.Text = "press Space to go back to lobby";
             this.backToLobbyLBL.Visible = false;

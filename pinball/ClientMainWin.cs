@@ -328,6 +328,7 @@ namespace pinball
                 removeThisOpendRoom();
             }
             btnLeaveGame.Visible = false;
+            connectionManager.currPlayer = null;
             MessageModel signOutMsg = new MessageModel();
             signOutMsg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
             signOutMsg.player = connectionManager.currPlayer;

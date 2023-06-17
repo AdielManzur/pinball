@@ -175,7 +175,6 @@ namespace pinball
 
         private void handleRegisterOk(MessageModel message)
         {
-            //manager.main.DisableRegBtn();
             manager.main.isLogined = true;
             manager.currPlayer = message.player;
             manager.main.updateMenuBTNs();

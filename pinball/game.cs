@@ -25,7 +25,7 @@ namespace pinball
         int counter = 6;
         public int scoreRightPlayer = 0;
         public int scoreLeftPlayer = 0;
-        public int speed = 13;
+        public int speed = 8;
         bool boolEnemyLeft = false;
         String leftPlayerName = "";
         String rightPlayerName = "";
@@ -128,6 +128,7 @@ namespace pinball
 
         public void hadGoal(MessageModel message)
         {
+            speed += 1;
             scoreRightPlayer = message.scoreRightPlayer;
             scoreLeftPlayer = message.scoreLeftPlayer;
             updateLBL();
@@ -174,7 +175,7 @@ namespace pinball
             
             UpdateBallLocation();
             checkLocations();
-            if(scoreLeftPlayer == 3)
+            if(scoreLeftPlayer == 5)
             {
                 playerWonLBL.Text = leftPlayerName + " Won!";
 
@@ -185,7 +186,7 @@ namespace pinball
                 hadWin();
                 
             }
-            if (scoreRightPlayer == 3)
+            if (scoreRightPlayer == 5)
             {
                 playerWonLBL.Text = rightPlayerName + " Won!";
                 playerWonLBL.Left = (this.ClientSize.Width - playerWonLBL.Width) / 2;
@@ -232,12 +233,12 @@ namespace pinball
                 if (currentGame.player1.username == main.connectionManager.currPlayer.username)
                 {
                     MessageModel msg = new MessageModel();
-                msg.MsgType = MsgType.GOAL_TO_RIGHT;
-                msg.player = main.connectionManager.currPlayer;
-                msg.BallVector = ball1.vector * 100;
-                msg.scoreLeftPlayer = scoreLeftPlayer;
-                msg.scoreRightPlayer = scoreRightPlayer;
-                main.connectionManager.sendMessageToServer(msg);
+                    msg.MsgType = MsgType.GOAL_TO_RIGHT;
+                    msg.player = main.connectionManager.currPlayer;
+                    msg.BallVector = ball1.vector * 100;
+                    msg.scoreLeftPlayer = scoreLeftPlayer;
+                    msg.scoreRightPlayer = scoreRightPlayer;
+                    main.connectionManager.sendMessageToServer(msg);
                 }
                 timerBallMovement.Enabled = false;
                 
