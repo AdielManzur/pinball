@@ -65,52 +65,11 @@ namespace pinballServer.ConnectionClasses
         public static MessageModel DeSerializeMessage(string msgStr)
         {
             MessageModel message = new MessageModel();
-            try
-            {
+
                 message = JsonConvert.DeserializeObject<MessageModel>(msgStr);
-
-            }
-            
-            catch (JsonSerializationException) { 
-                 if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 1)
-                     message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0,msgStr.Length-1));
-                 else if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") +2 )
-                         message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 2));
-                 else if(CountOccurrences(msgStr, "{") == CountOccurrences(msgStr, "}") + 1)
-                 {
-                     message = JsonConvert.DeserializeObject<MessageModel>(msgStr + "}");
-
-                 }
-            }
-            catch (JsonReaderException)
-            {
-                if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 1)
-                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 1));
-                else if (CountOccurrences(msgStr, "}") == CountOccurrences(msgStr, "{") + 2)
-                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr.Substring(0, msgStr.Length - 2)); // a huge error in Json
-                else if (CountOccurrences(msgStr, "{") == CountOccurrences(msgStr, "}") + 1)
-                {
-                    message = JsonConvert.DeserializeObject<MessageModel>(msgStr + "}");
-
-                }
-            }
-            
+    
             return message;
-            }
-        
-        public static int CountOccurrences(string input, string search)
-        {
-            int count = 0;
-            int index = 0;
-
-            while ((index = input.IndexOf(search, index)) != -1)
-            {
-                count++;
-                index += search.Length;
-            }
-
-            return count;
-        }
+            }   
         
     }
 }

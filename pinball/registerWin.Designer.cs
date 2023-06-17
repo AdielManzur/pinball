@@ -37,7 +37,6 @@
             this.firstNameTxb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.resetPicture = new RJCodeAdvance.RJControls.RJButton();
             this.playerPicture = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
@@ -117,25 +116,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "First Name";
             // 
-            // resetPicture
-            // 
-            this.resetPicture.BackColor = System.Drawing.Color.Transparent;
-            this.resetPicture.BackgroundColor = System.Drawing.Color.Transparent;
-            this.resetPicture.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.resetPicture.BorderRadius = 0;
-            this.resetPicture.BorderSize = 0;
-            this.resetPicture.FlatAppearance.BorderSize = 0;
-            this.resetPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resetPicture.ForeColor = System.Drawing.Color.Black;
-            this.resetPicture.Location = new System.Drawing.Point(550, 63);
-            this.resetPicture.Name = "resetPicture";
-            this.resetPicture.Size = new System.Drawing.Size(42, 22);
-            this.resetPicture.TabIndex = 9;
-            this.resetPicture.Text = "reset picture";
-            this.resetPicture.TextColor = System.Drawing.Color.Black;
-            this.resetPicture.UseVisualStyleBackColor = false;
-            this.resetPicture.Click += new System.EventHandler(this.resetPicture_Click);
-            // 
             // playerPicture
             // 
             this.playerPicture.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
@@ -145,13 +125,12 @@
             this.playerPicture.BorderSize = 2;
             this.playerPicture.GradientAngle = 50F;
             this.playerPicture.Image = global::pinball.Properties.Resources.profile;
-            this.playerPicture.Location = new System.Drawing.Point(470, 24);
+            this.playerPicture.Location = new System.Drawing.Point(479, 28);
             this.playerPicture.Name = "playerPicture";
             this.playerPicture.Size = new System.Drawing.Size(74, 74);
             this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPicture.TabIndex = 10;
             this.playerPicture.TabStop = false;
-            this.playerPicture.Click += new System.EventHandler(this.playerPicture_Click_1);
             // 
             // registerWin
             // 
@@ -159,7 +138,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 456);
             this.Controls.Add(this.playerPicture);
-            this.Controls.Add(this.resetPicture);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -190,7 +168,6 @@
         private System.Windows.Forms.TextBox firstNameTxb;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private RJCodeAdvance.RJControls.RJButton resetPicture;
         private RJCodeAdvance.RJControls.RJCircularPictureBox playerPicture;
     }
 }

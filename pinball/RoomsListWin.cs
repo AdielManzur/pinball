@@ -46,16 +46,7 @@ namespace pinball
             playerLBL.Text = main.connectionManager.currPlayer.username;
             playerLBL.Location = new Point(((playerPicture.Width - playerLBL.Width) / 2) + playerPicture.Left, playerLBL.Location.Y);
             updatelbxRooms(rooms);
-            if (main.connectionManager.currPlayer.profilePicture != null)
-            {
-                byte[] imageData = main.connectionManager.currPlayer.profilePicture;
-                Image image;
-                using (MemoryStream ms = new MemoryStream(imageData))
-                {
-                    image = Image.FromStream(ms);
-                }
-                playerPicture.Image = image;
-            }
+            
         }
         
         public void updatelbxRooms(List<RoomModel> rooms)

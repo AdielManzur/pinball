@@ -20,7 +20,6 @@ namespace pinballServer.ConnectionClasses
         public string firstName { get; set; }
         public string lastName { get; set; }
         public DateTime regDate { get; set; }
-        public byte[] profilePicture { get; set; }
         public string currGameName { get; set; }
 
         public void convertFromUserTBL(playerTBL p)
@@ -30,7 +29,6 @@ namespace pinballServer.ConnectionClasses
             firstName = p.firstName;
             lastName = p.lastName;
             regDate = p.regDate;  
-            profilePicture = p.profilePicture;
         }
 
        
@@ -43,7 +41,6 @@ namespace pinballServer.ConnectionClasses
             user.firstName = msg.player.firstName;
             user.lastName = msg.player.lastName;
             user.regDate = DateTime.Now ;
-            user.profilePicture = msg.player.profilePicture;
             return user;
         }
         

@@ -38,7 +38,6 @@ namespace pinball
             label3.Left = txbUsername.Left;
             label4.Left = txbPass.Left;
             playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
-            resetPicture.Left = playerPicture.Left + playerPicture.Width;
 
         }
         private void btnRegister_Click(object sender, EventArgs e)
@@ -57,45 +56,12 @@ namespace pinball
             newPlayer.firstName = firstNameTxb.Text.Trim();
             newPlayer.lastName = LastNameTxb.Text.Trim();
             newPlayer.password = txbPass.Text.Trim();
-            newPlayer.username = txbUsername.Text.Trim();
-            
-            if (flag)
-            {
-                Image result = playerPicture.Image;
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    result.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    byte[] picture = ms.ToArray();
-                    newPlayer.profilePicture = picture;
-                }
-            }
-            
+            newPlayer.username = txbUsername.Text.Trim();         
             MessageModel mToSend = new MessageModel();
             mToSend.MsgType = ProtocolInterface.MsgType.MSG_REGISTER;
             mToSend.player = newPlayer;
             main.sendMessageToServer(mToSend);
 
-            
-        }
-
-
-        private void resetPicture_Click(object sender, EventArgs e)// reset the choice 
-        {
-            playerPicture.Image = Properties.Resources.profile;
-        }
-
-        private void playerPicture_Click_1(object sender, EventArgs e)// let the player add an image and upload it to the PlayerPicture
-        {
-            
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";            
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                flag = true;
-                string selectedFilePath = openFileDialog.FileName;
-                playerPicture.Image = Image.FromFile(selectedFilePath);
-            }
-            
             
         }
 

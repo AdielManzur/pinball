@@ -188,9 +188,6 @@ namespace pinball
             return isLog;
         }
 
-        public bool isRegistered()
-        {
-            return isReg;
-        }
+
     }
 }

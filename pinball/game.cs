@@ -25,7 +25,7 @@ namespace pinball
         int counter = 6;
         public int scoreRightPlayer = 0;
         public int scoreLeftPlayer = 0;
-        public int speed = 6;
+        public int speed = 13;
         bool boolEnemyLeft = false;
         String leftPlayerName = "";
         String rightPlayerName = "";

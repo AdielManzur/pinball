@@ -23,21 +23,6 @@ namespace pinball
             this.main = main;
         }
 
-        public newWaitingRoom newWaitingRoom
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public RoomsListWin RoomsListWin
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
         private void WaitingRoom_Load(object sender, EventArgs e)
         {
@@ -45,16 +30,7 @@ namespace pinball
             playerLBL.Text = main.connectionManager.currPlayer.username;
             playerLBL.Left = (this.ClientSize.Width - playerLBL.Width) / 2;
             playerPicture.Left = (this.ClientSize.Width - playerPicture.Width) / 2;
-            if(main.connectionManager.currPlayer.profilePicture != null) { 
-            byte[] imageData = main.connectionManager.currPlayer.profilePicture;
-            Image image;
-            using (MemoryStream ms = new MemoryStream(imageData))
-            {
-
-                image = Image.FromStream(ms);
-            }
-            playerPicture.Image = image;
-            }
+           
         }
 
         private void BtnOpenWatingRoom_Click(object sender, EventArgs e)

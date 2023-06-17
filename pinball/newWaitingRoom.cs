@@ -23,13 +23,7 @@ namespace pinball
 
         }
 
-        public game game
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        
 
         private void NewWaitingRoom_Load(object sender, EventArgs e)
         {
@@ -40,16 +34,7 @@ namespace pinball
             loadGif.Top = ((this.ClientSize.Height - loadGif.Height) / 2 ) + loadGif.Height + 10;
             playerLBL.Text = main.connectionManager.currPlayer.username;
             playerLBL.Location = new Point(((playerPicture.Width - playerLBL.Width) / 2) + playerPicture.Left, playerLBL.Location.Y);
-            if (main.connectionManager.currPlayer.profilePicture != null)
-            {
-                byte[] imageData = main.connectionManager.currPlayer.profilePicture;
-                Image image;
-                using (MemoryStream ms = new MemoryStream(imageData))
-                {
-                    image = Image.FromStream(ms);
-                }
-                playerPicture.Image = image;
-            }
+            
         }
 
         private void BackButton_Click(object sender, EventArgs e)

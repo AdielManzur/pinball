@@ -87,7 +87,6 @@ namespace pinballServer.GamesClasses
                 }
             }
             curGame.player2 = connected.player;
-            //manager.currGame = curGame;
             connected.player.currGameName = curGame.gameName;
             MessageModel msgToSend = new MessageModel();
             msgToSend.MsgType = ProtocolInterface.MsgType.OPEN_GAME;
@@ -107,7 +106,6 @@ namespace pinballServer.GamesClasses
             Random ballVectorX = new Random();
             Random ballVectorY = new Random();
             Vector2 ballVector = new Vector2(ballVectorX.Next(-100, 101), ballVectorY.Next(-100, 101));
-            //ballVector = Vector2.Normalize(ballVector);
             keysMsg.MsgType = ProtocolInterface.MsgType.FirstBallMovement;
             keysMsg.msgStr = "your keys are T and G for up&down and your player is the right player";
             keysMsg.player = player1.player;

@@ -73,7 +73,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="pinballServer.GamesClasses.serverGameManager">
-    <Position X="15" Y="1.5" Width="2.75" />
+    <Position X="16.25" Y="2" Width="2.75" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAgARAAMcAAAMAAABAAAAAAAQFIAAAAEAAAAQ=</HashCode>
       <FileName>GamesClasses\serverGameManager.cs</FileName>
