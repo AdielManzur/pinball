@@ -140,7 +140,10 @@ namespace pinball
 
         public void leaveGame()
         {
-            btnLeaveGame.Enabled = false;
+            this.Invoke((MethodInvoker)delegate
+            {
+                btnLeaveGame.Enabled = false;
+            });           
             if (current is game)
             {
                 game tmp = (game)current;
@@ -181,7 +184,7 @@ namespace pinball
                 updateMenuBTNs();
             });
         }
-        
+         
         public void updateRoomsLbx(List<RoomModel> rooms)
         {
             if (current is RoomsListWin)
@@ -233,6 +236,7 @@ namespace pinball
     
         public void openChoiceWin()
         {
+            btnLeaveGame.Visible = false;
             this.Invoke((MethodInvoker)delegate
             {
                 if (current != null)
@@ -283,7 +287,6 @@ namespace pinball
                 message.pass = pass;
                 connectionManager.sendMessageToServer(message);
             }
-            isLogined = clientHandle.isLogined();
         }
        
         private void connectToServer(object sender, EventArgs e)
@@ -344,6 +347,7 @@ namespace pinball
 
         private void btnLeaveGame_Click(object sender, EventArgs e)
         {
+            btnLeaveGame.Visible = false;
             MessageModel leaveMsg = new MessageModel();
             leaveMsg.MsgType = ProtocolInterface.MsgType.playrLeft;
             leaveMsg.player = connectionManager.currPlayer;

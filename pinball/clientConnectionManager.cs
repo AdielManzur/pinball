@@ -99,7 +99,7 @@ namespace pinball
             main.updateRoomsLbx(rooms);
         }
 
-        public void HandeKeyPress(ProtocolInterface.MsgType msgType)
+        public void HandleKeyPress(ProtocolInterface.MsgType msgType)
         {
             main.handleKeyPress( msgType);
         }

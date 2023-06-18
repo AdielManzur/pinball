@@ -64,9 +64,9 @@
             // 
             this.leftPlayer.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.leftPlayer.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.leftPlayer.Location = new System.Drawing.Point(74, 147);
+            this.leftPlayer.Location = new System.Drawing.Point(74, 136);
             this.leftPlayer.Name = "leftPlayer";
-            this.leftPlayer.Size = new System.Drawing.Size(14, 150);
+            this.leftPlayer.Size = new System.Drawing.Size(15, 150);
             this.leftPlayer.TabIndex = 0;
             this.leftPlayer.TabStop = false;
             // 
@@ -108,6 +108,7 @@
             // countdownLBL
             // 
             this.countdownLBL.AutoSize = true;
+            this.countdownLBL.BackColor = System.Drawing.Color.Transparent;
             this.countdownLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.countdownLBL.Location = new System.Drawing.Point(403, 94);
             this.countdownLBL.Name = "countdownLBL";
@@ -137,6 +138,7 @@
             this.nameLBL.AutoSize = true;
             this.nameLBL.BackColor = System.Drawing.Color.Transparent;
             this.nameLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.nameLBL.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.nameLBL.Location = new System.Drawing.Point(38, 27);
             this.nameLBL.Name = "nameLBL";
             this.nameLBL.Size = new System.Drawing.Size(43, 17);
@@ -148,7 +150,8 @@
             this.playerKeysLBL.AutoSize = true;
             this.playerKeysLBL.BackColor = System.Drawing.Color.Transparent;
             this.playerKeysLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.playerKeysLBL.Location = new System.Drawing.Point(509, 27);
+            this.playerKeysLBL.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.playerKeysLBL.Location = new System.Drawing.Point(386, 27);
             this.playerKeysLBL.Name = "playerKeysLBL";
             this.playerKeysLBL.Size = new System.Drawing.Size(78, 17);
             this.playerKeysLBL.TabIndex = 8;
@@ -159,7 +162,8 @@
             this.scoreRightLBL.AutoSize = true;
             this.scoreRightLBL.BackColor = System.Drawing.Color.Transparent;
             this.scoreRightLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.scoreRightLBL.Location = new System.Drawing.Point(799, 27);
+            this.scoreRightLBL.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.scoreRightLBL.Location = new System.Drawing.Point(934, 27);
             this.scoreRightLBL.Name = "scoreRightLBL";
             this.scoreRightLBL.Size = new System.Drawing.Size(43, 17);
             this.scoreRightLBL.TabIndex = 9;
@@ -170,7 +174,8 @@
             this.scoreLeftLBL.AutoSize = true;
             this.scoreLeftLBL.BackColor = System.Drawing.Color.Transparent;
             this.scoreLeftLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.scoreLeftLBL.Location = new System.Drawing.Point(262, 27);
+            this.scoreLeftLBL.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.scoreLeftLBL.Location = new System.Drawing.Point(236, 25);
             this.scoreLeftLBL.Name = "scoreLeftLBL";
             this.scoreLeftLBL.Size = new System.Drawing.Size(43, 17);
             this.scoreLeftLBL.TabIndex = 9;

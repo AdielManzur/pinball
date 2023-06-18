@@ -49,9 +49,6 @@ namespace pinball
             screenHeight = this.ClientSize.Height;
             screenWidth = this.ClientSize.Width;
             firstBallLocation = ball.Location;
-            playerKeysLBL.Left = (this.ClientSize.Width - playerKeysLBL.Width) / 2;
-            scoreLeftLBL.Left = (this.ClientSize.Width - scoreLeftLBL.Width) / 4;
-            scoreRightLBL.Left = this.ClientSize.Width - ((this.ClientSize.Width - scoreRightLBL.Width) / 4);
             nameLBL.Text = "your name: " + main.connectionManager.currPlayer.username;
             updateLBL();
             
@@ -155,7 +152,6 @@ namespace pinball
         {
 
             playerKeysLBL.Text = message.msgStr;
-            playerKeysLBL.Left = (this.ClientSize.Width - playerKeysLBL.Width) / 2;
             leftPlayerName = message.game.player2.username;
             rightPlayerName = message.game.player1.username;
             currentGame = message.game;

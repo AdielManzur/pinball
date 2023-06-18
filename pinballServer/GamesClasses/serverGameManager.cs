@@ -115,15 +115,15 @@ namespace pinballServer.GamesClasses
             keysMsg.msgStr = "your keys are W and S for up&down and your player is the left player";
             keysMsg.player = connected.player;
             main.manager.sendMessageToClient(connected, keysMsg);
-            MessageModel msg = new MessageModel();
-            msg.MsgType = ProtocolInterface.MsgType.ROOM_IS_FULL;
+            MessageModel msgRoomIsFull = new MessageModel();
+            msgRoomIsFull.MsgType = ProtocolInterface.MsgType.ROOM_IS_FULL;
             main.manager.main.gameManager.rooms.Remove(curr);
-            msg.msgStr = curr.name;
-            msg.rooms = main.manager.main.gameManager.rooms;
+            msgRoomIsFull.msgStr = curr.name;
+            msgRoomIsFull.rooms = main.manager.main.gameManager.rooms;
             foreach (ConnectedPlayer player in players)
             {
                 if (player.player.username != curr.player1.username && player.player.username != curr.player2.username)
-                    main.manager.sendMessageToClient(player, msg);
+                    main.manager.sendMessageToClient(player, msgRoomIsFull);
             }
         }
 

@@ -14,8 +14,6 @@ namespace pinball
     {
        
         clientConnectionManager manager;
-        bool isReg = false;
-        bool isLog = false;
         public clientMessageHandling(clientConnectionManager manager)
         {
             this.manager = manager;
@@ -108,9 +106,7 @@ namespace pinball
 
         private void handleSignOut(MessageModel message)
         {
-            manager.main.signOut();
-            isReg = false;
-            isLog = false;
+            manager.main.signOut();            
         }
 
         private void handleAlreadyOnline(MessageModel message)
@@ -131,7 +127,7 @@ namespace pinball
         private void handleKeyPressed(MessageModel message)
         {
 
-            manager.HandeKeyPress(message.MsgType);
+            manager.HandleKeyPress(message.MsgType);
         }
 
         private void handleOpenGame(MessageModel message)
@@ -148,8 +144,6 @@ namespace pinball
         private void handleOpenRoomOk(MessageModel message)
         {
             manager.main.opennewWaitingRoom();
-
-
         }
 
         private void handleLoginError(MessageModel message)
@@ -164,8 +158,7 @@ namespace pinball
             manager.currPlayer = message.player;
             manager.main.isLogined = true;
             manager.main.openChoiceWin();
-           
-            
+                      
         }
 
         private void handleRegisterError(MessageModel message)
@@ -177,16 +170,7 @@ namespace pinball
         {
             manager.main.isLogined = true;
             manager.currPlayer = message.player;
-            manager.main.updateMenuBTNs();
             manager.main.openChoiceWin();
-
         }
-
-        public bool isLogined()
-        {
-            return isLog;
-        }
-
-
     }
 }

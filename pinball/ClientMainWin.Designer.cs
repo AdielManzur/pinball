@@ -64,35 +64,35 @@
             // btnConnectToServer
             // 
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(170, 22);
+            this.btnConnectToServer.Size = new System.Drawing.Size(180, 22);
             this.btnConnectToServer.Text = "Connect To Server";
             this.btnConnectToServer.Click += new System.EventHandler(this.connectToServer);
             // 
             // btnLogin
             // 
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(170, 22);
+            this.btnLogin.Size = new System.Drawing.Size(180, 22);
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.openLoginWin);
             // 
             // btnRegister
             // 
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(170, 22);
+            this.btnRegister.Size = new System.Drawing.Size(180, 22);
             this.btnRegister.Text = "Register";
             this.btnRegister.Click += new System.EventHandler(this.openRegWin);
             // 
             // btnSignOut
             // 
             this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Size = new System.Drawing.Size(170, 22);
+            this.btnSignOut.Size = new System.Drawing.Size(180, 22);
             this.btnSignOut.Text = "Sign Out";
             this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
             // 
             // btnLeaveGame
             // 
             this.btnLeaveGame.Name = "btnLeaveGame";
-            this.btnLeaveGame.Size = new System.Drawing.Size(170, 22);
+            this.btnLeaveGame.Size = new System.Drawing.Size(180, 22);
             this.btnLeaveGame.Text = "Leave Game";
             this.btnLeaveGame.Visible = false;
             this.btnLeaveGame.Click += new System.EventHandler(this.btnLeaveGame_Click);
@@ -101,7 +101,7 @@
             // 
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1068, 458);
+            this.mainPanel.Size = new System.Drawing.Size(1068, 460);
             this.mainPanel.TabIndex = 1;
             // 
             // ClientMainWin
