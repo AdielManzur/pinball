@@ -125,7 +125,7 @@ namespace pinball
 
         public void hadGoal(MessageModel message)
         {
-            speed += 1;
+            speed++;
             scoreRightPlayer = message.scoreRightPlayer;
             scoreLeftPlayer = message.scoreLeftPlayer;
             updateLBL();

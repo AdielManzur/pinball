@@ -135,6 +135,7 @@ namespace pinball
             this.Invoke((MethodInvoker)delegate
             {
                 btnLeaveGame.Visible = false;
+                updateMenuBTNs();
             });
         }
 
@@ -236,9 +237,10 @@ namespace pinball
     
         public void openChoiceWin()
         {
-            btnLeaveGame.Visible = false;
+            
             this.Invoke((MethodInvoker)delegate
             {
+                btnLeaveGame.Visible = false;
                 if (current != null)
                 {
                     if (current is choiceWin)
@@ -272,7 +274,6 @@ namespace pinball
                 current.Show();
                 btnLeaveGame.Visible = true;
                 updateMenuBTNs();
-                btnSignOut.Enabled = false;
             });
 
         }
@@ -318,7 +319,7 @@ namespace pinball
                 btnConnectToServer.Enabled = !isConnected;
                 btnLogin.Enabled = isConnected && !isLogined;
                 btnRegister.Enabled = isConnected && !isLogined;
-                btnSignOut.Enabled = !btnRegister.Enabled || !btnLogin.Enabled;
+                btnSignOut.Enabled = (!btnRegister.Enabled || !btnLogin.Enabled) && !(current is game);
             });
         
         }
@@ -330,7 +331,9 @@ namespace pinball
             {
                 removeThisOpendRoom();
             }
+            
             btnLeaveGame.Visible = false;
+            updateMenuBTNs();
             connectionManager.currPlayer = null;
             MessageModel signOutMsg = new MessageModel();
             signOutMsg.MsgType = ProtocolInterface.MsgType.SIGN_OUT;
